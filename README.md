@@ -49,7 +49,7 @@ print(outer_stopwatch.report()) # [Stopwatch#outer] total=1.0015s
 print(inner_stopwatch.report()) # [Stopwatch#inner] total=1.0014s, mean=0.2003s, min=0.0000s, median=0.2003s, max=0.4005s, dev=0.1416s
 
 
-@profile
+@profile()
 def wait_for(ts):
     if not ts:
         return
