@@ -8,18 +8,10 @@ To install the library, you can just run the following command:
 
 ```shell
 # Linux/macOS
-python3 -m pip install python-stopwatch
+python3 -m pip install git+https://github.com/devRMA/python-stopwatch.git
 
 # Windows
-py -3 -m pip install python-stopwatch
-```
-
-To install the development version, do the following:
-
-```shell
-git clone https://github.com/jonghwanhyeon/python-stopwatch
-cd python-stopwatch
-python3 -m pip install .
+py -3 -m pip install git+https://github.com/devRMA/python-stopwatch.git
 ```
 
 ## Examples
