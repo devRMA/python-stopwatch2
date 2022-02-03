@@ -1,13 +1,15 @@
 import atexit
 import functools
 import math
-from typing import Any, Callable, Optional
+from typing import Any, Callable, TypeVar
 
 from termcolor import colored
 
 from ..statistics import Statistics
 from ..stopwatch import Stopwatch
 from . import Caller, format_elapsed_time, inspect_caller
+
+RT = TypeVar('RT')  # return type
 
 
 def make_report(caller: Caller, name: str, statistics: Statistics) -> str:
@@ -33,11 +35,10 @@ def print_report(caller: Caller, name: str, statistics: Statistics) -> None:
         print(make_report(caller, name, statistics))
 
 
-# TODO : Finish add type hinting to the "profile" decorator
-def profile(func: Optional[Callable] = None, **kwargs: Any) -> Callable:
+def profile(**kwargs: Any) -> Callable[[Callable[..., RT]], Callable[..., RT]]:
     caller = inspect_caller()
 
-    def decorated(func: Callable):
+    def decorator(func: Callable[..., RT]) -> Callable[..., RT]:
         name: str = kwargs.get('name', func.__name__)
         report_every: int = kwargs.get('report_every', 1)
         should_report = report_every is not None
@@ -46,7 +47,7 @@ def profile(func: Optional[Callable] = None, **kwargs: Any) -> Callable:
         atexit.register(print_report, caller, name, statistics)
 
         @functools.wraps(func)
-        def wrapper(*args: Any, **kwargs: Any):
+        def wrapper(*args: object, **kwargs: object) -> RT:
             with Stopwatch() as stopwatch:
                 result = func(*args, **kwargs)
 
@@ -58,4 +59,4 @@ def profile(func: Optional[Callable] = None, **kwargs: Any) -> Callable:
 
         return wrapper
 
-    return decorated(func) if callable(func) else decorated
+    return decorator
