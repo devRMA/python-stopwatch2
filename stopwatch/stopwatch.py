@@ -19,6 +19,15 @@ class Lap:
         self._start = 0.0
         self._fractions = []
 
+    def __repr__(self) -> str:
+        return f'Lap(running={self._running}, elapsed={self.elapsed:.4f})'
+
+    @property
+    def elapsed(self) -> float:
+        """`float`: Return the elapsed time in seconds."""
+        return ((time.perf_counter() -
+                 self._start) if self._running else 0.0) + sum(self._fractions)
+
     def start(self) -> None:
         """
         Start the lap timer.
@@ -34,15 +43,6 @@ class Lap:
         self._start = 0.0
         self._running = False
 
-    @property
-    def elapsed(self) -> float:
-        """`float`: Return the elapsed time in seconds."""
-        return ((time.perf_counter() -
-                 self._start) if self._running else 0.0) + sum(self._fractions)
-
-    def __repr__(self) -> str:
-        return f'Lap(running={self._running}, elapsed={self.elapsed:.4f})'
-
 
 class Stopwatch:
     _name: Optional[str]
@@ -52,6 +52,44 @@ class Stopwatch:
     def __init__(self, name: Optional[str] = None) -> None:
         self._name = name
         self.reset()
+
+    def __enter__(self) -> Stopwatch:
+        self.start()
+        return self
+
+    def __exit__(self, *exception: Any) -> None:
+        self.stop()
+
+    def __str__(self) -> str:
+        return format_elapsed_time(self.elapsed)
+
+    def __repr__(self) -> str:
+        return f'Stopwatch(name={self.name}, elapsed={self.elapsed})'
+
+    @property
+    def name(self) -> Optional[str]:
+        """Optional[`str`]: The name of the stopwatch."""
+        return self._name
+
+    @property
+    def laps(self) -> List[float]:
+        """List[`float`]: The list of laps."""
+        return [lap.elapsed for lap in self._laps]
+
+    @property
+    def elapsed(self) -> float:
+        """`float`: The elapsed time in seconds."""
+        return sum(self.laps)
+
+    @contextmanager
+    def lap(self) -> Generator[None, None, None]:
+        """
+        Context manager for add a new lap.
+        """
+        # calling start twice consecutively -> use stack to solve this problem
+        self.start()
+        yield
+        self.stop()
 
     def start(self) -> Stopwatch:
         """
@@ -67,16 +105,6 @@ class Stopwatch:
             self._lap = self._laps[-1]
             self._lap.start()
         return self
-
-    @contextmanager
-    def lap(self) -> Generator[None, None, None]:
-        """
-        Context manager for add a new lap.
-        """
-        # calling start twice consecutively -> use stack to solve this problem
-        self.start()
-        yield
-        self.stop()
 
     def stop(self) -> Stopwatch:
         """
@@ -129,31 +157,3 @@ class Stopwatch:
         return '[Stopwatch{tag}] {statistics}'.format(
             tag=f'#{self.name}' if self.name is not None else '',
             statistics=', '.join(items))
-
-    @property
-    def name(self) -> Optional[str]:
-        """Optional[`str`]: The name of the stopwatch."""
-        return self._name
-
-    @property
-    def laps(self) -> List[float]:
-        """List[`float`]: The list of laps."""
-        return [lap.elapsed for lap in self._laps]
-
-    @property
-    def elapsed(self) -> float:
-        """`float`: The elapsed time in seconds."""
-        return sum(self.laps)
-
-    def __enter__(self) -> Stopwatch:
-        self.start()
-        return self
-
-    def __exit__(self, *exception: Any) -> None:
-        self.stop()
-
-    def __str__(self) -> str:
-        return format_elapsed_time(self.elapsed)
-
-    def __repr__(self) -> str:
-        return f'Stopwatch(name={self.name}, elapsed={self.elapsed})'
