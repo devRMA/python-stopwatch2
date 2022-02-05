@@ -17,6 +17,19 @@ def inspect_caller(offset: int = 0) -> Caller:
 
 
 def format_elapsed_time(elapsed: float) -> str:
+    """
+    Format the elapsed time in seconds to a human readable string.
+
+    Parameters
+    ----------
+    elapsed : `float`
+        The elapsed time in seconds.
+
+    Returns
+    -------
+    `str`
+        The formatted elapsed time.
+    """
     if elapsed >= 0.1:
         return f'{elapsed:.4f}s'
     if elapsed >= 0.01:

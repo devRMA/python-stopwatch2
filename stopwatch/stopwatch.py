@@ -20,16 +20,23 @@ class Lap:
         self._fractions = []
 
     def start(self) -> None:
+        """
+        Start the lap timer.
+        """
         self._running = True
         self._start = time.perf_counter()
 
     def stop(self) -> None:
+        """
+        Stop the lap timer.
+        """
         self._fractions.append(time.perf_counter() - self._start)
         self._start = 0.0
         self._running = False
 
     @property
     def elapsed(self) -> float:
+        """`float`: Return the elapsed time in seconds."""
         return ((time.perf_counter() -
                  self._start) if self._running else 0.0) + sum(self._fractions)
 
@@ -47,6 +54,14 @@ class Stopwatch:
         self.reset()
 
     def start(self) -> Stopwatch:
+        """
+        Starts the stopwatch.
+
+        Returns
+        -------
+        `Stopwatch`
+            The started stopwatch instance.
+        """
         if self._lap is None:
             self._laps.append(Lap())
             self._lap = self._laps[-1]
@@ -55,23 +70,50 @@ class Stopwatch:
 
     @contextmanager
     def lap(self) -> Generator[None, None, None]:
+        """
+        Context manager for add a new lap.
+        """
         # calling start twice consecutively -> use stack to solve this problem
         self.start()
         yield
         self.stop()
 
     def stop(self) -> Stopwatch:
+        """
+        Stops the stopwatch, freezing the duration.
+
+        Returns
+        -------
+        `Stopwatch`
+            The stopped stopwatch instance.
+        """
         if self._lap is not None:
             self._lap.stop()
             self._lap = None
         return self
 
     def reset(self) -> Stopwatch:
+        """
+        Resets the Stopwatch to 0 duration.
+
+        Returns
+        -------
+        `Stopwatch`
+            The resetted stopwatch instance.
+        """
         self._laps = []
         self._lap = None
         return self
 
     def report(self) -> str:
+        """
+        Return a report of the stopwatch statistics.
+
+        Returns
+        -------
+        `str`
+            The report.
+        """
         statistics = Statistics(values=self.laps)
 
         items = [f'total={statistics.total:.4f}s']
@@ -90,14 +132,17 @@ class Stopwatch:
 
     @property
     def name(self) -> Optional[str]:
+        """Optional[`str`]: The name of the stopwatch."""
         return self._name
 
     @property
     def laps(self) -> List[float]:
+        """List[`float`]: The list of laps."""
         return [lap.elapsed for lap in self._laps]
 
     @property
     def elapsed(self) -> float:
+        """`float`: The elapsed time in seconds."""
         return sum(self.laps)
 
     def __enter__(self) -> Stopwatch:

@@ -13,6 +13,23 @@ RT = TypeVar('RT')  # return type
 
 
 def make_report(caller: Caller, name: str, statistics: Statistics) -> str:
+    """
+    Return a report of the stopwatch statistics.
+
+    Parameters
+    ----------
+    caller : `Caller`
+        The caller.
+    name : `str`
+        The name for report.
+    statistics : `Statistics`
+        The statistics object.
+
+    Returns
+    -------
+    `str`
+        The report string.
+    """
     tag = ''.join([
         colored(f'[{caller.module}', color='blue', attrs=['bold']),
         colored(f'#{name}', color='green', attrs=['bold']),
@@ -31,11 +48,33 @@ def make_report(caller: Caller, name: str, statistics: Statistics) -> str:
 
 
 def print_report(caller: Caller, name: str, statistics: Statistics) -> None:
+    """
+    Print a report of the stopwatch statistics.
+
+    Parameters
+    ----------
+    caller : `Caller`
+        The caller.
+    name : `str`
+        The name for printing.
+    statistics : `Statistics`
+        The statistics object.
+    """
     if len(statistics) > 0:
         print(make_report(caller, name, statistics))
 
 
 def profile(**kwargs: Any) -> Callable[[Callable[..., RT]], Callable[..., RT]]:
+    """
+    Decorator for profiling the function.
+
+    Parameters
+    ----------
+    name : Optional[`str`]
+        The name for the statistics. Default is the name of function.
+    report_every : Optional[`int`]
+        The number of times to report the statistics. Default is 1.
+    """
     caller = inspect_caller()
 
     def decorator(func: Callable[..., RT]) -> Callable[..., RT]:

@@ -9,30 +9,44 @@ class Statistics:
         self._values = values or []
 
     def add(self, value: float) -> None:
+        """
+        Add a new value in seconds to get the statistics.
+
+        Parameters
+        ----------
+        value : `float`
+            The value to add in seconds.
+        """
         self._values.append(value)
 
     @property
     def mean(self) -> float:
+        """`float`: Return the mean value in seconds."""
         return statistics.mean(self._values)
 
     @property
     def maximum(self) -> float:
+        """`float`: Return the maximum value in seconds."""
         return max(self._values)
 
     @property
     def median(self) -> float:
+        """`float`: Return the median value in seconds."""
         return statistics.median(self._values)
 
     @property
     def minimum(self) -> float:
+        """`float`: Return the minimum value in seconds."""
         return min(self._values)
 
     @property
     def total(self) -> float:
+        """`float`: Return the total value in seconds."""
         return sum(self._values)
 
     @property
     def variance(self) -> float:
+        """`float`: Return the variance in seconds."""
         return statistics.pvariance(self._values)
 
     def __len__(self) -> int:
