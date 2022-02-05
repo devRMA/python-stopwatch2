@@ -46,11 +46,12 @@ class Stopwatch:
         self._name = name
         self.reset()
 
-    def start(self) -> None:
+    def start(self) -> Stopwatch:
         if self._lap is None:
             self._laps.append(Lap())
             self._lap = self._laps[-1]
             self._lap.start()
+        return self
 
     @contextmanager
     def lap(self) -> Generator[None, None, None]:
@@ -59,14 +60,16 @@ class Stopwatch:
         yield
         self.stop()
 
-    def stop(self) -> None:
+    def stop(self) -> Stopwatch:
         if self._lap is not None:
             self._lap.stop()
             self._lap = None
+        return self
 
-    def reset(self) -> None:
+    def reset(self) -> Stopwatch:
         self._laps = []
         self._lap = None
+        return self
 
     def report(self) -> str:
         statistics = Statistics(values=self.laps)
