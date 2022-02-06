@@ -3,8 +3,6 @@ import functools
 import math
 from typing import Any, Callable, TypeVar
 
-from termcolor import colored
-
 from ..statistics import Statistics
 from ..stopwatch import Stopwatch
 from . import Caller, format_elapsed_time, inspect_caller
@@ -30,11 +28,8 @@ def make_report(caller: Caller, name: str, statistics: Statistics) -> str:
     `str`
         The report string.
     """
-    tag = ''.join([
-        colored(f'[{caller.module}', color='blue', attrs=['bold']),
-        colored(f'#{name}', color='green', attrs=['bold']),
-        colored(']', color='blue', attrs=['bold'])
-    ])
+    # TODO : back with the colored print using colorama
+    tag = f'[{caller.module}#{name}]'
     items = ', '.join([
         f'hits={len(statistics)}',
         f'mean={format_elapsed_time(statistics.mean)}',

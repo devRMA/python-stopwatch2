@@ -1,8 +1,6 @@
 import sys
 from typing import Any, Optional
 
-from termcolor import colored
-
 from ..stopwatch import Stopwatch
 from . import Caller, format_elapsed_time, inspect_caller
 
@@ -30,14 +28,10 @@ class stopwatch:
 
     @staticmethod
     def _format(message: Optional[str], caller: Caller, elapsed: float) -> str:
+        # TODO : back with the colored print using colorama
         items = [
-            colored(
-                f'[{caller.module}:{caller.function}:{caller.line_number}]',
-                color='blue',
-                attrs=['bold']), ' ~ ',
-            colored(format_elapsed_time(elapsed),
-                    color='magenta',
-                    attrs=['bold'])
+            f'[{caller.module}:{caller.function}:{caller.line_number}]', ' ~ ',
+            format_elapsed_time(elapsed)
         ]
 
         if message is not None:
