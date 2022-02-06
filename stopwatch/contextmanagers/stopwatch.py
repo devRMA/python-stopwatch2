@@ -5,6 +5,7 @@ from ..stopwatch import Stopwatch
 from . import Caller, format_elapsed_time, inspect_caller
 
 
+# TODO : Think of a better name
 # pylint: disable=invalid-name
 class stopwatch:
     _message: Optional[str]
