@@ -2,7 +2,7 @@ from unittest import TestCase
 from time import sleep
 from stopwatch import Stopwatch
 
-
+# TODO : Make more tests
 class StopwatchTest(TestCase):
 
     def test_stopwatch(self):
