@@ -30,10 +30,9 @@ def format_elapsed_time(elapsed: float) -> str:
     `str`
         The formatted elapsed time.
     """
-    if elapsed >= 0.1:
-        return f'{elapsed:.4f}s'
-    if elapsed >= 0.01:
-        return f'{elapsed * 1e3:.2f}ms'
-    if elapsed >= 0.001:
-        return f'{elapsed * 1e6:.2f}µs'
-    return f'{elapsed * 1e9:.2f}ns'
+    ms = elapsed * 1000
+    if ms >= 1e3:
+        return f'{ms / 1e3:.2f}s'
+    if ms >= 1:
+        return '{ms:.2f}ms'
+    return f'{ms * 1e3:.2f}μs'
