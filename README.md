@@ -1,6 +1,6 @@
-# Stopwatch
+# Python-Stopwatch2
 
-A simple stopwatch for measuring code performance.
+A simple stopwatch for measuring code performance. This is a fork from [python-stopwatch]([python-stopwatch · PyPI](https://pypi.org/project/python-stopwatch/)), which adds static typing and a few other things.
 
 ## Installing
 
@@ -8,10 +8,10 @@ To install the library, you can just run the following command:
 
 ```shell
 # Linux/macOS
-python3 -m pip install git+https://github.com/devRMA/python-stopwatch.git
+python3 -m pip install git+https://github.com/devRMA/python-stopwatch2.git
 
 # Windows
-py -3 -m pip install git+https://github.com/devRMA/python-stopwatch.git
+py -3 -m pip install git+https://github.com/devRMA/python-stopwatch2.git
 ```
 
 ## Examples
