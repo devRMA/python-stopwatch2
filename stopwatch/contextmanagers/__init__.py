@@ -34,5 +34,5 @@ def format_elapsed_time(elapsed: float) -> str:
     if ms >= 1e3:
         return f'{ms / 1e3:.2f}s'
     if ms >= 1:
-        return '{ms:.2f}ms'
+        return f'{ms:.2f}ms'
     return f'{ms * 1e3:.2f}μs'
