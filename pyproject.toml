@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "python-stopwatch2"
+version = "1.0.7"
+description = "A simple stopwatch for measuring code performance with static typing."
+authors = [
+    "Rafael <contact.devrma@gmail.com>",
+    "Jonghwan Hyeon <hyeon0145@gmail.com>"
+]
+maintainers = ["Rafael <contact.devrma@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/devRMA/python-stopwatch2"
+keywords = ["stopwatch", "timer", "time", "profile"]
+packages = [{ include = "stopwatch" }]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+colorama = "^0.4.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+taskipy = "^1.9.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.tasks]
+test = { cmd = "python -m unittest -v tests/test_*.py", help = "runs all tests" }
