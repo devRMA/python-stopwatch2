@@ -26,6 +26,9 @@ setup(
     ],
     keywords='stopwatch profile',
     packages=find_packages(),
+    package_data={
+        'stopwatch': ['py.typed'],
+    },
     install_requires=['termcolor'],
     python_requires='>=3.4',
 )
