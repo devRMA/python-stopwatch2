@@ -54,10 +54,10 @@ class Stopwatch:
         self.reset()
 
     def __enter__(self) -> Stopwatch:
-        self.start()
-        return self
+        return self.start()
 
-    def __exit__(self, *exception: Any) -> None:
+    def __exit__(self, exc_type: Any, exc_value: Any,
+                 exc_traceback: Any) -> None:
         self.stop()
 
     def __str__(self) -> str:

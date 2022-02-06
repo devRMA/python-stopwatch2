@@ -21,7 +21,8 @@ class stopwatch:
     def __enter__(self) -> None:
         self._stopwatch.start()
 
-    def __exit__(self, *exception: Any) -> None:
+    def __exit__(self, exc_type: Any, exc_value: Any,
+                 exc_traceback: Any) -> None:
         self._stopwatch.stop()
         print(self._format(self._message, self._caller,
                            self._stopwatch.elapsed),
