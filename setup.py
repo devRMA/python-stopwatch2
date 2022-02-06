@@ -6,12 +6,12 @@ with open('README.md', 'r', encoding='utf-8') as input_file:
 setup(
     name='python-stopwatch',
     version='1.0.7',
-    author='Jonghwan Hyeon',
+    author='Jonghwan Hyeon, Rafael',
     author_email='hyeon0145@gmail.com',
     description='A simple stopwatch for measuring code performance',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/jonghwanhyeon/python-stopwatch',
+    url='https://github.com/devRMA/python-stopwatch',
     license='MIT',
     classifiers=[
         'Development Status :: 4 - Beta',
