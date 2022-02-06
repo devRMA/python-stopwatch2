@@ -2,117 +2,124 @@
 
 A simple stopwatch for measuring code performance. This is a fork from [python-stopwatch](https://pypi.org/project/python-stopwatch/), which adds static typing and a few other things.
 
-## Installing
+## Usage
+
+### Installation
 
 To install the library, you can just run the following command:
 
 ```shell
-# Linux/macOS
-python3 -m pip install git+https://github.com/devRMA/python-stopwatch2.git
-
-# Windows
-py -3 -m pip install git+https://github.com/devRMA/python-stopwatch2.git
+poetry add python-stopwatch2
 ```
 
-## Examples
+Or, using pip:
+
+```shell
+pip install python-stopwatch2
+```
+
+### Basic usage
+
+#### stopwatch.Stopwatch
+
+You can use the ``start()`` and ``stop`` methods to starts or stops the stopwatch counter
 
 ```python
-import time
-from stopwatch import Stopwatch, profile
+from time import sleep
 
-stopwatch = Stopwatch()
-stopwatch.start()
-time.sleep(3.0)
-stopwatch.stop()
-print(stopwatch.elapsed) # 3.003047182224691
+from stopwatch import Stopwatch
 
-with Stopwatch() as stopwatch2:
-    time.sleep(3)
-print(f'Time elapsed: {stopwatch2}') # Time elapsed: 3.0030s
+my_stopwatch = Stopwatch()
+my_stopwatch.start()
+sleep(3)
+my_stopwatch.stop()
+print(my_stopwatch.elapsed)  # 3.0012330539993854
+print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.00s
+```
 
-with Stopwatch(name='outer') as outer_stopwatch:
-    with Stopwatch(name='inner') as inner_stopwatch:
-        for i in range(5):
-            with inner_stopwatch.lap():
-                time.sleep(i / 10)
-print(inner_stopwatch.elapsed) # 1.0013675531372428
-print(inner_stopwatch.laps) # [3.256136551499367e-05, 0.10015189787372947, 0.20030939625576138, 0.3003752687945962, 0.40049842884764075]
-print(outer_stopwatch.report()) # [Stopwatch#outer] total=1.0015s
-print(inner_stopwatch.report()) # [Stopwatch#inner] total=1.0014s, mean=0.2003s, min=0.0000s, median=0.2003s, max=0.4005s, dev=0.1416s
+It is also possible to use ``Stopwatch`` with the ``with statement``
 
+```python
+from time import sleep
 
-@profile()
-def wait_for(ts):
-    if not ts:
-        return
+from stopwatch import Stopwatch
 
-    time.sleep(ts[0])
-    wait_for(ts[1:])
+with Stopwatch() as my_stopwatch:
+    sleep(3)
+print(my_stopwatch.elapsed)  # 3.0012330539993854
+print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.00s
+```
 
-wait_for([0.1, 0.2, 0.3, 0.4, 0.5])
-# [__main__#wait_for] hits=1, mean=0.02ms, min=0.02ms, median=0.02ms, max=0.02ms, dev=0.00ms
-# [__main__#wait_for] hits=2, mean=0.2507s, min=0.02ms, median=0.2507s, max=0.5014s, dev=0.2507s
-# [__main__#wait_for] hits=3, mean=0.4680s, min=0.02ms, median=0.5014s, max=0.9026s, dev=0.3692s
-# [__main__#wait_for] hits=4, mean=0.6519s, min=0.02ms, median=0.7020s, max=1.2036s, dev=0.4513s
-# [__main__#wait_for] hits=5, mean=0.8024s, min=0.02ms, median=0.9026s, max=1.4046s, dev=0.5036s
-# [__main__#wait_for] hits=6, mean=0.9196s, min=0.02ms, median=1.0531s, max=1.5055s, dev=0.5291s
-# [__main__#wait_for] hits=6, mean=0.9196s, min=0.02ms, median=1.0531s, max=1.5055s, dev=0.5291s
+#### stopwatch.profile
+
+This decorator is used to profile a function. It will print a report every time the function is called and, at the end of the execution, the final report will be printed.
+
+```python
+from time import sleep
+
+from stopwatch import profile
 
 
-@profile(name='wait for ts')
-def wait_for(ts):
-    if not ts:
-        return
-
-    time.sleep(ts[0])
-    wait_for(ts[1:])
-
-wait_for([0.1, 0.2, 0.3, 0.4, 0.5])
-# [__main__#wait for ts] hits=1, mean=0.01ms, min=0.01ms, median=0.01ms, max=0.01ms, dev=0.00ms
-# [__main__#wait for ts] hits=2, mean=0.2505s, min=0.01ms, median=0.2505s, max=0.5009s, dev=0.2505s
-# [__main__#wait for ts] hits=3, mean=0.4675s, min=0.01ms, median=0.5009s, max=0.9017s, dev=0.3689s
-# [__main__#wait for ts] hits=4, mean=0.6513s, min=0.01ms, median=0.7013s, max=1.2024s, dev=0.4509s
-# [__main__#wait for ts] hits=5, mean=0.8016s, min=0.01ms, median=0.9017s, max=1.4031s, dev=0.5031s
-# [__main__#wait for ts] hits=6, mean=0.9186s, min=0.01ms, median=1.0521s, max=1.5037s, dev=0.5286s
-# [__main__#wait for ts] hits=6, mean=0.9186s, min=0.01ms, median=1.0521s, max=1.5037s, dev=0.5286s
+@profile(name='My function')
+def wait_for(time: float) -> None:
+    sleep(time)
 
 
+for time in [0.1, 0.2, 0.3, 0.4, 0.5]:
+    wait_for(time)
+print('end')
 
-@profile(name='wait for ts', report_every=2)
-def wait_for(ts):
-    if not ts:
-        return
+# [__main__#My function] hits=1, mean=100.14ms, min=100.14ms, median=100.14ms, max=100.14ms, dev=0.00μs
+# [__main__#My function] hits=2, mean=150.20ms, min=100.14ms, median=150.20ms, max=200.26ms, dev=50.06ms
+# [__main__#My function] hits=3, mean=200.25ms, min=100.14ms, median=200.26ms, max=300.35ms, dev=81.74ms
+# [__main__#My function] hits=4, mean=250.30ms, min=100.14ms, median=250.30ms, max=400.44ms, dev=111.92ms
+# [__main__#My function] hits=5, mean=300.35ms, min=100.14ms, median=300.35ms, max=500.55ms, dev=141.56ms
+# end
+# [__main__#My function] hits=5, mean=300.35ms, min=100.14ms, median=300.35ms, max=500.55ms, dev=141.56ms
+```
 
-    time.sleep(ts[0])
-    wait_for(ts[1:])
+If the ``name`` parameter is not informed, it will use the function name.
 
-wait_for([0.1, 0.2, 0.3, 0.4, 0.5])
-# [__main__#wait for ts] hits=2, mean=0.2504s, min=0.01ms, median=0.2504s, max=0.5007s, dev=0.2503s
-# [__main__#wait for ts] hits=4, mean=0.6513s, min=0.01ms, median=0.7014s, max=1.2025s, dev=0.4510s
-# [__main__#wait for ts] hits=6, mean=0.9188s, min=0.01ms, median=1.0523s, max=1.5039s, dev=0.5287s
-# [__main__#wait for ts] hits=6, mean=0.9176s, min=0.01ms, median=1.0510s, max=1.5018s, dev=0.5279s
+It is also possible to pass the ``report_every`` parameter (which by default is 1) which informs how many times the report should be printed. If ``None`` is passed, the report will only be printed at the end of the execution.
+
+```python
+from time import sleep
+
+from stopwatch import profile
 
 
-@profile(name='wait for ts', report_every=None)
-def wait_for(ts):
-    if not ts:
-        return
+@profile(report_every=2)
+def report_every2(time: float) -> None:
+    sleep(time)
 
-    time.sleep(ts[0])
-    wait_for(ts[1:])
 
-wait_for([0.1, 0.2, 0.3, 0.4, 0.5])
-# [__main__#wait for ts] hits=6, mean=0.9188s, min=0.01ms, median=1.0523s, max=1.5039s, dev=0.5287s
+@profile(report_every=None)
+def no_report(time: float) -> None:
+    sleep(time)
 
+
+for time in [0.1, 0.2, 0.3, 0.4, 0.5]:
+    report_every2(time)
+    no_report(time)
+print('end')
+
+# [__main__#report_every2] hits=2, mean=150.20ms, min=100.15ms, median=150.20ms, max=200.25ms, dev=50.05ms
+# [__main__#report_every2] hits=4, mean=250.30ms, min=100.15ms, median=250.30ms, max=400.46ms, dev=111.92ms
+# end
+# [__main__#no_report] hits=5, mean=300.36ms, min=100.15ms, median=300.36ms, max=500.58ms, dev=141.57ms
+# [__main__#report_every2] hits=5, mean=300.43ms, min=100.15ms, median=300.36ms, max=500.94ms, dev=141.68ms
+```
+
+#### stopwatch.stopwatch
+
+This class is to be used with ``with statement`` and will print the time it took to execute the code.
+
+```python
+from time import sleep
+
+from stopwatch import stopwatch
 
 with stopwatch():
-    for i in range(5):
-        time.sleep(i / 10)
-# [__main__:<module>:1] ~ 1.0013s
-
-
-with stopwatch('with message'):
-    for i in range(5):
-        time.sleep(i / 10)
-# [__main__:<module>:1] ~ 1.0013s - with message
+    sleep(0.5)
+# [__main__:<module>:5] ~ 500.27ms
 ```
