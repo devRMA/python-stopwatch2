@@ -3,7 +3,7 @@ from __future__ import annotations
 import math
 import time
 from contextlib import contextmanager
-from typing import Any, Generator, List, Optional
+from typing import Any, Iterator, List, Optional
 
 from .contextmanagers import format_elapsed_time
 from .statistics import Statistics
@@ -82,7 +82,7 @@ class Stopwatch:
         return sum(self.laps)
 
     @contextmanager
-    def lap(self) -> Generator[None, None, None]:
+    def lap(self) -> Iterator[None]:
         """
         Context manager for add a new lap.
         """
