@@ -1,6 +1,6 @@
 # Python-Stopwatch2
 
-A simple stopwatch for measuring code performance. This is a fork from [python-stopwatch]([python-stopwatch · PyPI](https://pypi.org/project/python-stopwatch/)), which adds static typing and a few other things.
+A simple stopwatch for measuring code performance. This is a fork from [python-stopwatch](https://pypi.org/project/python-stopwatch/), which adds static typing and a few other things.
 
 ## Installing
 
