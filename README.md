@@ -22,7 +22,7 @@ pip install python-stopwatch2
 
 #### stopwatch.Stopwatch
 
-You can use the ``start()`` and ``stop`` methods to starts or stops the stopwatch counter
+You can use the [start()](https://github.com/devRMA/python-stopwatch2/tree/main/docs#start) and [stop](https://github.com/devRMA/python-stopwatch2/tree/main/docs#stop) methods to starts or stops the stopwatch counter.
 
 ```python
 from time import sleep
@@ -30,14 +30,19 @@ from time import sleep
 from stopwatch import Stopwatch
 
 my_stopwatch = Stopwatch()
-my_stopwatch.start()
-sleep(3)
+sleep(2)
 my_stopwatch.stop()
-print(my_stopwatch.elapsed)  # 3.0012330539993854
-print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.00s
+print(my_stopwatch.elapsed)  # 2.00027129999944
+sleep(1)
+print(my_stopwatch.elapsed)  # 2.00027129999944
+my_stopwatch.start()
+sleep(1)
+my_stopwatch.stop()
+print(my_stopwatch.elapsed)  # 3.0158972999997786
+print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.02s
 ```
 
-It is also possible to use ``Stopwatch`` with the ``with statement``
+It is also possible to use [Stopwatch](https://github.com/devRMA/python-stopwatch2/tree/main/docs#stopwatchstopwatch) with the [with statement](https://www.geeksforgeeks.org/with-statement-in-python/).
 
 ```python
 from time import sleep
@@ -112,7 +117,7 @@ print('end')
 
 #### stopwatch.stopwatch
 
-This class is to be used with ``with statement`` and will print the time it took to execute the code.
+This class is to be used with [with statement](https://www.geeksforgeeks.org/with-statement-in-python/) and will print the time it took to execute the code.
 
 ```python
 from time import sleep
@@ -121,5 +126,6 @@ from stopwatch import stopwatch
 
 with stopwatch():
     sleep(0.5)
+
 # [__main__:<module>:5] ~ 500.27ms
 ```
