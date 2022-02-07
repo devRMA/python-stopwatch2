@@ -8,7 +8,7 @@ Description and examples of all lib classes/functions.
 
 ### class *stopwatch.Stopwatch* (name: Optional[str] = None)
 
-#### stopwatch.Stopwatch().name
+#### Stopwatch().name
 
 - The name of the timer, which is used in the [report](https://github.com/devRMA/python-stopwatch2/tree/main/docs#report) method. This can be set during initialisation.
 - Type:
@@ -21,7 +21,7 @@ with Stopwatch('foo') as sw:
 print(sw.report())  # [Stopwatch#foo] total=2.0003s
 ```
 
-#### *property* stopwatch.Stopwatch().laps
+#### *property* Stopwatch().laps
 
 - The list of duration of laps.
 - Type:
@@ -34,7 +34,7 @@ with Stopwatch('foo') as sw:
 print(sw.laps)  # [2.0020971080011805]
 ```
 
-#### *property* stopwatch.Stopwatch().elapsed
+#### *property* Stopwatch().elapsed
 
 - The elapsed time in seconds. (sum of all [laps](https://github.com/devRMA/python-stopwatch2/tree/main/docs#property-laps))
 - Type:
@@ -47,7 +47,7 @@ with Stopwatch('foo') as sw:
 print(sw.elapsed)  # 2.0020971080011805
 ```
 
-#### *property* stopwatch.Stopwatch().running
+#### *property* Stopwatch().running
 
 - If the stopwatch is running.
 - Type:
@@ -63,7 +63,7 @@ sw.start()
 print(sw.running)  # True
 ```
 
-#### *contextmanager* stopwatch.Stopwatch().lap()
+#### *contextmanager* Stopwatch().lap()
 
 - Context manager for add a new [lap](https://github.com/devRMA/python-stopwatch2/tree/main/docs#property-laps).
 - Example:
@@ -77,11 +77,11 @@ print(f'{sw}')  # 1.00s
 print(len(sw.laps))  # 5
 ```
 
-#### stopwatch.Stopwatch().start()
+#### Stopwatch().start()
 
 - Starts the stopwatch if it isn't already running.
 
-#### stopwatch.Stopwatch().stop()
+#### Stopwatch().stop()
 
 - Stops the stopwatch, freezing the duration.
 - Example:
@@ -100,7 +100,7 @@ print(my_stopwatch.elapsed)  # 3.0158972999997786
 print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.02s
 ```
 
-#### stopwatch.Stopwatch().reset()
+#### Stopwatch().reset()
 
 - Resets the Stopwatch to 0 duration and stops it.
 - Example:
@@ -113,7 +113,7 @@ sleep(1)
 print(sw.elapsed)  # 0.0
 ```
 
-#### stopwatch.Stopwatch().restart()
+#### Stopwatch().restart()
 
 - Reset and start the stopwatch.
 - Example:
@@ -127,7 +127,7 @@ sleep(1)
 print(str(sw))  # 1.00s
 ```
 
-#### stopwatch.Stopwatch().report()
+#### Stopwatch().report()
 
 - Return a report of the stopwatch statistics.
 - Example:
