@@ -10,6 +10,7 @@ maintainers = ["Rafael <contact.devrma@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/devRMA/python-stopwatch2"
+documentation = "https://github.com/devRMA/python-stopwatch2/tree/main/docs"
 keywords = ["stopwatch", "timer", "time", "profile"]
 packages = [{ include = "stopwatch" }]
 
