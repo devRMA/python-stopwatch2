@@ -10,29 +10,29 @@ from .statistics import Statistics
 
 
 class Lap:
-    _running: bool
+    running: bool
     _start: float
     _fractions: List[float]
 
     def __init__(self) -> None:
-        self._running = False
+        self.running = False
         self._start = 0.0
         self._fractions = []
 
     def __repr__(self) -> str:
-        return f'Lap(running={self._running}, elapsed={self.elapsed:.4f})'
+        return f'Lap(running={self.running}, elapsed={self.elapsed:.4f})'
 
     @property
     def elapsed(self) -> float:
         """`float`: Return the elapsed time in seconds."""
         return ((time.perf_counter() -
-                 self._start) if self._running else 0.0) + sum(self._fractions)
+                 self._start) if self.running else 0.0) + sum(self._fractions)
 
     def start(self) -> None:
         """
         Start the lap timer.
         """
-        self._running = True
+        self.running = True
         self._start = time.perf_counter()
 
     def stop(self) -> None:
@@ -41,20 +41,20 @@ class Lap:
         """
         self._fractions.append(time.perf_counter() - self._start)
         self._start = 0.0
-        self._running = False
+        self.running = False
 
 
 class Stopwatch:
-    name: Optional[str]
-    _laps: List[Lap]
-    _lap: Optional[Lap]
+    name: Optional[str] = None
+    _laps: List[Lap] = []
+    _current_lap: Optional[Lap] = None
 
     def __init__(self, name: Optional[str] = None) -> None:
         self.name = name
-        self.reset()
+        self.restart()
 
     def __enter__(self) -> Stopwatch:
-        return self.start()
+        return self.restart()
 
     def __exit__(self, exc_type: Any, exc_value: Any,
                  exc_traceback: Any) -> None:
@@ -68,13 +68,18 @@ class Stopwatch:
 
     @property
     def laps(self) -> List[float]:
-        """List[`float`]: The list of laps."""
+        """List[`float`]: The list of duration of laps."""
         return [lap.elapsed for lap in self._laps]
 
     @property
     def elapsed(self) -> float:
         """`float`: The elapsed time in seconds."""
-        return sum(self.laps)
+        return float(sum(self.laps))
+
+    @property
+    def running(self) -> bool:
+        """`bool`: True if the stopwatch is running, False if stopped."""
+        return self._current_lap is not None and self._current_lap.running
 
     @contextmanager
     def lap(self) -> Iterator[None]:
@@ -95,10 +100,10 @@ class Stopwatch:
         `Stopwatch`
             The started stopwatch instance.
         """
-        if self._lap is None:
+        if not self.running:
             self._laps.append(Lap())
-            self._lap = self._laps[-1]
-            self._lap.start()
+            self._current_lap = self._laps[-1]
+            self._current_lap.start()
         return self
 
     def stop(self) -> Stopwatch:
@@ -110,9 +115,9 @@ class Stopwatch:
         `Stopwatch`
             The stopped stopwatch instance.
         """
-        if self._lap is not None:
-            self._lap.stop()
-            self._lap = None
+        if self._current_lap is not None:
+            self._current_lap.stop()
+            self._current_lap = None
         return self
 
     def reset(self) -> Stopwatch:
@@ -124,9 +129,20 @@ class Stopwatch:
         `Stopwatch`
             The resetted stopwatch instance.
         """
+        self.stop()
         self._laps = []
-        self._lap = None
         return self
+
+    def restart(self) -> Stopwatch:
+        """
+        Reset and start the stopwatch.
+
+        Returns
+        -------
+        `Stopwatch`
+            The restarted stopwatch instance.
+        """
+        return self.reset().start()
 
     def report(self) -> str:
         """
