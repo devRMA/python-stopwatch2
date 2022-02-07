@@ -22,7 +22,7 @@ pip install python-stopwatch2
 
 #### stopwatch.Stopwatch
 
-You can use the [start()](https://github.com/devRMA/python-stopwatch2/tree/main/docs#start) and [stop](https://github.com/devRMA/python-stopwatch2/tree/main/docs#stop) methods to starts or stops the stopwatch counter.
+You can use the [start()](https://github.com/devRMA/python-stopwatch2/tree/main/docs#stopwatchstart) and [stop](https://github.com/devRMA/python-stopwatch2/tree/main/docs#stopwatchstop) methods to starts or stops the stopwatch counter.
 
 ```python
 from time import sleep
