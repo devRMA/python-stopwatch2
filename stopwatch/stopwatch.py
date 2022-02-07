@@ -45,12 +45,12 @@ class Lap:
 
 
 class Stopwatch:
-    _name: Optional[str]
+    name: Optional[str]
     _laps: List[Lap]
     _lap: Optional[Lap]
 
     def __init__(self, name: Optional[str] = None) -> None:
-        self._name = name
+        self.name = name
         self.reset()
 
     def __enter__(self) -> Stopwatch:
@@ -65,11 +65,6 @@ class Stopwatch:
 
     def __repr__(self) -> str:
         return f'Stopwatch(name={self.name}, elapsed={self.elapsed})'
-
-    @property
-    def name(self) -> Optional[str]:
-        """Optional[`str`]: The name of the stopwatch."""
-        return self._name
 
     @property
     def laps(self) -> List[float]:
