@@ -8,9 +8,9 @@ Description and examples of all lib classes/functions.
 
 #### name
 
-- The name of the timer, which is used in the ``report`` method. This can be set during initialisation.
+- The name of the timer, which is used in the [report](https://github.com/devRMA/python-stopwatch2/tree/main/docs#report) method. This can be set during initialisation.
 - Type:
-- Optional[[str](https://docs.python.org/3/library/stdtypes.html#str)]
+  - Optional[[str](https://docs.python.org/3/library/stdtypes.html#str)]
 - Example:
 
 ```python
@@ -34,7 +34,7 @@ print(sw.report())  # [Stopwatch#foo] total=2.0003s
 
 #### *property* elapsed
 
-- The elapsed time in seconds. (sum of all laps)
+- The elapsed time in seconds. (sum of all [laps](https://github.com/devRMA/python-stopwatch2/tree/main/docs#property-laps))
 - Type:
   - [float](https://docs.python.org/3/library/functions.html#float)
 - Example:
@@ -47,7 +47,7 @@ print(sw.report())  # [Stopwatch#foo] total=2.0003s
 
 #### *contextmanager* lap()
 
-- Context manager for add a new lap.
+- Context manager for add a new [lap](https://github.com/devRMA/python-stopwatch2/tree/main/docs#property-laps).
 - Example:
 
 ```python
