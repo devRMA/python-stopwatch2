@@ -1,6 +1,9 @@
 from unittest import TestCase
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
+
 from stopwatch import utils
+
+from .mocks.inspect import InspectMock
 
 
 class UtilsTest(TestCase):
@@ -14,14 +17,8 @@ class UtilsTest(TestCase):
         self.assertEqual(utils.format_elapsed_time(0.000001, 0), '1μs')
 
     def test_inspect_caller(self) -> None:
-        stack_mock = MagicMock(
-            return_value=[
-                MagicMock(frame='frame', function='function', lineno='lineno')
-                for _ in range(3)
-            ]
-        )
-        with patch('inspect.stack', stack_mock):
+        with patch('inspect.stack', InspectMock.stack):
             caller = utils.inspect_caller()
         self.assertEqual(caller.module, '<unknown>')
         self.assertEqual(caller.function, 'function')
-        self.assertEqual(caller.line_number, 'lineno')
+        self.assertEqual(caller.line_number, 2)
