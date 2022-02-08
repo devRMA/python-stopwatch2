@@ -28,6 +28,6 @@ jobs:
     #----------------------------------------------
     - name: Run formatters
       run: |
-        python -m pip install yapf isort
+        python -m pip install toml yapf isort
         yapf -r -i .
         isort .        
