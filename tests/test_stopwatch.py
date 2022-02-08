@@ -3,12 +3,12 @@ from unittest.mock import MagicMock, patch
 
 from stopwatch import Stopwatch
 
-from .mocks.time import MockTime
+from .mocks.time import TimeMock
 
 
 class StopwatchTest(TestCase):
     def setUp(self) -> None:
-        self.time_mock = MockTime()
+        self.time_mock = TimeMock()
         return super().setUp()
 
     def test_stopwatch_basic_usage(self) -> None:

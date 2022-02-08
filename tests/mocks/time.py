@@ -1,4 +1,4 @@
-class MockTime:
+class TimeMock:
     value: float
 
     def __init__(self) -> None:
