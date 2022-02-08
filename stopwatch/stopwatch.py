@@ -26,7 +26,7 @@ class Stopwatch:
         self.name = name
         self._precision = precision
         if print_report:
-            self.print_report = print_report
+            self._print_report = print_report
             self._caller = inspect_caller()
         self.restart()
 
@@ -155,7 +155,7 @@ class Stopwatch:
     def _format(self) -> str:
         caller = self._caller
         # TODO : back with the colored print using colorama
-        if self.print_report and caller is not None:
+        if self._print_report and caller is not None:
             items = [
                 f'[{caller.module}:{caller.function}:{caller.line_number}]',
                 ' ~ ',
