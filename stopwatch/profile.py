@@ -30,14 +30,16 @@ def _make_report(caller: Caller, name: str, statistics: Statistics) -> str:
     """
     # TODO : back with the colored print using colorama
     tag = f'[{caller.module}#{name}]'
-    items = ', '.join([
-        f'hits={len(statistics)}',
-        f'mean={format_elapsed_time(statistics.mean)}',
-        f'min={format_elapsed_time(statistics.minimum)}',
-        f'median={format_elapsed_time(statistics.median)}',
-        f'max={format_elapsed_time(statistics.maximum)}',
-        f'dev={format_elapsed_time(math.sqrt(statistics.variance))}'
-    ])
+    items = ', '.join(
+        [
+            f'hits={len(statistics)}',
+            f'mean={format_elapsed_time(statistics.mean)}',
+            f'min={format_elapsed_time(statistics.minimum)}',
+            f'median={format_elapsed_time(statistics.median)}',
+            f'max={format_elapsed_time(statistics.maximum)}',
+            f'dev={format_elapsed_time(math.sqrt(statistics.variance))}'
+        ]
+    )
 
     return f'{tag} {items}'
 

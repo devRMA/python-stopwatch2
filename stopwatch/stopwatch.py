@@ -6,7 +6,7 @@ from typing import Any, Iterator, List, Optional
 
 from .lap import Lap
 from .statistics import Statistics
-from .utils import format_elapsed_time, Caller, inspect_caller
+from .utils import Caller, format_elapsed_time, inspect_caller
 
 
 class Stopwatch:
@@ -16,9 +16,9 @@ class Stopwatch:
     _current_lap: Optional[Lap] = None
     _print_report: bool = False
 
-    def __init__(self,
-                 name: Optional[str] = None,
-                 print_report: bool = False) -> None:
+    def __init__(
+        self, name: Optional[str] = None, print_report: bool = False
+    ) -> None:
         self.name = name
         if print_report:
             self.print_report = print_report
@@ -28,8 +28,9 @@ class Stopwatch:
     def __enter__(self) -> Stopwatch:
         return self.restart()
 
-    def __exit__(self, exc_type: Any, exc_value: Any,
-                 exc_traceback: Any) -> None:
+    def __exit__(
+        self, exc_type: Any, exc_value: Any, exc_traceback: Any
+    ) -> None:
         self.stop()
         if self._print_report:
             print(self._format())
@@ -131,17 +132,20 @@ class Stopwatch:
 
         items = [f'total={statistics.total:.4f}s']
         if len(statistics) > 1:
-            items.extend([
-                f'mean={statistics.mean:.4f}s',
-                f'min={statistics.minimum:.4f}s',
-                f'median={statistics.median:.4f}s',
-                f'max={statistics.maximum:.4f}s',
-                f'dev={math.sqrt(statistics.variance):.4f}s'
-            ])
+            items.extend(
+                [
+                    f'mean={statistics.mean:.4f}s',
+                    f'min={statistics.minimum:.4f}s',
+                    f'median={statistics.median:.4f}s',
+                    f'max={statistics.maximum:.4f}s',
+                    f'dev={math.sqrt(statistics.variance):.4f}s'
+                ]
+            )
 
         return '[Stopwatch{tag}] {statistics}'.format(
             tag=f'#{self.name}' if self.name is not None else '',
-            statistics=', '.join(items))
+            statistics=', '.join(items)
+        )
 
     def _format(self) -> str:
         caller = self._caller

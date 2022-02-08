@@ -11,9 +11,11 @@ class Caller(NamedTuple):
 def inspect_caller(offset: int = 0) -> Caller:
     stack = inspect.stack()[2 + offset]
     module = inspect.getmodule(stack.frame)
-    return Caller(module=module.__name__ if module else '<unknown>',
-                  function=stack.function,
-                  line_number=stack.lineno)
+    return Caller(
+        module=module.__name__ if module else '<unknown>',
+        function=stack.function,
+        line_number=stack.lineno
+    )
 
 
 def format_elapsed_time(elapsed: float) -> str:

@@ -6,7 +6,6 @@ from stopwatch import Stopwatch
 
 # TODO : Make more tests
 class StopwatchTest(TestCase):
-
     def test_stopwatch(self) -> None:
         with Stopwatch('lorem') as sw:
             sleep(0.1)
@@ -16,9 +15,13 @@ class StopwatchTest(TestCase):
         self.assertFalse(sw.running)
         self.assertTrue(
             all([str(sw).startswith('100'),
-                 str(sw).endswith('ms')]))
+                 str(sw).endswith('ms')])
+        )
         self.assertTrue(
-            all([
-                repr(sw).startswith('<Stopwatch name=lorem elapsed='),
-                repr(sw).endswith('>')
-            ]))
+            all(
+                [
+                    repr(sw).startswith('<Stopwatch name=lorem elapsed='),
+                    repr(sw).endswith('>')
+                ]
+            )
+        )
