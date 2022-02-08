@@ -3,7 +3,10 @@
 
 name: Run tests and upload coverage data to coveralls.io
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   test:
