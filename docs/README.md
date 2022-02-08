@@ -164,7 +164,7 @@ with Stopwatch() as sw:
         with sw.lap():
             sleep(i / 10)
 print(sw.report())
-# [Stopwatch] total=1.5017s, mean=0.3003s, min=0.1002s, median=0.3004s, max=0.5006s, dev=0.1416s
+# [Stopwatch] total=1.0s, mean=0.2s, min=0.0s, median=0.2s, max=0.4s, dev=0.1s
 ```
 
 #### I'll be adding the rest soon

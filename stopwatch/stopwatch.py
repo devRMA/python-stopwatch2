@@ -135,15 +135,15 @@ class Stopwatch:
         """
         statistics = Statistics(values=self.laps)
 
-        items = [f'total={statistics.total:.4f}s']
+        items = [f'total={statistics.total:.{self._precision}f}s']
         if len(statistics) > 1:
             items.extend(
                 [
-                    f'mean={statistics.mean:.4f}s',
-                    f'min={statistics.minimum:.4f}s',
-                    f'median={statistics.median:.4f}s',
-                    f'max={statistics.maximum:.4f}s',
-                    f'dev={math.sqrt(statistics.variance):.4f}s'
+                    f'mean={statistics.mean:.{self._precision}f}s',
+                    f'min={statistics.minimum:.{self._precision}f}s',
+                    f'median={statistics.median:.{self._precision}f}s',
+                    f'max={statistics.maximum:.{self._precision}f}s',
+                    f'dev={math.sqrt(statistics.variance):.{self._precision}f}s'
                 ]
             )
 
