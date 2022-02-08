@@ -13,7 +13,7 @@ class Lap:
         self._fractions = []
 
     def __repr__(self) -> str:
-        return f'Lap(running={self.running}, elapsed={self.elapsed:.4f})'
+        return f'<Lap running={self.running} elapsed={self.elapsed:.4f}>'
 
     @property
     def elapsed(self) -> float:

@@ -31,14 +31,14 @@ class Stopwatch:
     def __exit__(self, exc_type: Any, exc_value: Any,
                  exc_traceback: Any) -> None:
         self.stop()
-        if self.print_report:
+        if self._print_report:
             print(self._format())
 
     def __str__(self) -> str:
         return format_elapsed_time(self.elapsed)
 
     def __repr__(self) -> str:
-        return f'Stopwatch(name={self.name}, elapsed={self.elapsed})'
+        return f'<Stopwatch name={self.name} elapsed={self.elapsed}>'
 
     @property
     def laps(self) -> List[float]:
