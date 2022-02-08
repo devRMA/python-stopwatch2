@@ -15,7 +15,7 @@ keywords = ["stopwatch", "timer", "time", "profile"]
 packages = [{ include = "stopwatch" }]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 colorama = "^0.4.4"
 
 [tool.poetry.dev-dependencies]
