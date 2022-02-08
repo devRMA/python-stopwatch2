@@ -15,11 +15,16 @@ class Stopwatch:
     _laps: List[Lap] = []
     _current_lap: Optional[Lap] = None
     _print_report: bool = False
+    _precision: int = 2
 
     def __init__(
-        self, name: Optional[str] = None, print_report: bool = False
+        self,
+        name: Optional[str] = None,
+        print_report: bool = False,
+        precision: int = 2
     ) -> None:
         self.name = name
+        self._precision = precision
         if print_report:
             self.print_report = print_report
             self._caller = inspect_caller()
@@ -36,7 +41,7 @@ class Stopwatch:
             print(self._format())
 
     def __str__(self) -> str:
-        return format_elapsed_time(self.elapsed)
+        return format_elapsed_time(self.elapsed, self._precision)
 
     def __repr__(self) -> str:
         return f'<Stopwatch name={self.name} elapsed={self.elapsed}>'
@@ -154,7 +159,7 @@ class Stopwatch:
             items = [
                 f'[{caller.module}:{caller.function}:{caller.line_number}]',
                 ' ~ ',
-                format_elapsed_time(self.elapsed)
+                format_elapsed_time(self.elapsed, self._precision)
             ]
 
             if self.name is not None:
