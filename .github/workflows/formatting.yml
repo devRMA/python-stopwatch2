@@ -37,11 +37,10 @@ jobs:
         python -m pip install toml yapf isort
         yapf -r -i .
         isort .
-
     #----------------------------------------------
     #                commit changes
     #----------------------------------------------
     - name: Commit changes
       uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Apply yapf and isort formatting
+      with:
+        commit_message: Apply yapf and isort formatting
