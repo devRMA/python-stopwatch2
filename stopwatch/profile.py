@@ -3,14 +3,14 @@ import functools
 import math
 from typing import Any, Callable, TypeVar
 
-from ..statistics import Statistics
-from ..stopwatch import Stopwatch
-from . import Caller, format_elapsed_time, inspect_caller
+from .statistics import Statistics
+from .stopwatch import Stopwatch
+from .utils import Caller, format_elapsed_time, inspect_caller
 
 RT = TypeVar('RT')  # return type
 
 
-def make_report(caller: Caller, name: str, statistics: Statistics) -> str:
+def _make_report(caller: Caller, name: str, statistics: Statistics) -> str:
     """
     Return a report of the stopwatch statistics.
 
@@ -42,7 +42,7 @@ def make_report(caller: Caller, name: str, statistics: Statistics) -> str:
     return f'{tag} {items}'
 
 
-def print_report(caller: Caller, name: str, statistics: Statistics) -> None:
+def _print_report(caller: Caller, name: str, statistics: Statistics) -> None:
     """
     Print a report of the stopwatch statistics.
 
@@ -56,7 +56,7 @@ def print_report(caller: Caller, name: str, statistics: Statistics) -> None:
         The statistics object.
     """
     if len(statistics) > 0:
-        print(make_report(caller, name, statistics))
+        print(_make_report(caller, name, statistics))
 
 
 def profile(**kwargs: Any) -> Callable[[Callable[..., RT]], Callable[..., RT]]:
@@ -78,7 +78,7 @@ def profile(**kwargs: Any) -> Callable[[Callable[..., RT]], Callable[..., RT]]:
         should_report = report_every is not None
 
         statistics = Statistics()
-        atexit.register(print_report, caller, name, statistics)
+        atexit.register(_print_report, caller, name, statistics)
 
         @functools.wraps(func)
         def wrapper(*args: object, **kwargs: object) -> RT:
@@ -87,7 +87,7 @@ def profile(**kwargs: Any) -> Callable[[Callable[..., RT]], Callable[..., RT]]:
 
             statistics.add(stopwatch.elapsed)
             if should_report and (len(statistics) % report_every) == 0:
-                print_report(caller, name, statistics)
+                _print_report(caller, name, statistics)
 
             return result
 

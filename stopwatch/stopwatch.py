@@ -1,56 +1,28 @@
 from __future__ import annotations
 
 import math
-import time
 from contextlib import contextmanager
 from typing import Any, Iterator, List, Optional
 
-from .contextmanagers import format_elapsed_time
+from .lap import Lap
 from .statistics import Statistics
-
-
-class Lap:
-    running: bool
-    _start: float
-    _fractions: List[float]
-
-    def __init__(self) -> None:
-        self.running = False
-        self._start = 0.0
-        self._fractions = []
-
-    def __repr__(self) -> str:
-        return f'Lap(running={self.running}, elapsed={self.elapsed:.4f})'
-
-    @property
-    def elapsed(self) -> float:
-        """`float`: Return the elapsed time in seconds."""
-        return ((time.perf_counter() -
-                 self._start) if self.running else 0.0) + sum(self._fractions)
-
-    def start(self) -> None:
-        """
-        Start the lap timer.
-        """
-        self.running = True
-        self._start = time.perf_counter()
-
-    def stop(self) -> None:
-        """
-        Stop the lap timer.
-        """
-        self._fractions.append(time.perf_counter() - self._start)
-        self._start = 0.0
-        self.running = False
+from .utils import format_elapsed_time, Caller, inspect_caller
 
 
 class Stopwatch:
     name: Optional[str] = None
+    _caller: Optional[Caller] = None
     _laps: List[Lap] = []
     _current_lap: Optional[Lap] = None
+    _print_report: bool = False
 
-    def __init__(self, name: Optional[str] = None) -> None:
+    def __init__(self,
+                 name: Optional[str] = None,
+                 print_report: bool = False) -> None:
         self.name = name
+        if print_report:
+            self.print_report = print_report
+            self._caller = inspect_caller()
         self.restart()
 
     def __enter__(self) -> Stopwatch:
@@ -59,6 +31,8 @@ class Stopwatch:
     def __exit__(self, exc_type: Any, exc_value: Any,
                  exc_traceback: Any) -> None:
         self.stop()
+        if self.print_report:
+            print(self._format())
 
     def __str__(self) -> str:
         return format_elapsed_time(self.elapsed)
@@ -168,3 +142,19 @@ class Stopwatch:
         return '[Stopwatch{tag}] {statistics}'.format(
             tag=f'#{self.name}' if self.name is not None else '',
             statistics=', '.join(items))
+
+    def _format(self) -> str:
+        caller = self._caller
+        # TODO : back with the colored print using colorama
+        if self.print_report and caller is not None:
+            items = [
+                f'[{caller.module}:{caller.function}:{caller.line_number}]',
+                ' ~ ',
+                format_elapsed_time(self.elapsed)
+            ]
+
+            if self.name is not None:
+                items += [' - ', self.name]
+
+            return ''.join(items)
+        return ''
