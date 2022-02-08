@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-stopwatch2"
-version = "1.0.9"
+version = "1.0.10"
 description = "A simple stopwatch for measuring code performance with static typing."
 authors = [
     "Rafael <contact.devrma@gmail.com>",
