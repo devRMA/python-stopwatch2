@@ -55,6 +55,18 @@ print(my_stopwatch.elapsed)  # 3.0012330539993854
 print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.00s
 ```
 
+If you want to print the elapsed time at the end of [with statement](https://www.geeksforgeeks.org/with-statement-in-python/), you can pass the second parameter at stopwatch startup, as True
+
+```python
+from time import sleep
+
+from stopwatch import Stopwatch
+
+with Stopwatch('my custom message', True):
+    sleep(3)
+# [__main__:<module>:5] ~ 3.00s - my custom message
+```
+
 #### stopwatch.profile
 
 This decorator is used to profile a function. It will print a report every time the function is called and, at the end of the execution, the final report will be printed.
