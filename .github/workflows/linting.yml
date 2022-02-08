@@ -36,11 +36,12 @@ jobs:
     #----------------------------------------------
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --no-interaction
+      run: poetry install --no-interaction --no-root
     #----------------------------------------------
     #                 run linters
     #----------------------------------------------
     - name: Run linters
       run: |
-        poetry run flake8 . --show-source --statistics
-        poetry run mypy --strict --pretty .
+        source .venv/bin/activate
+        flake8 . --show-source --statistics
+        mypy --strict --pretty .
