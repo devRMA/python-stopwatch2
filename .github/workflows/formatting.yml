@@ -1,9 +1,6 @@
 name: Format files
 
-on:
-  push:
-    paths:
-      - "**.py"
+on: [push, pull_request]
 
 jobs:
   formatting:
