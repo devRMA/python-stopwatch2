@@ -2,6 +2,20 @@
 
 A simple stopwatch for measuring code performance. This is a fork from [python-stopwatch](https://pypi.org/project/python-stopwatch/), which adds static typing and a few other things.
 
+## Status
+
+[![Pypi Downloads](https://img.shields.io/pypi/dm/python-stopwatch2)](https://pypi.org/project/python-stopwatch2/)
+[![Tests](https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg)](https://github.com/devRMA/python-stopwatch2)
+[![Python Versions](https://img.shields.io/pypi/pyversions/python-stopwatch2)](https://www.python.org/)
+[![Wheel](https://img.shields.io/pypi/wheel/python-stopwatch2)](https://pypi.org/project/python-stopwatch2/)
+[![Coverage Status](https://coveralls.io/repos/github/devRMA/python-stopwatch2/badge.svg?branch=main)](https://coveralls.io/github/devRMA/python-stopwatch2?branch=main)
+[![Repo Size](https://img.shields.io/github/repo-size/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2)
+[![Open Issues](https://img.shields.io/github/issues-raw/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/issues)
+[![Closed Issues](https://img.shields.io/github/issues-closed-raw/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/issues)
+[![License](https://img.shields.io/github/license/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/blob/main/LICENSE)
+[![Stars](https://img.shields.io/github/stars/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/stargazers)
+[![Contributors](https://img.shields.io/github/contributors/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/graphs/contributors)
+
 ## Usage
 
 ### Installation
