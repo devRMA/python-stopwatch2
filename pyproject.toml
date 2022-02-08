@@ -19,9 +19,13 @@ python = "^3.7"
 colorama = "^0.4.4"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
-taskipy = "^1.9.0"
+coveralls = "^3.3.1"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
 mypy = "^0.931"
+pytest = "^5.2"
+pytest-cov = "^3.0.0"
+taskipy = "^1.9.0"
 types-colorama = "^0.4.8"
 
 [build-system]
