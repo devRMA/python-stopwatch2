@@ -33,5 +33,16 @@ yapf = "^0.32.0"
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.isort]
+profile = "black"
+py_version = "37"
+
+[tool.mypy]
+namespace_packages = "True"
+
+[tool.yapf]
+based_on_style = "facebook"
+indent_width = 4
+
 [tool.taskipy.tasks]
 test = { cmd = "python -m unittest -v tests/test_*.py", help = "runs all tests" }
