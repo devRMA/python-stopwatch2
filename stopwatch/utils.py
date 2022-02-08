@@ -18,7 +18,7 @@ def inspect_caller(offset: int = 0) -> Caller:
     )
 
 
-def format_elapsed_time(elapsed: float) -> str:
+def format_elapsed_time(elapsed: float, precision: int = 2) -> str:
     """
     Format the elapsed time in seconds to a human readable string.
 
@@ -26,15 +26,17 @@ def format_elapsed_time(elapsed: float) -> str:
     ----------
     elapsed : `float`
         The elapsed time in seconds.
+    precision : `int`
+        The number of decimal places to use, defaults to 2.
 
     Returns
     -------
     `str`
         The formatted elapsed time.
     """
-    ms = elapsed * 1000
+    ms = elapsed * 1e3
     if ms >= 1e3:
-        return f'{ms / 1e3:.2f}s'
+        return f'{ms / 1e3:.{precision}f}s'
     if ms >= 1:
-        return f'{ms:.2f}ms'
-    return f'{ms * 1e3:.2f}μs'
+        return f'{ms:.{precision}f}ms'
+    return f'{ms * 1e3:.{precision}f}μs'
