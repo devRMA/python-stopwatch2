@@ -6,7 +6,7 @@ Description and examples of all lib classes/functions.
 
 ## stopwatch.Stopwatch
 
-### class *stopwatch.Stopwatch* (name: Optional[str] = None, print_report: bool = False)
+### class *stopwatch.Stopwatch* (name: Optional[str] = None, print_report: bool = False, precision: int = 2)
 
 - The ``print_report`` parameter is used to print elapsed time at the end of [with statement](https://www.geeksforgeeks.org/with-statement-in-python/).
 - Type:
@@ -21,6 +21,17 @@ with Stopwatch('my custom message', True):
 with Stopwatch(print_report=True):
     sleep(3)
 # [__main__:<module>:5] ~ 3.00s
+```
+
+- The ``precision`` parameter is used to set the number of decimal places to use.
+- Type:
+  - [int](https://docs.python.org/3/library/functions.html#int)
+- Example:
+
+```python
+with Stopwatch(precision=4) as sw:
+    sleep(1)
+print(str(sw))  # 1.0123s
 ```
 
 #### Stopwatch().name
