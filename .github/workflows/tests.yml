@@ -7,6 +7,7 @@ on: [push]
 
 jobs:
   test:
+    name: Run tests
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -59,6 +60,7 @@ jobs:
         coverage run -m pytest
 
   upload:
+    name: Upload coverage data to coveralls.io
     needs: test
     runs-on: ubuntu-latest
 
