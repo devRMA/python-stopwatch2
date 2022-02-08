@@ -1,4 +1,4 @@
-name: Check for static typing and run linters
+name: Lint
 
 on:
   pull_request:
