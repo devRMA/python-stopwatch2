@@ -11,11 +11,11 @@ from .utils import Caller, format_elapsed_time, inspect_caller
 
 class Stopwatch:
     name: Optional[str] = None
+    precision: int = 2
     _caller: Optional[Caller] = None
     _laps: List[Lap] = []
     _current_lap: Optional[Lap] = None
     _print_report: bool = False
-    _precision: int = 2
 
     def __init__(
         self,
@@ -24,7 +24,7 @@ class Stopwatch:
         precision: int = 2
     ) -> None:
         self.name = name
-        self._precision = precision
+        self.precision = precision
         if print_report:
             self._print_report = print_report
             self._caller = inspect_caller()
@@ -41,7 +41,7 @@ class Stopwatch:
             print(self._format())
 
     def __str__(self) -> str:
-        return format_elapsed_time(self.elapsed, self._precision)
+        return format_elapsed_time(self.elapsed, self.precision)
 
     def __repr__(self) -> str:
         return f'<Stopwatch name={self.name} elapsed={self.elapsed}>'
@@ -135,15 +135,15 @@ class Stopwatch:
         """
         statistics = Statistics(values=self.laps)
 
-        items = [f'total={statistics.total:.{self._precision}f}s']
+        items = [f'total={statistics.total:.{self.precision}f}s']
         if len(statistics) > 1:
             items.extend(
                 [
-                    f'mean={statistics.mean:.{self._precision}f}s',
-                    f'min={statistics.minimum:.{self._precision}f}s',
-                    f'median={statistics.median:.{self._precision}f}s',
-                    f'max={statistics.maximum:.{self._precision}f}s',
-                    f'dev={math.sqrt(statistics.variance):.{self._precision}f}s'
+                    f'mean={statistics.mean:.{self.precision}f}s',
+                    f'min={statistics.minimum:.{self.precision}f}s',
+                    f'median={statistics.median:.{self.precision}f}s',
+                    f'max={statistics.maximum:.{self.precision}f}s',
+                    f'dev={math.sqrt(statistics.variance):.{self.precision}f}s'
                 ]
             )
 
@@ -159,7 +159,7 @@ class Stopwatch:
             items = [
                 f'[{caller.module}:{caller.function}:{caller.line_number}]',
                 ' ~ ',
-                format_elapsed_time(self.elapsed, self._precision)
+                format_elapsed_time(self.elapsed, self.precision)
             ]
 
             if self.name is not None:
