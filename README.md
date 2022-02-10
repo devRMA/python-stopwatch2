@@ -4,7 +4,8 @@ A simple stopwatch for measuring code performance. This is a fork from [python-s
 
 ## Status
 
-[![Pypi Downloads](https://img.shields.io/pypi/dm/python-stopwatch2)](https://pypi.org/project/python-stopwatch2/)
+[![Pypi Downloads](https://pepy.tech/badge/python-stopwatch2)](https://pepy.tech/project/python-stopwatch2)
+[![Pypi Version](https://img.shields.io/pypi/v/python-stopwatch2)](https://pepy.tech/project/python-stopwatch2)
 [![Tests](https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg)](https://github.com/devRMA/python-stopwatch2)
 [![Python Versions](https://img.shields.io/pypi/pyversions/python-stopwatch2)](https://www.python.org/)
 [![Wheel](https://img.shields.io/pypi/wheel/python-stopwatch2)](https://pypi.org/project/python-stopwatch2/)
