@@ -101,9 +101,7 @@ def describe_stopwatch() -> None:
         assert sw.laps == [i for i in range(5)]
 
     def describe_report() -> None:
-        def without_laps(
-            mocker: MockerFixture, time_mock: TimeMock
-        ) -> None:
+        def without_laps(mocker: MockerFixture, time_mock: TimeMock) -> None:
             mocker.patch('time.perf_counter', time_mock.perf_counter)
             with Stopwatch('sw1') as sw1:
                 time_mock.increment(1)
@@ -116,10 +114,10 @@ def describe_stopwatch() -> None:
             assert sw3.report() == '[Stopwatch] total=1.0000s'
 
         def with_laps(mocker: MockerFixture, time_mock: TimeMock) -> None:
-                mocker.patch('time.perf_counter', time_mock.perf_counter)
-                with Stopwatch() as sw:
-                    for i in range(5):
-                        with sw.lap():
-                            time_mock.increment(i)
-                assert sw.report() == '[Stopwatch] total=10.00s, mean=2.00s, ' + \
-                    'min=0.00s, median=2.00s, max=4.00s, dev=1.41s'
+            mocker.patch('time.perf_counter', time_mock.perf_counter)
+            with Stopwatch() as sw:
+                for i in range(5):
+                    with sw.lap():
+                        time_mock.increment(i)
+            assert sw.report() == '[Stopwatch] total=10.00s, mean=2.00s, ' + \
+                'min=0.00s, median=2.00s, max=4.00s, dev=1.41s'
