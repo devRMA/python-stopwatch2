@@ -71,7 +71,7 @@ jobs:
     - name: Run tests
       run: |
         source .venv/bin/activate
-        coverage run -m pytest
+        pytest
 
   upload:
     name: Upload coverage data to coveralls.io
