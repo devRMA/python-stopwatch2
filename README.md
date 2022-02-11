@@ -27,6 +27,12 @@
     <a href="https://github.com/devRMA/python-stopwatch2/issues">
         <img alt="Closed Issues" src='https://img.shields.io/github/issues-closed-raw/devRMA/python-stopwatch2?&style=for-the-badge'/>
     </a>
+    <a href="https://github.com/devRMA/python-stopwatch2/pulls">
+        <img alt="Open Pull Requests" src='https://img.shields.io/github/issues-pr-raw/devRMA/python-stopwatch2?style=for-the-badge'/>
+    </a>
+    <a href="https://github.com/devRMA/python-stopwatch2/pulls">
+        <img alt="Closed Pull Requests" src='https://img.shields.io/github/issues-pr-closed-raw/devRMA/python-stopwatch2?style=for-the-badge'/>
+    </a>
     <a href="https://github.com/devRMA/python-stopwatch2/blob/main/LICENSE">
         <img alt="License" src='https://img.shields.io/github/license/devRMA/python-stopwatch2?&style=for-the-badge'/>
     </a>
