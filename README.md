@@ -9,23 +9,47 @@
 
 <div align='center' width='50%'>
     <h3> → STATUS ←</h3>
-    <img src='https://img.shields.io/pypi/v/python-stopwatch2?&style=for-the-badge'/>
-    <img src='https://img.shields.io/pypi/pyversions/python-stopwatch2?&style=for-the-badge'/>
-    <img src='https://img.shields.io/pypi/wheel/python-stopwatch2?&style=for-the-badge'/>
-    <img src='https://img.shields.io/github/repo-size/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    <img src='https://img.shields.io/github/issues-raw/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    <img src='https://img.shields.io/github/issues-closed-raw/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    <img src='https://img.shields.io/github/license/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    <img src='https://img.shields.io/github/stars/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    <img src='https://img.shields.io/github/contributors/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    <a href="https://pepy.tech/project/python-stopwatch2">
+        <img alt="Pypi Version" src='https://img.shields.io/pypi/v/python-stopwatch2?&style=for-the-badge'/>
+    </a>
+    <a href="https://www.python.org">
+        <img alt="Python Versions" src='https://img.shields.io/pypi/pyversions/python-stopwatch2?&style=for-the-badge'/>
+    </a>
+    <a href="https://pypi.org/project/python-stopwatch2">
+        <img alt="Wheel" src='https://img.shields.io/pypi/wheel/python-stopwatch2?&style=for-the-badge'/>
+    </a>
+    <a href="https://github.com/devRMA/python-stopwatch2">
+        <img alt="Repo Size" src='https://img.shields.io/github/repo-size/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    </a>
+    <a href="https://github.com/devRMA/python-stopwatch2/issues">
+        <img alt="Open Issues" src='https://img.shields.io/github/issues-raw/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    </a>
+    <a href="https://github.com/devRMA/python-stopwatch2/issues">
+        <img alt="Closed Issues" src='https://img.shields.io/github/issues-closed-raw/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    </a>
+    <a href="https://github.com/devRMA/python-stopwatch2/blob/main/LICENSE">
+        <img alt="License" src='https://img.shields.io/github/license/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    </a>
+    <a href="https://github.com/devRMA/python-stopwatch2/stargazers">
+        <img alt="Stars" src='https://img.shields.io/github/stars/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    </a>
+    <a href="https://github.com/devRMA/python-stopwatch2/graphs/contributors">
+        <img alt="Contributors" src='https://img.shields.io/github/contributors/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    </a>
 </div>
 
 <hr>
 
 <div align='center' width='50%'>
-    <img src='https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg?&style=for-the-badge'/>
-    <img src='https://pepy.tech/badge/python-stopwatch2?&style=for-the-badge'/>
-    <img src='https://coveralls.io/repos/github/devRMA/python-stopwatch2/badge.svg?&style=for-the-badge'/>
+    <a href="https://github.com/devRMA/python-stopwatch2">
+        <img alt="Tests" src='https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg?&style=for-the-badge'/>
+    </a>
+    <a href="https://pepy.tech/project/python-stopwatch2">
+        <img alt="Pypi Downloads" src='https://pepy.tech/badge/python-stopwatch2?&style=for-the-badge'/>
+    </a>
+    <a href="https://coveralls.io/github/devRMA/python-stopwatch2">
+        <img alt="Coverage Status" src='https://coveralls.io/repos/github/devRMA/python-stopwatch2/badge.svg?&style=for-the-badge'/>
+    </a>
 </div>
 
 <!-- ================ INTRODUCTION ================ -->
