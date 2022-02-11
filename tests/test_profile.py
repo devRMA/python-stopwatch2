@@ -1,3 +1,4 @@
+import sys
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
@@ -5,7 +6,6 @@ from stopwatch import Statistics
 from stopwatch.profile import _make_report, _print_report, profile
 from stopwatch.utils import Caller
 from tests.mocks.atexit import AtexitMock
-import sys
 
 from .mocks.time import TimeMock
 
@@ -63,9 +63,7 @@ class ProfileTest(TestCase):
         print_mock.assert_called_once()
 
     @patch('builtins.print')
-    def test_profile_with_name(
-        self, print_mock: MagicMock
-    ) -> None:
+    def test_profile_with_name(self, print_mock: MagicMock) -> None:
         with patch('atexit.register', AtexitMock.register):
             with patch('time.perf_counter', self.time_mock.perf_counter):
                 func = MagicMock(__name__='function_name')
