@@ -49,7 +49,7 @@ jobs:
     #                run test suite
     #----------------------------------------------
     - name: Run tests
-      run: poetry run coverage run -m pytest
+      run: coverage run -m pytest
 
   upload:
     name: Upload coverage data to coveralls.io
@@ -84,7 +84,7 @@ jobs:
     #----------------------------------------------
     - name: Upload coverage data to coveralls.io
       run: |
-        poetry run coverage run -m pytest
-        poetry run coveralls --service=github
+        coverage run -m pytest
+        coveralls --service=github
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
