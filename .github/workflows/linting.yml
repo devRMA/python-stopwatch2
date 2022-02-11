@@ -24,6 +24,16 @@ jobs:
         python-version: "3.10"
 
     #----------------------------------------------
+    #        load pip cache if cache exists
+    #----------------------------------------------
+    - name: Load cached pip
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip
+        restore-keys: ${{ runner.os }}-pip
+
+    #----------------------------------------------
     #          install and run linters
     #----------------------------------------------
     - name: Run linters

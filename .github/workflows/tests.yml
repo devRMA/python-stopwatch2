@@ -31,25 +31,47 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     #----------------------------------------------
+    #      load cached poetry if cache exists
+    #----------------------------------------------
+    - name: Load cached Poetry installation
+      uses: actions/cache@v2
+      with:
+        path: ~/.local  # the path depends on the OS
+        key: poetry-0  # increment to reset cache
+
+    #----------------------------------------------
     #         install and configure poetry
     #----------------------------------------------
     - name: Install Poetry
       uses: snok/install-poetry@v1
       with:
-        virtualenvs-create: false
-        virtualenvs-in-project: false
+        virtualenvs-create: true
+        virtualenvs-in-project: true
 
     #----------------------------------------------
-    #             install dependencies
+    #       load cached venv if cache exists
+    #----------------------------------------------
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v2
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+    #----------------------------------------------
+    # install dependencies if cache does not exist
     #----------------------------------------------
     - name: Install dependencies
+      # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction
 
     #----------------------------------------------
     #                run test suite
     #----------------------------------------------
     - name: Run tests
-      run: coverage run -m pytest
+      run: |
+        source .venv/bin/activate
+        coverage run -m pytest
 
   upload:
     name: Upload coverage data to coveralls.io
@@ -65,18 +87,38 @@ jobs:
       uses: actions/setup-python@v2
 
     #----------------------------------------------
+    #      load cached poetry if cache exists
+    #----------------------------------------------
+    - name: Load cached Poetry installation
+      uses: actions/cache@v2
+      with:
+        path: ~/.local  # the path depends on the OS
+        key: poetry-0  # increment to reset cache
+
+    #----------------------------------------------
     #         install and configure poetry
     #----------------------------------------------
     - name: Install Poetry
       uses: snok/install-poetry@v1
       with:
-        virtualenvs-create: false
-        virtualenvs-in-project: false
+        virtualenvs-create: true
+        virtualenvs-in-project: true
 
     #----------------------------------------------
-    #             install dependencies
+    #       load cached venv if cache exists
+    #----------------------------------------------
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v2
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+    #----------------------------------------------
+    # install dependencies if cache does not exist
     #----------------------------------------------
     - name: Install dependencies
+      # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction
 
     #----------------------------------------------
@@ -84,6 +126,7 @@ jobs:
     #----------------------------------------------
     - name: Upload coverage data to coveralls.io
       run: |
+        source .venv/bin/activate
         coverage run -m pytest
         coveralls --service=github
       env:
