@@ -51,3 +51,6 @@ class Statistics:
 
     def __len__(self) -> int:
         return len(self._values)
+
+    def __repr__(self) -> str:
+        return f'<Statistics values={self._values}>'
