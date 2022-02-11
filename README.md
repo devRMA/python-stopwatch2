@@ -1,25 +1,39 @@
-# Python-Stopwatch2
+<!-- ================ TITLE/DESC ================ -->
 
-A simple stopwatch for measuring code performance. This is a fork from [python-stopwatch](https://pypi.org/project/python-stopwatch/), which adds static typing and a few other things.
+<div align='center'>
+    <h2>Python-StopWatch-2</h2>
+    <p>A simple stopwatch for measuring code performance. This is a fork from <a href='https://pypi.org/project/python-stopwatch/'>python-stopwatch</a>, which adds static typing and a few other things.</p>
+</div>
 
-## Status
+<!-- ================ BADGES/LINKS ================ -->
 
-[![Pypi Downloads](https://pepy.tech/badge/python-stopwatch2)](https://pepy.tech/project/python-stopwatch2)
-[![Pypi Version](https://img.shields.io/pypi/v/python-stopwatch2)](https://pepy.tech/project/python-stopwatch2)
-[![Tests](https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg)](https://github.com/devRMA/python-stopwatch2)
-[![Python Versions](https://img.shields.io/pypi/pyversions/python-stopwatch2)](https://www.python.org/)
-[![Wheel](https://img.shields.io/pypi/wheel/python-stopwatch2)](https://pypi.org/project/python-stopwatch2/)
-[![Coverage Status](https://coveralls.io/repos/github/devRMA/python-stopwatch2/badge.svg)](https://coveralls.io/github/devRMA/python-stopwatch2)
-[![Repo Size](https://img.shields.io/github/repo-size/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2)
-[![Open Issues](https://img.shields.io/github/issues-raw/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/issues)
-[![Closed Issues](https://img.shields.io/github/issues-closed-raw/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/issues)
-[![License](https://img.shields.io/github/license/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/blob/main/LICENSE)
-[![Stars](https://img.shields.io/github/stars/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/stargazers)
-[![Contributors](https://img.shields.io/github/contributors/devRMA/python-stopwatch2)](https://github.com/devRMA/python-stopwatch2/graphs/contributors)
+<div align='center' width='50%'>
+    <h3> → STATUS ←</h3>
+    <img src='https://img.shields.io/pypi/v/python-stopwatch2?&style=for-the-badge'/>
+    <img src='https://img.shields.io/pypi/pyversions/python-stopwatch2?&style=for-the-badge'/>
+    <img src='https://img.shields.io/pypi/wheel/python-stopwatch2?&style=for-the-badge'/>
+    <img src='https://img.shields.io/github/repo-size/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    <img src='https://img.shields.io/github/issues-raw/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    <img src='https://img.shields.io/github/issues-closed-raw/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    <img src='https://img.shields.io/github/license/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    <img src='https://img.shields.io/github/stars/devRMA/python-stopwatch2?&style=for-the-badge'/>
+    <img src='https://img.shields.io/github/contributors/devRMA/python-stopwatch2?&style=for-the-badge'/>
+</div>
 
-## Usage
+<hr>
 
-### Installation
+<div align='center' width='50%'>
+    <img src='https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg?&style=for-the-badge'/>
+    <img src='https://pepy.tech/badge/python-stopwatch2?&style=for-the-badge'/>
+    <img src='https://coveralls.io/repos/github/devRMA/python-stopwatch2/badge.svg?&style=for-the-badge'/>
+</div>
+
+<!-- ================ INTRODUCTION ================ -->
+<div align='center'>
+    <h3>→ USAGE ←</h3>
+</div>
+
+<h3>☍ INSTALLATION</h3>
 
 To install the library, you can just run the following command:
 
@@ -33,11 +47,11 @@ Or, using pip:
 pip install python-stopwatch2
 ```
 
-### Basic usage
+<h3>☍ BASIC USAGE</h3>
 
-#### stopwatch.Stopwatch
+<p><b>ƒ stopwatch.Stopwatch</b></p>
 
-You can use the [start()](https://github.com/devRMA/python-stopwatch2/tree/main/docs#stopwatchstart) and [stop](https://github.com/devRMA/python-stopwatch2/tree/main/docs#stopwatchstop) methods to starts or stops the stopwatch counter.
+You can use the [start()](https://github.com/devRMA/python-stopwatch2/tree/main/docs#stopwatchstart) and [stop()](https://github.com/devRMA/python-stopwatch2/tree/main/docs#stopwatchstop) methods to starts or stops the stopwatch counter.
 
 ```python
 from time import sleep
@@ -70,7 +84,7 @@ print(my_stopwatch.elapsed)  # 3.0012330539993854
 print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.00s
 ```
 
-If you want to print the elapsed time at the end of [with statement](https://www.geeksforgeeks.org/with-statement-in-python/), you can pass the second parameter at stopwatch startup, as True
+If you want to print the elapsed time at the end of [with statement](https://www.geeksforgeeks.org/with-statement-in-python/), you can pass the second parameter at stopwatch startup, as <b>True</b>
 
 ```python
 from time import sleep
@@ -82,7 +96,7 @@ with Stopwatch('my custom message', True):
 # [__main__:<module>:5] ~ 3.00s - my custom message
 ```
 
-#### stopwatch.profile
+<p><b>ƒ stopwatch.profile</b><p/>
 
 This decorator is used to profile a function. It will print a report every time the function is called and, at the end of the execution, the final report will be printed.
 
@@ -142,7 +156,7 @@ print('end')
 # [__main__#report_every2] hits=5, mean=300.43ms, min=100.15ms, median=300.36ms, max=500.94ms, dev=141.68ms
 ```
 
-#### stopwatch.stopwatch
+<p><b>ƒ stopwatch.stopwatch</b></p>
 
 This class is to be used with [with statement](https://www.geeksforgeeks.org/with-statement-in-python/) and will print the time it took to execute the code.
 
