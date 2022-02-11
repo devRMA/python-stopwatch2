@@ -15,23 +15,8 @@
     <a href="https://www.python.org">
         <img alt="Python Versions" src='https://img.shields.io/pypi/pyversions/python-stopwatch2?&style=for-the-badge'/>
     </a>
-    <a href="https://pypi.org/project/python-stopwatch2">
-        <img alt="Wheel" src='https://img.shields.io/pypi/wheel/python-stopwatch2?&style=for-the-badge'/>
-    </a>
     <a href="https://github.com/devRMA/python-stopwatch2">
         <img alt="Repo Size" src='https://img.shields.io/github/repo-size/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-    <a href="https://github.com/devRMA/python-stopwatch2/issues">
-        <img alt="Open Issues" src='https://img.shields.io/github/issues-raw/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-    <a href="https://github.com/devRMA/python-stopwatch2/issues">
-        <img alt="Closed Issues" src='https://img.shields.io/github/issues-closed-raw/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-    <a href="https://github.com/devRMA/python-stopwatch2/pulls">
-        <img alt="Open Pull Requests" src='https://img.shields.io/github/issues-pr-raw/devRMA/python-stopwatch2?label=OPEN%20PR&style=for-the-badge'/>
-    </a>
-    <a href="https://github.com/devRMA/python-stopwatch2/pulls">
-        <img alt="Closed Pull Requests" src='https://img.shields.io/github/issues-pr-closed-raw/devRMA/python-stopwatch2?label=CLOSED%20PR&style=for-the-badge'/>
     </a>
     <a href="https://github.com/devRMA/python-stopwatch2/blob/main/LICENSE">
         <img alt="License" src='https://img.shields.io/github/license/devRMA/python-stopwatch2?&style=for-the-badge'/>
