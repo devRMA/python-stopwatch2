@@ -3,8 +3,8 @@ name = "python-stopwatch2"
 version = "1.0.11"
 description = "A simple stopwatch for measuring code performance with static typing."
 authors = [
-    "Rafael <contact.devrma@gmail.com>",
-    "Jonghwan Hyeon <hyeon0145@gmail.com>"
+  "Rafael <contact.devrma@gmail.com>",
+  "Jonghwan Hyeon <hyeon0145@gmail.com>"
 ]
 maintainers = ["Rafael <contact.devrma@gmail.com>"]
 license = "MIT"
@@ -46,4 +46,4 @@ based_on_style = "facebook"
 indent_width = 4
 
 [tool.taskipy.tasks]
-test = { cmd = "python -m unittest -v tests/test_*.py", help = "runs all tests" }
+test = { cmd = "python -m pytest", help = "runs all tests" }
