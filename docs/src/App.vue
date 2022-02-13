@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
+
+const count = ref(0)
 </script>
 
 <template>
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+    <h2>Counter: {{ count }}</h2>
+    <button @click="count++">+</button>
 </template>
 
 <style lang="sass">
