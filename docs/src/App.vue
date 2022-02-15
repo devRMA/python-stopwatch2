@@ -1,21 +1,22 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const count = ref(0)
+const drawer = ref(true)
 </script>
 
 <template>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <h2>Counter: {{ count }}</h2>
-    <button @click="count++">+</button>
+    <v-app>
+        <v-navigation-drawer v-model="drawer" app></v-navigation-drawer>
+
+        <v-app-bar app>
+            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+            <v-toolbar-title>Python Stopwatch 2</v-toolbar-title>
+        </v-app-bar>
+
+        <v-main></v-main>
+    </v-app>
 </template>
 
 <style lang="sass">
-#app
-    font-family: Avenir, Helvetica, Arial, sans-serif
-    -webkit-font-smoothing: antialiased
-    -moz-osx-font-smoothing: grayscale
-    text-align: center
-    color: #2c3e50
-    margin-top: 60px
 </style>
