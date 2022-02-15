@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { NButton } from 'naive-ui'
 import { ref } from 'vue'
 
 const counter = ref(0)
@@ -6,7 +7,7 @@ const counter = ref(0)
 
 <template>
     Hello World
-    <button @click="counter++">{{ counter }} +</button>
+    <n-button @click="counter++">{{ counter }} +</n-button>
 </template>
 
 <style lang="sass">
