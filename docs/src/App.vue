@@ -1,29 +1,23 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import { darkTheme, lightTheme, useOsTheme } from "naive-ui";
+import { changeTheme } from "./utils/theme";
 
-let themeToUse = darkTheme;
-const themeInLocalStorage = localStorage.getItem("theme");
-if (themeInLocalStorage == null) {
-    themeToUse = useOsTheme().value === "dark" ? darkTheme : lightTheme;
-} else {
-    themeToUse = themeInLocalStorage === "dark" ? darkTheme : lightTheme;
+if (!localStorage.getItem("theme")) {
+    localStorage.setItem("theme", "dark");
 }
 
-const theme = ref(themeToUse);
+changeTheme(localStorage.getItem("theme"));
 </script>
 
 <template>
-    <n-config-provider :theme="theme">
-        <n-card>
-            <n-space>
-                <n-button @click="theme = darkTheme">Dark</n-button>
-                <n-button @click="theme = lightTheme">Light</n-button>
-            </n-space>
-        </n-card>
-    </n-config-provider>
+    <var-button type="success" @click="changeTheme('dark')"> Dark </var-button>
+    <var-button type="success" @click="changeTheme('light')">
+        Light
+    </var-button>
 </template>
 
 <style lang="sass">
-
+body
+    transition: background-color .25s
+    color: var(--color-text)
+    background-color: var(--color-body)
 </style>
