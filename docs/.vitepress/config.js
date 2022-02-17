@@ -3,7 +3,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
     lang: "en-US",
     title: "Python Stopwatch 2",
-    description: "A simple stopwatch for measuring code performance.",
+    description: "A simple library to measure code performance.",
     lastUpdated: true,
     themeConfig: {
         repo: "devRMA/python-stopwatch2",
@@ -18,10 +18,6 @@ export default defineConfig({
                 {
                     text: "Introduction",
                     children: [
-                        {
-                            text: "What is Python Stopwatch 2?",
-                            link: "/",
-                        },
                         {
                             text: "Getting Started",
                             link: "/guide/getting-started",
