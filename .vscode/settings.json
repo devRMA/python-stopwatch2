@@ -1,6 +1,0 @@
-{
-    "python.analysis.diagnosticSeverityOverrides": {
-        "reportUnusedFunction": "none",
-        "reportPrivateUsage": "none",
-    },
-}
