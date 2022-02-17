@@ -1,74 +1,37 @@
 ---
-title: Docs
-sidebarDepth: 2
+home: true
+heroImage: /logo.svg
+heroAlt: Python Stopwatch 2 Logo
+actionText: Get Started
+actionLink: /guide/getting-started
+features:
+  - title: Typing Hinting
+    details: All methods are statically typed to help you with coding.
+  - title: Code Coverage
+    details: All code is covered with unit tests.
+  - title: Easy to use
+    details: Simple and easy to use.
+footer: MIT Licensed | Copyright © 2021-2022 Jonghwan Hyeon, 2022-present Rafael
+head:
+  - - meta
+    - property: og:title
+      content: Python Stopwatch 2
+  - - meta
+    - property: og:type
+      content: website
+  - - meta
+    - property: og:url
+      content: https://stopwatch2-docs.vercel.app/
+  - - meta
+    - property: og:image
+      content: https://stopwatch2-docs.vercel.app/logo.svg
+  - - meta
+    - property: og:description
+      content: A simple library to measure code performance.
+  - - meta
+    - property: theme-color
+      content: "#3eaf7c"
+  - - meta
+    - name: twitter:card
+      content: summary_large_image
 ---
-
-# What is Python Stopwatch 2?
-
-Python Stopwatch 2 is a [python](https://www.python.org) module that provides a simple, easy-to-use stopwatch with static typing.
-
-This library is a fork of [Python Stopwatch](https://pypi.org/project/python-stopwatch).
-
-## Status
-
-<div align="center" width="50%">
-  <a href="https://pepy.tech/project/python-stopwatch2">
-    <img
-      alt="Pypi Version"
-      src="https://img.shields.io/pypi/v/python-stopwatch2?&style=for-the-badge"
-    />
-  </a>
-  <a href="https://www.python.org">
-    <img
-      alt="Python Versions"
-      src="https://img.shields.io/pypi/pyversions/python-stopwatch2?&style=for-the-badge"
-    />
-  </a>
-  <a href="https://github.com/devRMA/python-stopwatch2">
-    <img
-      alt="Repo Size"
-      src="https://img.shields.io/github/repo-size/devRMA/python-stopwatch2?&style=for-the-badge"
-    />
-  </a>
-  <a href="https://github.com/devRMA/python-stopwatch2/blob/main/LICENSE">
-    <img
-      alt="License"
-      src="https://img.shields.io/github/license/devRMA/python-stopwatch2?&style=for-the-badge"
-    />
-  </a>
-  <a href="https://github.com/devRMA/python-stopwatch2/stargazers">
-    <img
-      alt="Stars"
-      src="https://img.shields.io/github/stars/devRMA/python-stopwatch2?&style=for-the-badge"
-    />
-  </a>
-  <a href="https://github.com/devRMA/python-stopwatch2/graphs/contributors">
-    <img
-      alt="Contributors"
-      src="https://img.shields.io/github/contributors/devRMA/python-stopwatch2?&style=for-the-badge"
-    />
-  </a>
-</div>
-
-<hr />
-
-<div align="center" width="50%">
-  <a href="https://github.com/devRMA/python-stopwatch2">
-    <img
-      alt="Tests"
-      src="https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg?&style=for-the-badge"
-    />
-  </a>
-  <a href="https://pepy.tech/project/python-stopwatch2">
-    <img
-      alt="Pypi Downloads"
-      src="https://pepy.tech/badge/python-stopwatch2?&style=for-the-badge"
-    />
-  </a>
-  <a href="https://coveralls.io/github/devRMA/python-stopwatch2">
-    <img
-      alt="Coverage Status"
-      src="https://coveralls.io/repos/github/devRMA/python-stopwatch2/badge.svg?&style=for-the-badge"
-    />
-  </a>
-</div>
