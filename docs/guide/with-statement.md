@@ -13,7 +13,7 @@ print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.00s
 
 When you are using the [with statement](https://www.geeksforgeeks.org/with-statement-in-python/), you can pass the ``print_report`` parameter to the Stopwatch class, to print the report at the end of execution.
 
-```python
+```python{4}
 from stopwatch import Stopwatch
 from time import sleep
 
