@@ -4,7 +4,9 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    SwitchTheme: typeof import('./src/components/SwitchTheme.vue')['default']
     VarButton: typeof import('@varlet/ui')['_ButtonComponent']
+    VarIcon: typeof import('@varlet/ui')['_IconComponent']
   }
 }
 
