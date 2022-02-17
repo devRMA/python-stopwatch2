@@ -24,7 +24,7 @@ head:
       content: https://stopwatch2-docs.vercel.app/
   - - meta
     - property: og:image
-      content: https://stopwatch2-docs.vercel.app/logo.svg
+      content: https://stopwatch2-docs.vercel.app/logo.png
   - - meta
     - property: og:description
       content: A simple library to measure code performance.
