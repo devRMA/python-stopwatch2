@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "python-stopwatch2"
 version = "1.0.11"
-description = "A simple stopwatch for measuring code performance with static typing."
+description = "A simple library to measure code performance."
 authors = [
   "Rafael <contact.devrma@gmail.com>",
   "Jonghwan Hyeon <hyeon0145@gmail.com>"
@@ -9,8 +9,9 @@ authors = [
 maintainers = ["Rafael <contact.devrma@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://stopwatch2.vercel.app/"
 repository = "https://github.com/devRMA/python-stopwatch2"
-documentation = "https://github.com/devRMA/python-stopwatch2/tree/main/docs"
+documentation = "https://stopwatch2.vercel.app/guide/getting-started.html"
 keywords = ["stopwatch", "timer", "time", "profile"]
 packages = [{ include = "stopwatch" }]
 
