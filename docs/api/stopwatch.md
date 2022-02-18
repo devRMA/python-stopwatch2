@@ -238,6 +238,28 @@ print(sw.running)  # False
 
 :::
 
+### lap
+
+```py
+@contextmanager
+def lap(self) -> Iterator[None]:
+```
+
+Context manager for create a new [lap](/api/lap).
+
+::: details Example
+
+```python
+with Stopwatch() as sw:
+    for i in range(5):
+        with sw.lap():
+            sleep(i / 10)
+print(f'{sw}')  # 1.00s
+print(len(sw.laps))  # 5
+```
+
+:::
+
 ### reset
 
 ```python
