@@ -37,6 +37,7 @@ module.exports = {
     description: "A simple library to measure code performance.",
     lastUpdated: true,
     head: [
+        ["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }],
         ["link", { rel: "icon", type: "image/png", href: "/logo.png" }],
         [
             "meta",
@@ -134,7 +135,7 @@ module.exports = {
     ],
     themeConfig: {
         repo: "devRMA/python-stopwatch2",
-        logo: "/logo.png",
+        logo: "/logo.svg",
         docsDir: "docs",
         docsBranch: "docs",
         editLinks: true,
