@@ -193,7 +193,11 @@ def to_dict(self) -> Dict[str, float]:
 
 Get a dictionary with all statistics.
 
-**Return**
+**Returns**
+
+- The dictionary with all statistics.
+
+**Return type**
 
 - Dict[[str](https://docs.python.org/3/library/stdtypes.html#str), [float](https://docs.python.org/3/library/functions.html#float)]
 

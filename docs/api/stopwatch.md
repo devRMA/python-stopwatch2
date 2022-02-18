@@ -194,9 +194,13 @@ Starts the stopwatch if not running.
 This method is called automatically when the stopwatch is created.
 :::
 
-**Return**
+**Returns**
 
-- [Self](#stopwatch) instance
+- The self instance.
+
+**Return type**
+
+- [Stopwatch](#stopwatch)
 
 ### stop
 
@@ -210,9 +214,13 @@ Stops the stopwatch, freezing the duration.
 This method is called automatically when you are using [with statement](https://www.geeksforgeeks.org/with-statement-in-python/).
 :::
 
-**Return**
+**Returns**
 
-- [Self](#stopwatch) instance
+- The self instance.
+
+**Return type**
+
+- [Stopwatch](#stopwatch)
 
 ::: details Example
 
@@ -268,9 +276,13 @@ def reset(self) -> Stopwatch:
 
 Resets the Stopwatch to 0 duration and stops it.
 
-**Return**
+**Returns**
 
-- [Self](#stopwatch) instance
+- The self instance.
+
+**Return type**
+
+- [Stopwatch](#stopwatch)
 
 ::: details Example
 
@@ -292,9 +304,13 @@ def restart(self) -> Stopwatch:
 
 Reset and start the stopwatch.
 
-**Return**
+**Returns**
 
-- [Self](#stopwatch) instance
+- The self instance.
+
+**Return type**
+
+- [Stopwatch](#stopwatch)
 
 ::: details Example
 
@@ -317,7 +333,11 @@ def report(self) -> str:
 
 Return a report of the stopwatch statistics.
 
-**Return**
+**Returns**
+
+- The string with the report.
+
+**Return type**
 
 - [str](https://docs.python.org/3/library/stdtypes.html#str)
 
