@@ -41,3 +41,15 @@ class StatisticsTest(TestCase):
 
     def test_variance(self) -> None:
         self.assertEqual(self.stats.variance, statistics.pvariance(self.values))
+
+    def test_to_dict(self) -> None:
+        self.assertEqual(
+            self.stats.to_dict(), {
+                'mean': statistics.mean(self.values),
+                'maximum': max(self.values),
+                'median': statistics.median(self.values),
+                'minimum': min(self.values),
+                'total': sum(self.values),
+                'variance': statistics.pvariance(self.values)
+            }
+        )

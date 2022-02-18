@@ -94,12 +94,14 @@ class StopwatchTest(TestCase):
     def test_stopwatch_lap(self) -> None:
         with patch('time.perf_counter', self.time_mock.perf_counter):
             with Stopwatch() as sw:
-                for i in range(5):
+                for _ in range(5):
                     with sw.lap():
-                        self.time_mock.increment(i)
-        self.assertEqual(sw.elapsed, 10)
+                        self.time_mock.increment(1)
+        self.assertEqual(sw.elapsed, 5.0)
         self.assertEqual(len(sw.laps), 5)
-        self.assertEqual(sw.laps, [i for i in range(5)])
+        for lap in sw.laps:
+            self.assertEqual(lap.elapsed, 1)
+            self.assertFalse(lap.running)
 
     def test_stopwatch_report_with_on_lap(self) -> None:
         with patch('time.perf_counter', self.time_mock.perf_counter):
@@ -123,3 +125,15 @@ class StopwatchTest(TestCase):
             sw.report(), '[Stopwatch] total=10.00s, mean=2.00s, '
             'min=0.00s, median=2.00s, max=4.00s, dev=1.41s'
         )
+
+    def test_stopwatch_statistics(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            with Stopwatch() as sw:
+                self.time_mock.increment(10)
+        stats = sw.statistics
+        self.assertEqual(stats.mean, 10.0)
+        self.assertEqual(stats.maximum, 10.0)
+        self.assertEqual(stats.median, 10.0)
+        self.assertEqual(stats.minimum, 10.0)
+        self.assertEqual(stats.total, 10.0)
+        self.assertEqual(stats.variance, 0.0)
