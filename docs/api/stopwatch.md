@@ -1,10 +1,8 @@
-# API Reference
-
-## Stopwatch
+# Stopwatch
 
 [[toc]]
 
-### Initialization
+## Initialization
 
 ```py
 def __init__(
@@ -54,11 +52,11 @@ print(str(sw))  # 3s
 
 :::
 
-### Attributes
+## Attributes
 
 All attributes of the Stopwatch class.
 
-#### name
+### name
 
 The name of the stopwatch. Can be set during initialization.
 
@@ -75,7 +73,7 @@ print(sw.name)  # sw1
 
 :::
 
-#### precision
+### precision
 
 The number of decimal places to use. Can be set during initialization.
 
@@ -94,7 +92,7 @@ print(str(sw))  # 1.0s
 
 :::
 
-#### laps
+### laps
 
 The list of all stopwatch laps.
 
@@ -111,7 +109,7 @@ print(str(sw))  # 1.0s
 
 :::
 
-#### elapsed
+### elapsed
 
 The elapsed time in seconds.
 
@@ -131,7 +129,7 @@ print(sw.laps[-1].elapsed)  # 0.5
 
 :::
 
-#### running
+### running
 
 True if the stopwatch is running, False if stopped.
 
@@ -149,7 +147,7 @@ print(sw.running)  # False
 
 :::
 
-#### statistics
+### statistics
 
 The statistics of the stopwatch.
 
@@ -170,9 +168,11 @@ print(sw.statistics.mean)  # 0.3
 
 :::
 
-### Methods
+## Methods
 
-#### start
+All methods of the Stopwatch class.
+
+### start
 
 ```py
 def start(self) -> Stopwatch:
@@ -185,9 +185,9 @@ This method is called automatically when the stopwatch is created.
 :::
 
 - Return type:
-  - Self instance
+  - [Self](#stopwatch) instance
 
-#### stop
+### stop
 
 ```py
 def stop(self) -> Stopwatch:
@@ -200,7 +200,7 @@ This method is called automatically when you are using [with statement](https://
 :::
 
 - Return type:
-  - Self instance
+  - [Self](#stopwatch) instance
 
 ::: details Example
 
@@ -226,7 +226,7 @@ print(sw.running)  # False
 
 :::
 
-#### reset
+### reset
 
 ```python
 def reset(self) -> Stopwatch:
@@ -235,7 +235,7 @@ def reset(self) -> Stopwatch:
 Resets the Stopwatch to 0 duration and stops it.
 
 - Return type:
-  - Self instance
+  - [Self](#stopwatch) instance
 
 ::: details Example
 
@@ -249,7 +249,7 @@ print(sw.elapsed)  # 0.0
 
 :::
 
-#### restart
+### restart
 
 ```python
 def restart(self) -> Stopwatch:
@@ -258,7 +258,7 @@ def restart(self) -> Stopwatch:
 Reset and start the stopwatch.
 
 - Return type:
-  - Self instance
+  - [Self](#stopwatch) instance
 
 ::: details Example
 
@@ -273,7 +273,7 @@ print(str(sw))  # 1.00s
 
 :::
 
-#### report
+### report
 
 ```python
 def report(self) -> str:

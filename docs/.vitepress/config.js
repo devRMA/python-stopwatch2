@@ -183,11 +183,11 @@ module.exports = {
                     ],
                 },
                 {
-                    text: "Advanced",
+                    text: "API Reference",
                     children: [
                         {
-                            text: "API Reference",
-                            link: "/guide/api",
+                            text: "Stopwatch",
+                            link: "/api/stopwatch",
                         },
                     ],
                 },
