@@ -197,6 +197,10 @@ module.exports = {
                             text: "Statistics",
                             link: "/api/statistics",
                         },
+                        {
+                            text: "Decorators",
+                            link: "/api/decorators",
+                        },
                     ],
                 },
             ],
