@@ -1,3 +1,3 @@
-# Python Stopwatch 2 Documentation
+# Python Stopwatch 2 Site
 
-You can find the documentation [here](https://stopwatch2-docs.vercel.app/).
+You can find the site [here](https://stopwatch2.vercel.app/).
