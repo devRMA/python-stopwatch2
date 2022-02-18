@@ -97,7 +97,7 @@ print(str(sw))  # 1.0s
 The list of all stopwatch laps.
 
 - Type:
-  - List[Lap]
+  - List[[Lap](/api/lap)]
 
 ::: details Example
 
@@ -111,7 +111,7 @@ print(str(sw))  # 1.0s
 
 ### elapsed
 
-The elapsed time in seconds.
+The elapsed time in seconds (sum of the elapsed time of all [laps](#laps)).
 
 - Type:
   - [float](https://docs.python.org/3/library/functions.html#float)
