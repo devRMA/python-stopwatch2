@@ -1,5 +1,5 @@
 import statistics
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 
 class Statistics:
@@ -54,3 +54,21 @@ class Statistics:
 
     def __repr__(self) -> str:
         return f'<Statistics values={self._values}>'
+
+    def to_dict(self) -> Dict[str, float]:
+        """
+        Return a dictionary with all properties from statistics
+
+        Returns
+        -------
+        Dict[`str`, `float`]
+            The dictionary
+        """
+        return {
+            'mean': self.mean,
+            'maximum': self.maximum,
+            'median': self.median,
+            'minimum': self.minimum,
+            'total': self.total,
+            'variance': self.variance
+        }
