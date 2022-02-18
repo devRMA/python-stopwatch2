@@ -193,6 +193,10 @@ module.exports = {
                             text: "Lap",
                             link: "/api/lap",
                         },
+                        {
+                            text: "Statistics",
+                            link: "/api/statistics",
+                        },
                     ],
                 },
             ],
