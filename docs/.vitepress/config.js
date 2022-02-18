@@ -201,6 +201,10 @@ module.exports = {
                             text: "Decorators",
                             link: "/api/decorators",
                         },
+                        {
+                            text: "Utils",
+                            link: "/api/utils",
+                        },
                     ],
                 },
             ],
