@@ -80,6 +80,10 @@ body.dark-mode .DocSearch {
     --docsearch-muted-color: var(--c-text-dark-1);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .home-hero .image {
     width: 200px;
     height: 200px;
