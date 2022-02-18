@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.0 (18/02/2022)
+
+### Added
+
+- Added new "to_dict" method to `Statistics` class.
+- Added new "statistics" property to `Stopwatch` class.
+
+### Changed
+
+- The "laps" property of the `Stopwatch` class is now an attribute, which has a list of `Lap` objects.
+
 ## 1.0.11 (08/02/2022)
 
 ### Added
