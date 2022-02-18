@@ -5,7 +5,7 @@ heroAlt: Python Stopwatch 2 Logo
 actionText: Get Started
 actionLink: /guide/getting-started
 features:
-  - title: 🤔 Typing Hinting
+  - title: 🔑 Typing Hinting
     details: All methods are statically typed to help you with coding.
   - title: ☂️ Code Coverage
     details: All code is covered with unit tests.
