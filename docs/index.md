@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /logo.svg
+heroImage: /logo_shadow.png
 heroAlt: Python Stopwatch 2 Logo
 actionText: Get Started
 actionLink: /guide/getting-started
