@@ -1,0 +1,12 @@
+:root, body.dark-mode {
+    --c-brand: #C9BA0E;
+    --c-brand-light: #fcea12ff;
+}
+
+.custom-block.tip {
+    border-color: var(--c-brand-light) !important;
+}
+
+.DocSearch {
+    --docsearch-primary-color: var(--c-brand) !important;
+}
