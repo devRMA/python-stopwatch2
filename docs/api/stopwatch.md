@@ -1,5 +1,7 @@
 # Stopwatch
 
+**Source code: [stopwatch/stopwatch.py](https://github.com/devRMA/python-stopwatch2/blob/main/stopwatch/stopwatch.py)**
+
 [[toc]]
 
 ## Initialization
