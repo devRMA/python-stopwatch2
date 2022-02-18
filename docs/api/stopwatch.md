@@ -178,7 +178,7 @@ All methods of the Stopwatch class.
 def start(self) -> Stopwatch:
 ```
 
-Starts the timer if not running.
+Starts the stopwatch if not running.
 
 ::: info
 This method is called automatically when the stopwatch is created.
