@@ -12,8 +12,8 @@ from .utils import Caller, format_elapsed_time, inspect_caller
 class Stopwatch:
     name: Optional[str] = None
     precision: int = 2
+    laps: List[Lap] = []
     _caller: Optional[Caller] = None
-    _laps: List[Lap] = []
     _current_lap: Optional[Lap] = None
     _print_report: bool = False
 
@@ -47,19 +47,19 @@ class Stopwatch:
         return f'<Stopwatch name={self.name} elapsed={self.elapsed}>'
 
     @property
-    def laps(self) -> List[float]:
-        """List[`float`]: The list of duration of laps."""
-        return [lap.elapsed for lap in self._laps]
-
-    @property
     def elapsed(self) -> float:
         """`float`: The elapsed time in seconds."""
-        return float(sum(self.laps))
+        return float(sum(lap.elapsed for lap in self.laps))
 
     @property
     def running(self) -> bool:
         """`bool`: True if the stopwatch is running, False if stopped."""
         return self._current_lap is not None and self._current_lap.running
+
+    @property
+    def statistics(self) -> Statistics:
+        """`Statistics`: The statistics from stopwatch."""
+        return Statistics(values=[lap.elapsed for lap in self.laps])
 
     @contextmanager
     def lap(self) -> Iterator[None]:
@@ -81,8 +81,8 @@ class Stopwatch:
             The started stopwatch instance.
         """
         if not self.running:
-            self._laps.append(Lap())
-            self._current_lap = self._laps[-1]
+            self.laps.append(Lap())
+            self._current_lap = self.laps[-1]
             self._current_lap.start()
         return self
 
@@ -110,7 +110,7 @@ class Stopwatch:
             The resetted stopwatch instance.
         """
         self.stop()
-        self._laps = []
+        self.laps = []
         return self
 
     def restart(self) -> Stopwatch:
@@ -133,7 +133,7 @@ class Stopwatch:
         `str`
             The report.
         """
-        statistics = Statistics(values=self.laps)
+        statistics = self.statistics
 
         items = [f'total={statistics.total:.{self.precision}f}s']
         if len(statistics) > 1:
