@@ -6,7 +6,7 @@
 
 ## Initialization
 
-```py
+```python
 def __init__(
     self,
     name: Optional[str] = None,
@@ -14,6 +14,8 @@ def __init__(
     precision: int = 2
 ) -> None:
 ```
+
+**Parameters**
 
 - `name`: The name of the stopwatch, used for reporting.
   - Type: Optional[[str](https://docs.python.org/3/library/stdtypes.html#str)]
@@ -56,14 +58,15 @@ print(str(sw))  # 3s
 
 ## Attributes
 
-All attributes of the Stopwatch class.
+All attributes of the `Stopwatch` class.
 
 ### name
 
 The name of the stopwatch. Can be set during initialization.
 
-- Type:
-  - Optional[[str](https://docs.python.org/3/library/stdtypes.html#str)]
+**Type**
+
+- Optional[[str](https://docs.python.org/3/library/stdtypes.html#str)]
 
 ::: details Example
 
@@ -79,8 +82,9 @@ print(sw.name)  # sw1
 
 The number of decimal places to use. Can be set during initialization.
 
-- Type:
-  - [int](https://docs.python.org/3/library/functions.html#int)
+**Type**
+
+- [int](https://docs.python.org/3/library/functions.html#int)
 - Default:
   - 2
 
@@ -98,8 +102,9 @@ print(str(sw))  # 1.0s
 
 The list of all stopwatch laps.
 
-- Type:
-  - List[[Lap](/api/lap)]
+**Type**
+
+- List[[Lap](/api/lap)]
 
 ::: details Example
 
@@ -115,8 +120,9 @@ print(str(sw))  # 1.0s
 
 The elapsed time in seconds (sum of the elapsed time of all [laps](#laps)).
 
-- Type:
-  - [float](https://docs.python.org/3/library/functions.html#float)
+**Type**
+
+- [float](https://docs.python.org/3/library/functions.html#float)
 
 ::: details Example
 
@@ -135,8 +141,9 @@ print(sw.laps[-1].elapsed)  # 0.5
 
 True if the stopwatch is running, False if stopped.
 
-- Type:
-  - [bool](https://docs.python.org/3/library/functions.html#bool)
+**Type**
+
+- [bool](https://docs.python.org/3/library/functions.html#bool)
 
 ::: details Example
 
@@ -153,8 +160,9 @@ print(sw.running)  # False
 
 The statistics of the stopwatch.
 
-- Type:
-  - Statistics
+**Type**
+
+- Statistics
 
 ::: details Example
 
@@ -172,7 +180,7 @@ print(sw.statistics.mean)  # 0.3
 
 ## Methods
 
-All methods of the Stopwatch class.
+All methods of the `Stopwatch` class.
 
 ### start
 
@@ -186,8 +194,9 @@ Starts the stopwatch if not running.
 This method is called automatically when the stopwatch is created.
 :::
 
-- Return type:
-  - [Self](#stopwatch) instance
+**Return**
+
+- [Self](#stopwatch) instance
 
 ### stop
 
@@ -201,8 +210,9 @@ Stops the stopwatch, freezing the duration.
 This method is called automatically when you are using [with statement](https://www.geeksforgeeks.org/with-statement-in-python/).
 :::
 
-- Return type:
-  - [Self](#stopwatch) instance
+**Return**
+
+- [Self](#stopwatch) instance
 
 ::: details Example
 
@@ -236,8 +246,9 @@ def reset(self) -> Stopwatch:
 
 Resets the Stopwatch to 0 duration and stops it.
 
-- Return type:
-  - [Self](#stopwatch) instance
+**Return**
+
+- [Self](#stopwatch) instance
 
 ::: details Example
 
@@ -259,8 +270,9 @@ def restart(self) -> Stopwatch:
 
 Reset and start the stopwatch.
 
-- Return type:
-  - [Self](#stopwatch) instance
+**Return**
+
+- [Self](#stopwatch) instance
 
 ::: details Example
 
@@ -283,8 +295,9 @@ def report(self) -> str:
 
 Return a report of the stopwatch statistics.
 
-- Return type:
-  - [str](https://docs.python.org/3/library/stdtypes.html#str)
+**Return**
+
+- [str](https://docs.python.org/3/library/stdtypes.html#str)
 
 ::: details Example
 

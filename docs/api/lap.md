@@ -6,25 +6,27 @@
 
 ## Attributes
 
-All attributes of the Lap class.
+All attributes of the `Lap` class.
 
 ### running
 
 If the lap is running.
 
-- Type:
-  - [bool](https://docs.python.org/3/library/functions.html#bool)
+**Type**
+
+- [bool](https://docs.python.org/3/library/functions.html#bool)
 
 ### elapsed
 
 The elapsed time in seconds.
 
-- Type:
-  - [float](https://docs.python.org/3/library/functions.html#float)
+**Type**
+
+- [float](https://docs.python.org/3/library/functions.html#float)
 
 ## Methods
 
-All methods of the Lap class.
+All methods of the `Lap` class.
 
 ### start
 
