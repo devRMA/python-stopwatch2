@@ -189,6 +189,10 @@ module.exports = {
                             text: "Stopwatch",
                             link: "/api/stopwatch",
                         },
+                        {
+                            text: "Lap",
+                            link: "/api/lap",
+                        },
                     ],
                 },
             ],
