@@ -1,9 +1,15 @@
 ---
 home: true
+
 heroImage: /logo_shadow.svg
 heroAlt: Python Stopwatch 2 Logo
+
 actionText: Get Started
 actionLink: /guide/getting-started
+
+altActionText: Demo
+altActionLink: https://replit.com/@devRMA/Python-Stopwatch-2-Example#main.py
+
 features:
   - title: 🔑 Typing Hinting
     details: All methods are statically typed to help you with coding.
@@ -11,5 +17,6 @@ features:
     details: All code is covered with unit tests.
   - title: 💡 Easy to use
     details: Simple and easy to use.
+
 footer: MIT Licensed | Copyright © 2021-2022 Jonghwan Hyeon, 2022-present Rafael
 ---
