@@ -24,6 +24,7 @@
     --c-brand-text: var(--c-text-light-1);
     --c-bg-accent: var(--c-white-dark);
 
+    --code-bg-color: #282c34;
     --code-font-family: "JetBrains Mono", monospace;
     --code-font-size: 15px;
 }
@@ -32,7 +33,7 @@ body.dark-mode {
     --c-yellow: #ffd859;
     --c-yellow-light: #f7d336;
     --c-white-dark: #f8f8f8;
-    --c-black: #111827;
+    --c-black: #0d1117;
     --c-black-light: #161f32;
     --c-black-lighter: #262a44;
     --c-text-dark-1: #d9e6eb;
@@ -51,6 +52,7 @@ body.dark-mode {
     --c-bg: var(--c-black);
     --c-bg-accent: var(--c-black-light);
 
+    --code-bg-color: #161b22;
     --code-font-family: "JetBrains Mono", monospace;
     --code-font-size: 15px;
 }
