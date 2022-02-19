@@ -144,7 +144,7 @@ module.exports = {
 
         nav: [
             { text: "Guide", link: "/guide/getting-started" },
-            { text: "API", link: "/guide/api" },
+            { text: "API", link: "/api/stopwatch" },
             {
                 text: "Links",
                 items: [
