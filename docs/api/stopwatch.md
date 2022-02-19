@@ -109,9 +109,12 @@ The list of all stopwatch laps.
 ::: details Example
 
 ```python
-with Stopwatch(precision=1) as sw:
-    sleep(1)
-print(str(sw))  # 1.0s
+with Stopwatch() as sw:
+    for c in range(1, 6):
+        with sw.lap():
+            sleep(c / 10)
+print(len(sw.laps))  # 5
+print(sw.laps[-1].elapsed)  # 0.5
 ```
 
 :::
@@ -128,11 +131,13 @@ The elapsed time in seconds (sum of the elapsed time of all [laps](#laps)).
 
 ```python
 with Stopwatch() as sw:
-    for c in range(1, 6):
-        with sw.lap():
-            sleep(c / 10)
-print(len(sw.laps))  # 5
-print(sw.laps[-1].elapsed)  # 0.5
+    with sw.lap():
+        sleep(1)
+    with sw.lap():
+        sleep(2)
+print(len(sw.laps))  # 2
+print(sw.laps[0].elapsed)  # 1.0
+print(sw.laps[-1].elapsed)  # 2.0
 ```
 
 :::
