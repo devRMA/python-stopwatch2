@@ -110,11 +110,13 @@ The list of all stopwatch laps.
 
 ```python
 with Stopwatch() as sw:
-    for c in range(1, 6):
-        with sw.lap():
-            sleep(c / 10)
-print(len(sw.laps))  # 5
-print(sw.laps[-1].elapsed)  # 0.5
+    with sw.lap():
+        sleep(1)
+    with sw.lap():
+        sleep(2)
+print(len(sw.laps))  # 2
+print(sw.laps[0].elapsed)  # 1.0
+print(sw.laps[-1].elapsed)  # 2.0
 ```
 
 :::
@@ -130,14 +132,9 @@ The elapsed time in seconds (sum of the elapsed time of all [laps](#laps)).
 ::: details Example
 
 ```python
-with Stopwatch() as sw:
-    with sw.lap():
-        sleep(1)
-    with sw.lap():
-        sleep(2)
-print(len(sw.laps))  # 2
-print(sw.laps[0].elapsed)  # 1.0
-print(sw.laps[-1].elapsed)  # 2.0
+with Stopwatch(precision=1) as sw:
+    sleep(1)
+print(sw.elapsed)  # 1.0
 ```
 
 :::
@@ -262,7 +259,7 @@ Context manager for create a new [lap](/api/lap).
 
 ::: details Example
 
-```python
+```python{3}
 with Stopwatch() as sw:
     for i in range(5):
         with sw.lap():
