@@ -10,7 +10,7 @@ const META_URL = "https://stopwatch2.vercel.app/";
 const META_TITLE = "Python Stopwatch 2 ⏱";
 const META_SITE_NAME = "Python Stopwatch 2";
 const META_DESCRIPTION = "A simple library to measure code performance.";
-const META_IMAGE = "https://stopwatch2.vercel.app/meta.png";
+const META_IMAGE = "https://stopwatch2.vercel.app/social.png";
 
 const isProduction = process.env.NODE_ENV;
 
