@@ -1,116 +1,54 @@
-<!-- ================ TITLE/DESC ================ -->
+<!-- ================ SOCIAL CARD ================= -->
 
-<div align='center'>
-    <h2>Python-StopWatch-2</h2>
-    <p>A simple stopwatch for measuring code performance. This is a fork from <a href='https://pypi.org/project/python-stopwatch/'>python-stopwatch</a>, which adds static typing and a few other things.</p>
-</div>
+<p align="center"><img src="https://stopwatch2.vercel.app/social.png" alt="Social Card of Python Stopwatch 2"></p>
 
-<!-- ================ BADGES/LINKS ================ -->
+<!-- ================= TITLE/DESC ================= -->
 
-<div align='center' width='50%'>
-    <h3> → STATUS ←</h3>
-    <a href="https://pepy.tech/project/python-stopwatch2">
-        <img alt="Pypi Version" src='https://img.shields.io/pypi/v/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-    <a href="https://www.python.org">
-        <img alt="Python Versions" src='https://img.shields.io/pypi/pyversions/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-    <a href="https://github.com/devRMA/python-stopwatch2">
-        <img alt="Repo Size" src='https://img.shields.io/github/repo-size/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-    <a href="https://github.com/devRMA/python-stopwatch2/blob/main/LICENSE">
-        <img alt="License" src='https://img.shields.io/github/license/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-    <a href="https://github.com/devRMA/python-stopwatch2/stargazers">
-        <img alt="Stars" src='https://img.shields.io/github/stars/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-    <a href="https://github.com/devRMA/python-stopwatch2/graphs/contributors">
-        <img alt="Contributors" src='https://img.shields.io/github/contributors/devRMA/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-</div>
+# Python Stopwatch 2 ⏱️
 
-<hr>
+This is a fork from [python-stopwatch](https://pypi.org/project/python-stopwatch/) , which adds static typing and a few other things.
 
-<div align='center' width='50%'>
-    <a href="https://github.com/devRMA/python-stopwatch2">
-        <img alt="Tests" src='https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg?&style=for-the-badge'/>
-    </a>
-    <a href="https://pepy.tech/project/python-stopwatch2">
-        <img alt="Pypi Downloads" src='https://pepy.tech/badge/python-stopwatch2?&style=for-the-badge'/>
-    </a>
-    <a href="https://coveralls.io/github/devRMA/python-stopwatch2">
-        <img alt="Coverage Status" src='https://coveralls.io/repos/github/devRMA/python-stopwatch2/badge.svg?&style=for-the-badge'/>
-    </a>
-</div>
+<!-- =================== BADGES =================== -->
 
-<!-- ================ INTRODUCTION ================ -->
-<div align='center'>
-    <h3>→ USAGE ←</h3>
-</div>
+[![PyPi Version](https://img.shields.io/pypi/v/python-stopwatch2?&style=for-the-badge)](https://pypi.org/project/python-stopwatch2)
+[![PyPi Downloads](https://img.shields.io/pypi/dm/python-stopwatch2?style=for-the-badge)](https://pypistats.org/packages/python-stopwatch2)
+[![Python Versions](https://img.shields.io/pypi/pyversions/python-stopwatch2?&style=for-the-badge)](https://www.python.org)
+[![Repo Size](https://img.shields.io/github/repo-size/devRMA/python-stopwatch2?&style=for-the-badge)](https://github.com/devRMA/python-stopwatch2)
+[![MIT Licensed](https://img.shields.io/github/license/devRMA/python-stopwatch2?&style=for-the-badge)](https://github.com/devRMA/python-stopwatch2/blob/main/LICENSE)
+[![Stars](https://img.shields.io/github/stars/devRMA/python-stopwatch2?&style=for-the-badge)](https://github.com/devRMA/python-stopwatch2/stargazers)
+[![Contributors](https://img.shields.io/github/contributors/devRMA/python-stopwatch2?&style=for-the-badge)](https://github.com/devRMA/python-stopwatch2/graphs/contributors)
 
-<h3>☍ INSTALLATION</h3>
+***
 
-To install the library, you can just run the following command:
+[![Tests](https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg?&style=for-the-badge)](https://github.com/devRMA/python-stopwatch2)
+[![Coverage Status](https://coveralls.io/repos/github/devRMA/python-stopwatch2/badge.svg?&style=for-the-badge)](https://coveralls.io/github/devRMA/python-stopwatch2)
 
-```shell
-poetry add python-stopwatch2
+<!-- ========== INSTALLATION AND TESTING ========== -->
+
+## 📥 Installation and usage
+
+This package requires python 3.7 or higher.
+You'll find installation instructions and full documentation on https://stopwatch2.vercel.app.
+
+## ⚠️ Testing
+
+Run the tests with:
+
+``` bash
+poetry run task test
 ```
 
-Or, using pip:
+<!-- =========== CHANGELOG AND LICENSE ============ -->
 
-```shell
-pip install python-stopwatch2
-```
+## ✒️ Changelog
 
-<h3>☍ BASIC USAGE</h3>
+Please see [CHANGELOG](CHANGELOG.md) for detailed changes for each release.
 
-<p><b>ƒ stopwatch.Stopwatch</b></p>
+## 📝 Contributing
 
-You can use the [start()](https://stopwatch2.vercel.app/api/stopwatch.html#start) and [stop()](https://stopwatch2.vercel.app/api/stopwatch.html#stop) methods to starts or stops the stopwatch counter.
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-```python
-from time import sleep
-
-from stopwatch import Stopwatch
-
-my_stopwatch = Stopwatch()
-sleep(2)
-my_stopwatch.stop()
-print(my_stopwatch.elapsed)  # 2.0
-sleep(1)
-print(my_stopwatch.elapsed)  # 2.0
-my_stopwatch.start()
-sleep(1)
-my_stopwatch.stop()
-print(my_stopwatch.elapsed)  # 3.0
-print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.00s
-```
-
-It is also possible to use [Stopwatch](https://stopwatch2.vercel.app/api/stopwatch.html#stopwatch) with the [with statement](https://www.geeksforgeeks.org/with-statement-in-python/).
-
-```python
-from time import sleep
-
-from stopwatch import Stopwatch
-
-with Stopwatch() as my_stopwatch:
-    sleep(3)
-print(my_stopwatch.elapsed)  # 3.0
-print(f'Time elapsed: {my_stopwatch}')  # Time elapsed: 3.00s
-```
-<h3>☍ DOCUMENTATION</h3>
-
-To check out the docs, visit [https://stopwatch2.vercel.app/](https://stopwatch2.vercel.app/)
-
-<h3>☍ CHANGELOG</h3>
-
-Detailed changes for each release are documented in the [CHANGELOG.md](/CHANGELOG.md).
-
-<h3>CONTRIBUTING</h3>
-
-Pull requests are welcome!
-
-<h3>☍ 📑 LICENSE</h3>
+## 📑 License
 
 [MIT](https://opensource.org/licenses/MIT)
 
