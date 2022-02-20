@@ -2,3 +2,12 @@
 # For error codes, see this https://flake8.pycqa.org/en/latest/user/error-codes.html
 ignore = F401, F403, W504
 max-line-length = 100
+exclude =
+    # No need to traverse our git directory
+    .git,
+    # There's no value in checking cache directories
+    __pycache__,
+    # This contains builds of package
+    dist,
+    # This contains our virtualenv
+    .venv
