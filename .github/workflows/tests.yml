@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - "**.py"
+      - ".github/workflows/**.yml"
 
 jobs:
   test:
