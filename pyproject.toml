@@ -55,8 +55,8 @@ format = { cmd = "task yapf && task isort", help = "Run yapf and isort on the pr
 pytest = { cmd = "python -m coverage run -m pytest", help = "run pytest and generate coverage report" }
 coverage = { cmd = "python -m coverage html", help = "generate html with the coverage report" }
 
-mypy = { cmd = "python -m mypy --pretty .", help = "Run mypy on the project" }
-flake8 = { cmd = "python -m flake8 --benchmark .", help = "Run flake8 on the project" }
+mypy = { cmd = "python -m mypy --pretty stopwatch", help = "Run mypy on the project" }
+flake8 = { cmd = "python -m flake8 --benchmark stopwatch", help = "Run flake8 on the project" }
 
 yapf = { cmd = "python -m yapf -r -i -vv .", help = "Run yapf on the project" }
 isort = { cmd = "python -m isort .", help = "Run isort on the project" }
