@@ -6,9 +6,9 @@ on:
     branches:
       - main
       - fix-actions
-    # paths:
-    #   - "**.py"
-    #   - ".github/workflows/**.yml"
+    paths:
+      - "**.py"
+      - ".github/workflows/**.yml"
 
 jobs:
   formatting:
