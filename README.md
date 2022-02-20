@@ -20,7 +20,7 @@ This is a fork from [python-stopwatch](https://pypi.org/project/python-stopwatch
 
 ***
 
-[![Tests](https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg?&style=for-the-badge)](https://github.com/devRMA/python-stopwatch2)
+[![Tests](https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/devRMA/python-stopwatch2/actions/workflows/tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/devRMA/python-stopwatch2/badge.svg?&style=for-the-badge)](https://coveralls.io/github/devRMA/python-stopwatch2)
 
 <!-- ========== INSTALLATION AND TESTING ========== -->
