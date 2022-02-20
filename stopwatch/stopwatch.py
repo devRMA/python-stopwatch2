@@ -4,6 +4,8 @@ import math
 from contextlib import contextmanager
 from typing import Any, Iterator, List, Optional
 
+from colorama import Fore, Style
+
 from .lap import Lap
 from .statistics import Statistics
 from .utils import Caller, format_elapsed_time, inspect_caller
@@ -154,12 +156,13 @@ class Stopwatch:
 
     def _format(self) -> str:
         caller = self._caller
-        # TODO : back with the colored print using colorama
         if self._print_report and caller is not None:
             items = [
+                Style.BRIGHT, Fore.BLUE,
                 f'[{caller.module}:{caller.function}:{caller.line_number}]',
-                ' ~ ',
-                format_elapsed_time(self.elapsed, self.precision)
+                Style.RESET_ALL, ' ~ ', Style.BRIGHT, Fore.MAGENTA,
+                format_elapsed_time(self.elapsed,
+                                    self.precision), Style.RESET_ALL
             ]
 
             if self.name is not None:
