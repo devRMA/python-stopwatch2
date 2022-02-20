@@ -64,9 +64,7 @@ jobs:
     #          install and run formatters
     #----------------------------------------------
     - name: Run formatters
-      run: |
-        pwd
-        poetry run task format
+      run: poetry run task format
 
     #----------------------------------------------
     #                commit changes
