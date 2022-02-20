@@ -70,7 +70,9 @@ jobs:
     #                run test suite
     #----------------------------------------------
     - name: Run tests
-      run: poetry run pytest
+      run: |
+        pwd
+        poetry run pytest
 
   upload:
     name: Upload coverage data to coveralls.io

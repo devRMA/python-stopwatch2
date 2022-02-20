@@ -39,6 +39,7 @@ jobs:
     #----------------------------------------------
     - name: Run linters
       run: |
+        pwd
         python -m pip install flake8 mypy
         flake8 --statistics .
         mypy --strict --pretty .
