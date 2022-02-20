@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - fix-actions
     paths:
       - "**.py"
       - ".github/workflows/**.yml"
@@ -40,7 +39,6 @@ jobs:
     #----------------------------------------------
     - name: Run linters
       run: |
-        pwd
         python -m pip install flake8 mypy types-colorama
         flake8 --statistics .
         mypy --strict --pretty .
