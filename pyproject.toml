@@ -28,6 +28,7 @@ pytest = "^7.0.1"
 pytest-cov = "^3.0.0"
 pytest-sugar = "^0.9.4"
 taskipy = "^1.10.1"
+toml = "^0.10.2"
 types-colorama = "^0.4.8"
 yapf = "^0.32.0"
 
