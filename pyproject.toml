@@ -47,4 +47,15 @@ based_on_style = "facebook"
 indent_width = 4
 
 [tool.taskipy.tasks]
-test = { cmd = "python -m pytest", help = "runs all tests" }
+test = { cmd = "task pytest && task coverage", help = "runs all tests and generate the coverage report" }
+lint = { cmd = "task mypy && task flake8", help = "Run mypy and flake8 on the project" }
+format = { cmd = "task yapf && task isort", help = "Run yapf and isort on the project" }
+
+pytest = { cmd = "python -m coverage run -m pytest", help = "run pytest and generate coverage report" }
+coverage = { cmd = "python -m coverage html", help = "generate html with the coverage report" }
+
+mypy = { cmd = "python -m mypy --pretty .", help = "Run mypy on the project" }
+flake8 = { cmd = "python -m flake8 --benchmark .", help = "Run flake8 on the project" }
+
+yapf = { cmd = "python -m yapf -r -i -vv .", help = "Run yapf on the project" }
+isort = { cmd = "python -m isort .", help = "Run isort on the project" }
