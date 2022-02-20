@@ -21,7 +21,8 @@ class ProfileTest(TestCase):
         report = _make_report(
             self.caller, 'name', Statistics([float(c) for c in range(1, 11)])
         )
-        assert '[<unknown>#name]' in report
+        assert '<unknown>' in report
+        assert '#name' in report
         assert 'hits=10' in report
         assert 'mean=5.50s' in report
         assert 'min=1.00s' in report
