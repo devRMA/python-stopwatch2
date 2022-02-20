@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.1 (20/02/2022)
+
+### Added
+
+- Coming back with the colored prints, using colorama (removed in [40ece4f](https://github.com/devRMA/python-stopwatch2/commit/40ece4f023cadd6fe20af5de93b54c7cb1b3e8d6)).
+
+### Changed
+
+- README.md changed.
+
 ## 1.1.0 (18/02/2022)
 
 ### Added
