@@ -58,5 +58,5 @@ coverage = { cmd = "python -m coverage html", help = "generate html with the cov
 mypy = { cmd = "python -m mypy --pretty stopwatch", help = "Run mypy on the project" }
 flake8 = { cmd = "python -m flake8 --benchmark stopwatch", help = "Run flake8 on the project" }
 
-yapf = { cmd = "python -m yapf -r -i -vv .", help = "Run yapf on the project" }
-isort = { cmd = "python -m isort .", help = "Run isort on the project" }
+yapf = { cmd = "python -m yapf -r -i -vv stopwatch", help = "Run yapf on the project" }
+isort = { cmd = "python -m isort stopwatch", help = "Run isort on the project" }
