@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - fix-actions
     paths:
       - "**.py"
       - ".github/workflows/**.yml"
