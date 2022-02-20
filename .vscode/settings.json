@@ -1,6 +1,9 @@
 {
-    "python.analysis.diagnosticSeverityOverrides": {
-        "reportUnusedFunction": "none",
-        "reportPrivateUsage": "none",
-    },
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportUnusedFunction": "none",
+    "reportPrivateUsage": "none"
+  },
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.mypyEnabled": true
 }
