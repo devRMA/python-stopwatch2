@@ -127,7 +127,7 @@ jobs:
     - name: Upload coverage data to coveralls.io
       run: |
         source .venv/bin/activate
-        task coverage
+        coverage run -m pytest
         coveralls --service=github
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
