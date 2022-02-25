@@ -142,6 +142,12 @@ module.exports = {
         editLinkText: "Suggest changes to this page",
         lastUpdated: "Last Updated",
 
+        algolia: {
+            appId: 'F1RU66L0F9',
+            apiKey: "cc4bbb978df4c275bb825a44705d46e3",
+            indexName: "stopwatch2",
+        },
+
         nav: [
             { text: "Guide", link: "/guide/getting-started" },
             { text: "API", link: "/api/stopwatch" },
