@@ -511,11 +511,6 @@ vite@^2.8.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitepress-dark-theme@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/vitepress-dark-theme/-/vitepress-dark-theme-0.1.4.tgz#7e997ad619fe2117e99a0ed42fc904ed7ae09730"
-  integrity sha512-lJMjLD7Af+5Ovxqxui4+uy8VN/2jwSb1gXvL/Sq8l2bAd0bs6jk1gkq434K4m6AW5Pkm4I60gcEQk9t2nh8mhg==
-
 vitepress@^0.22.2:
   version "0.22.2"
   resolved "https://registry.yarnpkg.com/vitepress/-/vitepress-0.22.2.tgz#3c99d3553a3187b95cbc6d6d9d78dcabca2626de"

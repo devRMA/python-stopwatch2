@@ -1,4 +1,5 @@
-import DarkTheme from "vitepress-dark-theme/index.js";
+import DefaultTheme from 'vitepress/theme'
 import './custom.css'
 
-export default { ...DarkTheme };
+// TODO : add dark theme
+export default DefaultTheme
