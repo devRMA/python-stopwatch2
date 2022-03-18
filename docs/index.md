@@ -5,7 +5,7 @@ heroImage: /logo_shadow.svg
 heroAlt: Python Stopwatch 2 Logo
 
 actionText: Get Started
-actionLink: /guide/getting-started
+actionLink: /guide/getting-started.html
 
 altActionText: Demo
 altActionLink: https://replit.com/@devRMA/Python-Stopwatch-2-Example#main.py

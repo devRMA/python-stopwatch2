@@ -104,7 +104,7 @@ The list of all stopwatch laps.
 
 **Type**
 
-- List[[Lap](/api/lap)]
+- List[[Lap](/api/lap.html)]
 
 ::: details Example
 
@@ -255,7 +255,7 @@ print(sw.running)  # False
 def lap(self) -> Iterator[None]:
 ```
 
-Context manager for create a new [lap](/api/lap).
+Context manager for create a new [lap](/api/lap.html).
 
 ::: details Example
 

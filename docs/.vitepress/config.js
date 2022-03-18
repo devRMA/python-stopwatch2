@@ -149,8 +149,8 @@ module.exports = {
         },
 
         nav: [
-            { text: "Guide", link: "/guide/getting-started" },
-            { text: "API", link: "/api/stopwatch" },
+            { text: "Guide", link: "/guide/getting-started.html" },
+            { text: "API", link: "/api/stopwatch.html" },
             {
                 text: "Links",
                 items: [
@@ -173,19 +173,19 @@ module.exports = {
                     children: [
                         {
                             text: "Getting Started",
-                            link: "/guide/getting-started",
+                            link: "/guide/getting-started.html",
                         },
                         {
                             text: "Profiling a function",
-                            link: "/guide/profiling-function",
+                            link: "/guide/profiling-function.html",
                         },
                         {
                             text: "With statement",
-                            link: "/guide/with-statement",
+                            link: "/guide/with-statement.html",
                         },
                         {
                             text: "Other libraries",
-                            link: "/guide/other-libraries",
+                            link: "/guide/other-libraries.html",
                         },
                     ],
                 },
@@ -194,23 +194,23 @@ module.exports = {
                     children: [
                         {
                             text: "Stopwatch",
-                            link: "/api/stopwatch",
+                            link: "/api/stopwatch.html",
                         },
                         {
                             text: "Lap",
-                            link: "/api/lap",
+                            link: "/api/lap.html",
                         },
                         {
                             text: "Statistics",
-                            link: "/api/statistics",
+                            link: "/api/statistics.html",
                         },
                         {
                             text: "Decorators",
-                            link: "/api/decorators",
+                            link: "/api/decorators.html",
                         },
                         {
                             text: "Utils",
-                            link: "/api/utils",
+                            link: "/api/utils.html",
                         },
                     ],
                 },
