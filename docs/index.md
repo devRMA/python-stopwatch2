@@ -13,7 +13,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/getting-started
+      link: /guide/getting-started.html
     - theme: alt
       text: Demo
       link: https://replit.com/@devRMA/Python-Stopwatch-2-Example#main.py
