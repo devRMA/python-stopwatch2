@@ -1,22 +1,26 @@
 ---
-home: true
+layout: home
 
-heroImage: /logo_shadow.svg
-heroAlt: Python Stopwatch 2 Logo
-
-actionText: Get Started
-actionLink: /guide/getting-started.html
-
-altActionText: Demo
-altActionLink: https://replit.com/@devRMA/Python-Stopwatch-2-Example#main.py
+hero:
+  name: Python Stopwatch 2
+  text: A simple library to measure code performance.
+  actions:
+    - theme: brand
+      text: Get Started
+      link: /guide/getting-started.html
+    - theme: alt
+      text: Demo
+      link: https://replit.com/@devRMA/Python-Stopwatch-2-Example#main.py
 
 features:
-  - title: 🔑 Typing Hinting
+  - icon: 🔑
+    title: Typing Hinting
     details: All methods are statically typed to help you with coding.
-  - title: ☂️ Code Coverage
+  - icon: ☂️
+    title: Code Coverage
     details: All code is covered with unit tests.
-  - title: 💡 Easy to use
+  - icon: 💡
+    title: Easy to use
     details: Simple and easy to use.
 
-footer: MIT Licensed | Copyright © 2021-2022 Jonghwan Hyeon, 2022-present Rafael
 ---
