@@ -18,6 +18,15 @@ export default defineConfig({
     description: ogDescription,
 
     head: [
+        ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
+        ["link", { rel: "preconnect", href: "https://fonts.gstatic.com" }],
+        [
+            "link",
+            {
+                rel: "stylesheet",
+                href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono",
+            },
+        ],
         ["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }],
         ["meta", { property: "theme-color", content: "#ffd859" }],
         ["meta", { property: "og:locale", content: "en-US" }],
