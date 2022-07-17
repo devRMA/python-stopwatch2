@@ -2,8 +2,6 @@
 
 **Source code: [stopwatch/profile.py](https://github.com/devRMA/python-stopwatch2/blob/main/stopwatch/profile.py)**
 
-[[toc]]
-
 ## profile
 
 This decorator is used to profiling the execution time of a function.
@@ -39,6 +37,8 @@ print('end')
 # end
 # [__main__#My function] hits=5, mean=300.35ms, min=100.14ms, median=300.35ms, max=500.55ms, dev=141.56ms
 ```
+
+<br>
 
 ```python
 from time import sleep

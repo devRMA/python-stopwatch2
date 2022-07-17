@@ -2,8 +2,6 @@
 
 **Source code: [stopwatch/statistics.py](https://github.com/devRMA/python-stopwatch2/blob/main/stopwatch/statistics.py)**
 
-[[toc]]
-
 Supported Operations
 
 ```python

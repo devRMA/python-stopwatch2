@@ -2,8 +2,6 @@
 
 **Source code: [stopwatch/lap.py](https://github.com/devRMA/python-stopwatch2/blob/main/stopwatch/lap.py)**
 
-[[toc]]
-
 ## Attributes
 
 All attributes of the `Lap` class.

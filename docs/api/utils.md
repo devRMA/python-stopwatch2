@@ -2,8 +2,6 @@
 
 **Source code: [stopwatch/utils.py](https://github.com/devRMA/python-stopwatch2/blob/main/stopwatch/utils.py)**
 
-[[toc]]
-
 ## format_elapsed_time
 
 ```python

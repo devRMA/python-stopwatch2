@@ -2,8 +2,6 @@
 
 **Source code: [stopwatch/stopwatch.py](https://github.com/devRMA/python-stopwatch2/blob/main/stopwatch/stopwatch.py)**
 
-[[toc]]
-
 ## Initialization
 
 ```python
@@ -34,17 +32,23 @@ print(sw.report())
 # [Stopwatch#my stopwatch] total=3.00s
 ```
 
+<br>
+
 ```python
 with Stopwatch('my custom message', True):
     sleep(3)
 # [__main__:<module>:1] ~ 3.00s - my custom message
 ```
 
+<br>
+
 ```python
 with Stopwatch(print_report=True):
     sleep(3)
 # [__main__:<module>:1] ~ 3.00s
 ```
+
+<br>
 
 ```python
 with Stopwatch(precision=3) as sw:
@@ -239,6 +243,8 @@ sw.stop()
 print(sw.elapsed)  # 3.0
 print(f'Time elapsed: {sw}')  # Time elapsed: 3.00s
 ```
+
+<br>
 
 ```python
 with Stopwatch() as sw:
