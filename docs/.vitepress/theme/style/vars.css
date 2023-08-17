@@ -1,9 +1,9 @@
 :root {
     --vp-c-yellow: rgb(255, 197, 23);
-    --vp-c-yellow-light: rgb(252, 210, 83);
-    --vp-c-yellow-lighter: rgb(252, 252, 124);
-    --vp-c-yellow-dark: rgb(224, 173, 21);
-    --vp-c-yellow-darker: rgb(173, 133, 14);
+    --vp-c-yellow-light: rgb(255, 218, 74);
+    --vp-c-yellow-lighter: rgb(255, 234, 136);
+    --vp-c-yellow-dark: rgb(249, 166, 7);
+    --vp-c-yellow-darker: rgb(222, 127, 2);
     --vp-c-yellow-dimm-1: rgba(255, 197, 23, 0.5);
     --vp-c-yellow-dimm-2: rgba(255, 197, 23, 0.25);
     --vp-c-yellow-dimm-3: rgba(255, 197, 23, 0.05);
