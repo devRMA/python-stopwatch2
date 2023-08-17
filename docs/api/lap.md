@@ -34,7 +34,7 @@ def start(self) -> None:
 
 Starts the lap if not running.
 
-::: warning
+::: danger
 It is not recommended to use this method. Instead, use the stopwatch [start](/api/stopwatch.html#start) method.
 :::
 
@@ -46,6 +46,6 @@ def stop(self) -> None:
 
 Stops the lap, freezing the duration.
 
-::: warning
+::: danger
 It is not recommended to use this method. Instead, use the Stopwatch [stop](/api/stopwatch.html#stop) method.
 :::
