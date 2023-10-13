@@ -1,20 +1,7 @@
 :root {
-    --vp-c-yellow: rgb(255, 197, 23);
-    --vp-c-yellow-light: rgb(255, 218, 74);
-    --vp-c-yellow-lighter: rgb(255, 234, 136);
-    --vp-c-yellow-dark: rgb(249, 166, 7);
-    --vp-c-yellow-darker: rgb(222, 127, 2);
-    --vp-c-yellow-dimm-1: rgba(255, 197, 23, 0.5);
-    --vp-c-yellow-dimm-2: rgba(255, 197, 23, 0.25);
-    --vp-c-yellow-dimm-3: rgba(255, 197, 23, 0.05);
+    --vp-c-brand-1: #ffd859;
+    --vp-c-brand-2: #ffb727;
+    --vp-c-brand-3: #d8a72a;
 
-    --vp-c-brand: var(--vp-c-yellow);
-    --vp-c-brand-light: var(--vp-c-yellow-light);
-    --vp-c-brand-lighter: var(--vp-c-yellow-lighter);
-    --vp-c-brand-dark: var(--vp-c-yellow-dark);
-    --vp-c-brand-darker: var(--vp-c-yellow-darker);
-
-    --vp-button-brand-text: var(--vp-c-text-light-1);
-
-    --vp-font-family-mono: "JetBrains Mono", "Menlo", "Monaco", "Consolas", 'Courier New', monospace;
+    --vp-font-family-mono: 'IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
 }
