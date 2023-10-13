@@ -24,7 +24,7 @@ export default defineConfig({
             "link",
             {
                 rel: "stylesheet",
-                href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono",
+                href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono",
             },
         ],
         ["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }],
@@ -41,14 +41,14 @@ export default defineConfig({
         ["meta", { property: "twitter:title", content: "ogTitle" }],
         ["meta", { property: "twitter:description", content: ogDescription }],
         ["meta", { property: "twitter:image", content: "ogImage" }],
-        [
-            "script",
-            {
-                src: "https://unpkg.com/thesemetrics@latest",
-                async: "",
-                type: "text/javascript",
-            },
-        ],
+        // [
+        //     "script",
+        //     {
+        //         src: "https://unpkg.com/thesemetrics@latest",
+        //         async: "",
+        //         type: "text/javascript",
+        //     },
+        // ],
     ],
 
     lastUpdated: true,
@@ -84,6 +84,11 @@ export default defineConfig({
         nav: nav(),
         sidebar: sidebar(),
     },
+
+    sitemap: {
+        hostname: 'https://stopwatch2.vercel.app'
+      }
+
 });
 
 function nav() {
