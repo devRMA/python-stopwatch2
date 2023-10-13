@@ -108,7 +108,7 @@ The list of all stopwatch laps.
 
 **Type**
 
-- List[[Lap](/api/lap.html)]
+- List[[Lap](/api/lap)]
 
 ::: details Example
 
@@ -190,7 +190,7 @@ All methods of the `Stopwatch` class.
 
 ### start
 
-```py
+```python
 def start(self) -> Stopwatch:
 ```
 
@@ -210,7 +210,7 @@ This method is called automatically when the stopwatch is created.
 
 ### stop
 
-```py
+```python
 def stop(self) -> Stopwatch:
 ```
 
@@ -256,19 +256,19 @@ print(sw.running)  # False
 
 ### lap
 
-```py
+```python
 @contextmanager
 def lap(self) -> Iterator[None]:
 ```
 
-Context manager for create a new [lap](/api/lap.html).
+Context manager for create a new [lap](/api/lap).
 
 ::: details Example
 
-```python{3}
+```python
 with Stopwatch() as sw:
     for i in range(5):
-        with sw.lap():
+        with sw.lap(): // [!code focus]
             sleep(i / 10)
 print(f'{sw}')  # 1.00s
 print(len(sw.laps))  # 5

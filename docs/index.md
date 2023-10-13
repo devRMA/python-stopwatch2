@@ -2,7 +2,7 @@
 layout: home
 
 title: Stopwatch 2
-titleTemplate: A simple library to measure code performance.
+description: A simple library to measure code performance.
 
 hero:
   name: Python Stopwatch 2
@@ -13,7 +13,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /guide/getting-started.html
+      link: /guide/getting-started
     - theme: alt
       text: Demo
       link: https://replit.com/@devRMA/Python-Stopwatch-2-Example#main.py

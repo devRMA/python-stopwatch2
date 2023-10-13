@@ -172,7 +172,7 @@ All methods of the `Statistics` class.
 
 ### add
 
-```py
+```python
 def add(self, value: float) -> None:
 ```
 
@@ -185,7 +185,7 @@ Add a value to the list of values.
 
 ### to_dict
 
-```py
+```python
 def to_dict(self) -> Dict[str, float]:
 ```
 

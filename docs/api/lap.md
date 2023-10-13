@@ -28,24 +28,24 @@ All methods of the `Lap` class.
 
 ### start
 
-```py
+```python
 def start(self) -> None:
 ```
 
 Starts the lap if not running.
 
 ::: danger
-It is not recommended to use this method. Instead, use the stopwatch [start](/api/stopwatch.html#start) method.
+It is not recommended to use this method. Instead, use the stopwatch [start](/api/stopwatch#start) method.
 :::
 
 ### stop
 
-```py
+```python
 def stop(self) -> None:
 ```
 
 Stops the lap, freezing the duration.
 
 ::: danger
-It is not recommended to use this method. Instead, use the Stopwatch [stop](/api/stopwatch.html#stop) method.
+It is not recommended to use this method. Instead, use the Stopwatch [stop](/api/stopwatch#stop) method.
 :::
