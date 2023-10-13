@@ -4,11 +4,21 @@ This section will help you install the library and basic usage of the stopwatch 
 
 - **Step. 1:** Install the library.
 
-  ```bash
-  $ poetry add python-stopwatch2
-  # or with pip
-  $ pip install python-stopwatch2
+  ::: code-group
+
+  ```bash [Poetry]
+  poetry add python-stopwatch2
   ```
+
+  ```bash [PIP Linux/macOS]
+  python3 -m pip install python-stopwatch2
+  ```
+
+  ```bash [PIP Windows]
+  py -3 -m pip install python-stopwatch2
+  ```
+
+  :::
 
 - **Step. 2:** Import the Stopwatch class.
 
@@ -42,6 +52,7 @@ This section will help you install the library and basic usage of the stopwatch 
   # or
   print(f'Time elapsed: {sw}')  # Time elapsed: 2.00s
   ```
+
 - **Full example**
 
   ```python{1,4,6-7}
