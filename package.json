@@ -9,8 +9,8 @@
     "serve": "vitepress serve docs"
   },
   "devDependencies": {
-    "@types/node": "^20.5.0",
-    "vitepress": "^1.0.0-rc.4",
+    "@types/node": "^20.8.5",
+    "vitepress": "^1.0.0-rc.21",
     "vue": "^3.3.4"
   }
 }
