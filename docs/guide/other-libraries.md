@@ -1,6 +1,6 @@
 # Other libraries
 
-There are other timer libraries for python, here are some and their differences.
+There are other timer libraries for python, here are some differences.
 
 |                             Library                              |     Unit tests     |     Statistics     |        Laps        |   Static Typing    |        Docs        |     Docstring      |
 | :--------------------------------------------------------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: | :----------------: |
