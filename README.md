@@ -26,9 +26,9 @@
 <img src="https://github.com/Harlocks/design/blob/main/assets/inkscape/banners/InstallationTitle.png?raw=true">
 
 - This package requires python 3.7 or higher.
-#### **Step 1**. Install the library (Mac/Linux):
+#### **Step 1**. Install the library:
 ```sh
-python3 -m pip install python-stopwatch2
+poetry add python-stopwatch2
 ```
 > Other platform? ➜ https://stopwatch2.vercel.app/guide/getting-started.html
 #### **Step 2**. Import the Stopwatch class:
