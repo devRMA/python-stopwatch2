@@ -1,7 +1,8 @@
 import atexit
 import functools
 import math
-from typing import Any, Callable, TypeVar
+from collections.abc import Callable
+from typing import Any, TypeVar
 
 from colorama import Fore, Style
 
@@ -32,8 +33,11 @@ def _make_report(caller: Caller, name: str, statistics: Statistics) -> str:
     """
     tag = ''.join(
         [
-            Style.BRIGHT, f'{Fore.BLUE}[{caller.module}',
-            f'{Fore.GREEN}#{name}', f'{Fore.BLUE}]', Fore.RESET
+            Style.BRIGHT,
+            f'{Fore.BLUE}[{caller.module}',
+            f'{Fore.GREEN}#{name}',
+            f'{Fore.BLUE}]',
+            Fore.RESET,
         ]
     )
     items = ', '.join(
@@ -43,7 +47,7 @@ def _make_report(caller: Caller, name: str, statistics: Statistics) -> str:
             f'min={format_elapsed_time(statistics.minimum)}',
             f'median={format_elapsed_time(statistics.median)}',
             f'max={format_elapsed_time(statistics.maximum)}',
-            f'dev={format_elapsed_time(math.sqrt(statistics.variance))}'
+            f'dev={format_elapsed_time(math.sqrt(statistics.variance))}',
         ]
     )
 

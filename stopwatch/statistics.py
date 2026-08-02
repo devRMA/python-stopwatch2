@@ -1,11 +1,10 @@
 import statistics
-from typing import Dict, List, Optional
 
 
 class Statistics:
-    _values: List[float]
+    _values: list[float]
 
-    def __init__(self, values: Optional[List[float]] = None) -> None:
+    def __init__(self, values: list[float] | None = None) -> None:
         self._values = values or []
 
     def add(self, value: float) -> None:
@@ -55,7 +54,7 @@ class Statistics:
     def __repr__(self) -> str:
         return f'<Statistics values={self._values}>'
 
-    def to_dict(self) -> Dict[str, float]:
+    def to_dict(self) -> dict[str, float]:
         """
         Return a dictionary with all properties from statistics
 
@@ -70,5 +69,5 @@ class Statistics:
             'median': self.median,
             'minimum': self.minimum,
             'total': self.total,
-            'variance': self.variance
+            'variance': self.variance,
         }
