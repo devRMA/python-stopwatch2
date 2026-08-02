@@ -20,6 +20,10 @@ everything since `1.1.1`.
 
 ### Added
 
+- `Stopwatch(autostart=False)` builds a stopwatch that is not running, so
+  only the blocks wrapped in `lap()` are measured. A stopwatch starts
+  measuring on construction and the first `lap()` takes over that lap, so
+  setup work between the two used to be billed to the first lap.
 - `Statistics.stdev`, the population standard deviation. It replaces
   computing `math.sqrt(statistics.variance)` by hand.
 - `profile` now measures `async def` functions. They were previously
