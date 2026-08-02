@@ -146,6 +146,16 @@ class StopwatchTest(TestCase):
                 self.assertTrue(sw.running)
         self.assertEqual(sw.elapsed, 1.0)
 
+    def test_stopwatch_start_while_running_is_a_noop(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            sw = Stopwatch()
+            self.time_mock.increment(1)
+            sw.start()
+            self.time_mock.increment(1)
+            sw.stop()
+        self.assertEqual(len(sw.laps), 1)
+        self.assertEqual(sw.elapsed, 2.0)
+
     def test_stopwatch_lap_closes_on_exception(self) -> None:
         with patch('time.perf_counter', self.time_mock.perf_counter):
             sw = Stopwatch()

@@ -5,7 +5,7 @@ class Statistics:
     _values: list[float]
 
     def __init__(self, values: list[float] | None = None) -> None:
-        self._values = values or []
+        self._values = list(values) if values else []
 
     def add(self, value: float) -> None:
         """
@@ -41,12 +41,17 @@ class Statistics:
     @property
     def total(self) -> float:
         """`float`: Return the total value in seconds."""
-        return sum(self._values)
+        return float(sum(self._values))
 
     @property
     def variance(self) -> float:
         """`float`: Return the variance in seconds."""
         return statistics.pvariance(self._values)
+
+    @property
+    def stdev(self) -> float:
+        """`float`: Return the population standard deviation in seconds."""
+        return statistics.pstdev(self._values)
 
     def __len__(self) -> int:
         return len(self._values)
