@@ -38,9 +38,9 @@ export default defineConfig({
         ["meta", { property: "og:image", content: ogImage }],
         ["meta", { property: "twitter:card", content: "summary_large_image" }],
         ["meta", { property: "twitter:url", content: ogUrl }],
-        ["meta", { property: "twitter:title", content: "ogTitle" }],
+        ["meta", { property: "twitter:title", content: ogTitle }],
         ["meta", { property: "twitter:description", content: ogDescription }],
-        ["meta", { property: "twitter:image", content: "ogImage" }],
+        ["meta", { property: "twitter:image", content: ogImage }],
         // [
         //     "script",
         //     {
@@ -131,12 +131,16 @@ function sidebar() {
                     link: "/guide/getting-started",
                 },
                 {
-                    text: "Profiling a function",
-                    link: "/guide/profiling-function",
-                },
-                {
                     text: "With statement",
                     link: "/guide/with-statement",
+                },
+                {
+                    text: "Measuring laps",
+                    link: "/guide/measuring-laps",
+                },
+                {
+                    text: "Profiling a function",
+                    link: "/guide/profiling-function",
                 },
                 {
                     text: "Other libraries",

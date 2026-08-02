@@ -287,3 +287,9 @@ dist
 
 /docs/.vitepress/dist
 /docs/.vitepress/cache
+
+# Local AI/agent tooling
+.agents/
+.claude/
+.serena/
+skills-lock.json
