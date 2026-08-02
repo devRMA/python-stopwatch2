@@ -32,8 +32,6 @@ class Lap:
         """
         Stop the lap timer. Stopping an already stopped lap does nothing.
         """
-        # Without this guard a second stop() would record
-        # perf_counter() - 0.0, i.e. the machine uptime, as a fraction.
         if not self.running:
             return
         self._fractions.append(time.perf_counter() - self._start)

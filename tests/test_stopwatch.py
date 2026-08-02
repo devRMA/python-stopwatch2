@@ -134,7 +134,6 @@ class StopwatchTest(TestCase):
                 with sw.lap():
                     self.time_mock.increment(1)
                     raise ValueError('boom')
-            # A lap left open would keep billing wall-clock time here.
             self.time_mock.increment(10)
         self.assertFalse(sw.running)
         self.assertEqual(len(sw.laps), 1)

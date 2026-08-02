@@ -38,7 +38,6 @@ class LapTest(TestCase):
             self.time_mock.increment(1)
             lap.stop()
             self.time_mock.increment(100)
-            # An unguarded second stop() records perf_counter() - 0.0.
             lap.stop()
         self.assertEqual(lap.elapsed, 1.0)
         self.assertEqual(lap._fractions, [1.0])

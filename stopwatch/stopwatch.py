@@ -68,27 +68,27 @@ class Stopwatch:
         Each call records a distinct lap, so nesting works and the lap is
         always closed even if the block raises.
 
-        ponytail: the first lap adopts the lap started on construction, so
-        any time between `Stopwatch()` and the first `lap()` is billed to
-        that lap. Call `reset()` before the first `lap()` to avoid it; add
-        an `autostart=False` option if that turns out to be the common
-        case.
+        A stopwatch is already running once constructed, and the first lap
+        takes over that lap rather than opening a second one, so any time
+        between `Stopwatch()` and the first `lap()` belongs to it. Call
+        `reset()` first to leave it out.
         """
-        # A Stopwatch starts measuring on construction, so adopt the lap
-        # that is already running instead of opening a second one -- that
-        # is what keeps `with Stopwatch() as sw: with sw.lap():` from
-        # recording a phantom lap. Handing ownership over by clearing
-        # _current_lap is what lets a nested lap() open its own.
-        lap = self._current_lap
-        if lap is None or not lap.running:
-            lap = Lap()
-            self.laps.append(lap)
-            lap.start()
-        self._current_lap = None
+        lap = self._take_running_lap() or self._open_lap()
         try:
             yield
         finally:
             lap.stop()
+
+    def _open_lap(self) -> Lap:
+        lap = Lap()
+        self.laps.append(lap)
+        lap.start()
+        return lap
+
+    def _take_running_lap(self) -> Lap | None:
+        lap = self._current_lap
+        self._current_lap = None
+        return lap if lap is not None and lap.running else None
 
     def start(self) -> Stopwatch:
         """
@@ -100,9 +100,7 @@ class Stopwatch:
             The started stopwatch instance.
         """
         if not self.running:
-            self.laps.append(Lap())
-            self._current_lap = self.laps[-1]
-            self._current_lap.start()
+            self._current_lap = self._open_lap()
         return self
 
     def stop(self) -> Stopwatch:
