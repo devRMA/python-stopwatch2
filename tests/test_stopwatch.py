@@ -127,6 +127,25 @@ class StopwatchTest(TestCase):
             'min=0.00s, median=2.00s, max=4.00s, dev=1.41s',
         )
 
+    def test_stopwatch_without_autostart_measures_only_laps(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            sw = Stopwatch(autostart=False)
+            self.time_mock.increment(5)
+            self.assertFalse(sw.running)
+            self.assertEqual(sw.laps, [])
+            self.assertEqual(sw.elapsed, 0.0)
+            with sw.lap():
+                self.time_mock.increment(1)
+        self.assertEqual(len(sw.laps), 1)
+        self.assertEqual(sw.elapsed, 1.0)
+
+    def test_stopwatch_without_autostart_still_starts_as_context(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            with Stopwatch(autostart=False) as sw:
+                self.time_mock.increment(1)
+                self.assertTrue(sw.running)
+        self.assertEqual(sw.elapsed, 1.0)
+
     def test_stopwatch_lap_closes_on_exception(self) -> None:
         with patch('time.perf_counter', self.time_mock.perf_counter):
             sw = Stopwatch()

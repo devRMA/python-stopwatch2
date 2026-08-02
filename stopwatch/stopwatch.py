@@ -18,7 +18,22 @@ class Stopwatch:
         name: str | None = None,
         print_report: bool = False,
         precision: int = 2,
+        autostart: bool = True,
     ) -> None:
+        """
+        Parameters
+        ----------
+        name : Optional[`str`]
+            The name shown in the reports.
+        print_report : `bool`
+            Print a report when leaving a `with` block. Default is False.
+        precision : `int`
+            The number of decimal places in the reports. Default is 2.
+        autostart : `bool`
+            Start measuring right away. Default is True. Pass False to
+            measure only the blocks wrapped in `lap()`, leaving the time
+            before the first one out.
+        """
         self.name = name
         self.precision = precision
         self.laps: list[Lap] = []
@@ -27,7 +42,8 @@ class Stopwatch:
         self._caller: Caller | None = (
             inspect_caller() if print_report else None
         )
-        self.start()
+        if autostart:
+            self.start()
 
     def __enter__(self) -> Stopwatch:
         return self.restart()
@@ -70,8 +86,8 @@ class Stopwatch:
 
         A stopwatch is already running once constructed, and the first lap
         takes over that lap rather than opening a second one, so any time
-        between `Stopwatch()` and the first `lap()` belongs to it. Call
-        `reset()` first to leave it out.
+        between `Stopwatch()` and the first `lap()` belongs to it. Build it
+        with `autostart=False` to leave that time out.
         """
         lap = self._take_running_lap() or self._open_lap()
         try:
