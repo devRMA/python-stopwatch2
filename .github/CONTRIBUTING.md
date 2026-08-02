@@ -18,16 +18,33 @@ We accept contributions via Pull Requests on [Github](https://github.com/devRMA/
 
 - **One pull request per feature** - If you want to do more than one thing, send multiple pull requests.
 
+## Setup
+
+This project targets Python 3.10+ and is managed with [Poetry](https://python-poetry.org/).
+The exact interpreter and Poetry versions are pinned in `.tool-versions` for
+[asdf](https://asdf-vm.com/) users.
+
+```bash
+poetry install
+```
+
 ## Running Tests
 
 ```bash
-poetry run task test
+poetry run pytest --cov=stopwatch --cov-report=term-missing
 ```
 
-## Running Formatters
+## Linting and Formatting
+
+Linting, import sorting and formatting are all handled by [Ruff](https://docs.astral.sh/ruff/),
+and type checking by [mypy](https://mypy-lang.org/):
 
 ```bash
-poetry run task format
+poetry run ruff check --fix .   # lint and sort imports
+poetry run ruff format .        # format
+poetry run mypy stopwatch       # type check
 ```
+
+CI runs the same commands with `--check`, so run them before pushing.
 
 **Happy coding**!

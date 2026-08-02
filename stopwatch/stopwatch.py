@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import math
+from collections.abc import Iterator
 from contextlib import contextmanager
-from typing import Any, Iterator, List, Optional
+from typing import Any
 
 from colorama import Fore, Style
 
@@ -12,25 +13,21 @@ from .utils import Caller, format_elapsed_time, inspect_caller
 
 
 class Stopwatch:
-    name: Optional[str] = None
-    precision: int = 2
-    laps: List[Lap] = []
-    _caller: Optional[Caller] = None
-    _current_lap: Optional[Lap] = None
-    _print_report: bool = False
-
     def __init__(
         self,
-        name: Optional[str] = None,
+        name: str | None = None,
         print_report: bool = False,
-        precision: int = 2
+        precision: int = 2,
     ) -> None:
         self.name = name
         self.precision = precision
-        if print_report:
-            self._print_report = print_report
-            self._caller = inspect_caller()
-        self.restart()
+        self.laps: list[Lap] = []
+        self._current_lap: Lap | None = None
+        self._print_report = print_report
+        self._caller: Caller | None = (
+            inspect_caller() if print_report else None
+        )
+        self.start()
 
     def __enter__(self) -> Stopwatch:
         return self.restart()
@@ -145,24 +142,28 @@ class Stopwatch:
                     f'min={statistics.minimum:.{self.precision}f}s',
                     f'median={statistics.median:.{self.precision}f}s',
                     f'max={statistics.maximum:.{self.precision}f}s',
-                    f'dev={math.sqrt(statistics.variance):.{self.precision}f}s'
+                    f'dev={math.sqrt(statistics.variance):.{self.precision}f}s',
                 ]
             )
 
         return '[Stopwatch{tag}] {statistics}'.format(
             tag=f'#{self.name}' if self.name is not None else '',
-            statistics=', '.join(items)
+            statistics=', '.join(items),
         )
 
     def _format(self) -> str:
         caller = self._caller
         if self._print_report and caller is not None:
             items = [
-                Style.BRIGHT, Fore.BLUE,
+                Style.BRIGHT,
+                Fore.BLUE,
                 f'[{caller.module}:{caller.function}:{caller.line_number}]',
-                Style.RESET_ALL, ' ~ ', Style.BRIGHT, Fore.MAGENTA,
-                format_elapsed_time(self.elapsed,
-                                    self.precision), Style.RESET_ALL
+                Style.RESET_ALL,
+                ' ~ ',
+                Style.BRIGHT,
+                Fore.MAGENTA,
+                format_elapsed_time(self.elapsed, self.precision),
+                Style.RESET_ALL,
             ]
 
             if self.name is not None:

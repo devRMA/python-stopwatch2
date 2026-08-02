@@ -1,62 +1,49 @@
-[tool.poetry]
+[project]
 name = "python-stopwatch2"
 version = "1.1.2"
 description = "A simple library to measure code performance."
 authors = [
-  "Rafael <contact.devrma@gmail.com>",
-  "Jonghwan Hyeon <hyeon0145@gmail.com>"
+  { name = "Rafael", email = "contact.devrma@gmail.com" },
+  { name = "Jonghwan Hyeon", email = "hyeon0145@gmail.com" },
 ]
-maintainers = ["Rafael <contact.devrma@gmail.com>"]
+maintainers = [{ name = "Rafael", email = "contact.devrma@gmail.com" }]
 license = "MIT"
 readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["stopwatch", "timer", "time", "profile"]
+dynamic = ["classifiers"]
+dependencies = ["colorama (>=0.4.6,<0.5.0)"]
+
+[project.urls]
 homepage = "https://stopwatch2.vercel.app/"
 repository = "https://github.com/devRMA/python-stopwatch2"
 documentation = "https://stopwatch2.vercel.app/guide/getting-started.html"
-keywords = ["stopwatch", "timer", "time", "profile"]
+
+[tool.poetry]
+requires-poetry = ">=2.0"
 packages = [{ include = "stopwatch" }]
 
-[tool.poetry.dependencies]
-python = "^3.7"
-colorama = "^0.4.4"
-
-[tool.poetry.dev-dependencies]
-coveralls = "^3.3.1"
-flake8 = "^4.0.1"
-isort = "^5.10.1"
-mypy = "^0.931"
-pytest = "^7.0.1"
-pytest-cov = "^3.0.0"
-pytest-sugar = "^0.9.4"
-taskipy = "^1.10.1"
-toml = "^0.10.2"
-types-colorama = "^0.4.8"
-yapf = "^0.32.0"
+[tool.poetry.group.dev.dependencies]
+mypy = ">=2.3.0"
+pytest = ">=9.1.1"
+pytest-cov = ">=7.1.0"
+ruff = ">=0.16.1"
+types-colorama = ">=0.4.15"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.isort]
-profile = "black"
-py_version = "37"
+[tool.ruff]
+line-length = 79
+target-version = "py310"
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "RUF"]
 
 [tool.mypy]
-namespace_packages = "True"
-
-[tool.yapf]
-based_on_style = "facebook"
-indent_width = 4
-
-[tool.taskipy.tasks]
-test = { cmd = "task pytest && task coverage", help = "runs all tests and generate the coverage report" }
-lint = { cmd = "task mypy && task flake8", help = "Run mypy and flake8 on the project" }
-format = { cmd = "task yapf && task isort", help = "Run yapf and isort on the project" }
-
-pytest = { cmd = "python -m coverage run -m pytest", help = "run pytest and generate coverage report" }
-coverage = { cmd = "python -m coverage html", help = "generate html with the coverage report" }
-
-mypy = { cmd = "python -m mypy --pretty stopwatch", help = "Run mypy on the project" }
-flake8 = { cmd = "python -m flake8 --benchmark stopwatch", help = "Run flake8 on the project" }
-
-yapf = { cmd = "python -m yapf -r -i -vv stopwatch", help = "Run yapf on the project" }
-isort = { cmd = "python -m isort stopwatch", help = "Run isort on the project" }
+python_version = "3.10"
+strict = true

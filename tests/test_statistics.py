@@ -22,7 +22,9 @@ class StatisticsTest(TestCase):
         self.assertEqual(len(stats), len(self.values))
 
     def test_repr(self) -> None:
-        self.assertEqual(repr(self.stats), f'<Statistics values={self.values}>')
+        self.assertEqual(
+            repr(self.stats), f'<Statistics values={self.values}>'
+        )
 
     def test_mean(self) -> None:
         self.assertEqual(self.stats.mean, statistics.mean(self.values))
@@ -40,16 +42,19 @@ class StatisticsTest(TestCase):
         self.assertEqual(self.stats.total, sum(self.values))
 
     def test_variance(self) -> None:
-        self.assertEqual(self.stats.variance, statistics.pvariance(self.values))
+        self.assertEqual(
+            self.stats.variance, statistics.pvariance(self.values)
+        )
 
     def test_to_dict(self) -> None:
         self.assertEqual(
-            self.stats.to_dict(), {
+            self.stats.to_dict(),
+            {
                 'mean': statistics.mean(self.values),
                 'maximum': max(self.values),
                 'median': statistics.median(self.values),
                 'minimum': min(self.values),
                 'total': sum(self.values),
-                'variance': statistics.pvariance(self.values)
-            }
+                'variance': statistics.pvariance(self.values),
+            },
         )

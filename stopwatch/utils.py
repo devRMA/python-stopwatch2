@@ -14,7 +14,7 @@ def inspect_caller(offset: int = 0) -> Caller:
     return Caller(
         module=module.__name__ if module else '<unknown>',
         function=stack.function,
-        line_number=stack.lineno
+        line_number=stack.lineno,
     )
 
 

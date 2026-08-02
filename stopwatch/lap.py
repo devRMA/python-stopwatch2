@@ -1,11 +1,10 @@
 import time
-from typing import List
 
 
 class Lap:
     running: bool
     _start: float
-    _fractions: List[float]
+    _fractions: list[float]
 
     def __init__(self) -> None:
         self.running = False
@@ -18,8 +17,9 @@ class Lap:
     @property
     def elapsed(self) -> float:
         """`float`: Return the elapsed time in seconds."""
-        return ((time.perf_counter() -
-                 self._start) if self.running else 0.0) + sum(self._fractions)
+        return (
+            (time.perf_counter() - self._start) if self.running else 0.0
+        ) + sum(self._fractions)
 
     def start(self) -> None:
         """

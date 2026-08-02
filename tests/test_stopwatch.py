@@ -122,8 +122,9 @@ class StopwatchTest(TestCase):
                     with sw.lap():
                         self.time_mock.increment(i)
         self.assertEqual(
-            sw.report(), '[Stopwatch] total=10.00s, mean=2.00s, '
-            'min=0.00s, median=2.00s, max=4.00s, dev=1.41s'
+            sw.report(),
+            '[Stopwatch] total=10.00s, mean=2.00s, '
+            'min=0.00s, median=2.00s, max=4.00s, dev=1.41s',
         )
 
     def test_stopwatch_statistics(self) -> None:

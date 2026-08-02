@@ -25,7 +25,7 @@
 <!-- INSTALLATION -->
 <img src="https://github.com/Harlocks/design/blob/main/assets/inkscape/banners/InstallationTitle.png?raw=true">
 
-- This package requires python 3.7 or higher.
+- This package requires python 3.10 or higher.
 #### **Step 1**. Install the library:
 ```sh
 poetry add python-stopwatch2
@@ -62,7 +62,7 @@ print(f'Time elapsed: {sw}')  # Time elapsed: 2.00s
 Run the tests with:
 
 ```bash
-poetry run task test
+poetry run pytest --cov=stopwatch
 ```
 
 <!-- =========== CHANGELOG, CONTRIBUTING AND LICENSE ============ -->
