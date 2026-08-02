@@ -53,7 +53,7 @@ class Stopwatch:
     @property
     def running(self) -> bool:
         """`bool`: True if the stopwatch is running, False if stopped."""
-        return self._current_lap is not None and self._current_lap.running
+        return any(lap.running for lap in self.laps)
 
     @property
     def statistics(self) -> Statistics:
@@ -63,12 +63,32 @@ class Stopwatch:
     @contextmanager
     def lap(self) -> Iterator[None]:
         """
-        Context manager for add a new lap.
+        Context manager that records the block it wraps as its own lap.
+
+        Each call records a distinct lap, so nesting works and the lap is
+        always closed even if the block raises.
+
+        ponytail: the first lap adopts the lap started on construction, so
+        any time between `Stopwatch()` and the first `lap()` is billed to
+        that lap. Call `reset()` before the first `lap()` to avoid it; add
+        an `autostart=False` option if that turns out to be the common
+        case.
         """
-        # calling start twice consecutively -> use stack to solve this problem
-        self.start()
-        yield
-        self.stop()
+        # A Stopwatch starts measuring on construction, so adopt the lap
+        # that is already running instead of opening a second one -- that
+        # is what keeps `with Stopwatch() as sw: with sw.lap():` from
+        # recording a phantom lap. Handing ownership over by clearing
+        # _current_lap is what lets a nested lap() open its own.
+        lap = self._current_lap
+        if lap is None or not lap.running:
+            lap = Lap()
+            self.laps.append(lap)
+            lap.start()
+        self._current_lap = None
+        try:
+            yield
+        finally:
+            lap.stop()
 
     def start(self) -> Stopwatch:
         """

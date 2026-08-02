@@ -31,6 +31,18 @@ class LapTest(TestCase):
             self.assertEqual(lap.elapsed, 1)
             self.assertEqual(repr(lap), '<Lap running=False elapsed=1.0000>')
 
+    def test_stop_twice_is_a_noop(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            lap = Lap()
+            lap.start()
+            self.time_mock.increment(1)
+            lap.stop()
+            self.time_mock.increment(100)
+            # An unguarded second stop() records perf_counter() - 0.0.
+            lap.stop()
+        self.assertEqual(lap.elapsed, 1.0)
+        self.assertEqual(lap._fractions, [1.0])
+
     def test_multiples_stars(self) -> None:
         with patch('time.perf_counter', self.time_mock.perf_counter):
             lap = Lap()
