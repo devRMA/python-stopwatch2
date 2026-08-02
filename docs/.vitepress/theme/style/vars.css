@@ -1,7 +1,77 @@
+/*
+ * The brand colour is the logo yellow. It reads well on a dark background but
+ * not on a light one: #ffd859 on white is 1.38:1, where WCAG AA asks for 4.5:1
+ * on body text, which left every link in light mode nearly invisible. Light
+ * mode therefore uses darkened ambers for text and keeps the vivid yellow for
+ * solid fills only.
+ *
+ * `:root` and `.dark` have the same specificity, so every dark override has to
+ * live in the single `.dark` block at the bottom of this file. A later `:root`
+ * rule would win over it.
+ */
+
 :root {
-    --vp-c-brand-1: #ffd859;
+    /* Brand */
+    --vp-c-brand-1: #8a6100; /* 5.54:1 on white */
+    --vp-c-brand-2: #6f4e00; /* 7.59:1 on white, for hover */
+    --vp-c-brand-3: #ffd859; /* solid fills, never text */
+    --vp-c-brand-soft: rgba(255, 216, 89, 0.24);
+
+    --vp-font-family-mono: 'IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas',
+        'Courier New', monospace;
+
+    /*
+     * Brand buttons are filled with the yellow in both modes, so their label
+     * has to be dark. The default is white, which is 1.38:1 against it.
+     */
+    --vp-button-brand-border: transparent;
+    --vp-button-brand-text: #1b1b1f; /* 12.44:1 on #ffd859 */
+    --vp-button-brand-bg: #ffd859;
+    --vp-button-brand-hover-border: transparent;
+    --vp-button-brand-hover-text: #1b1b1f;
+    --vp-button-brand-hover-bg: #ffe07a;
+    --vp-button-brand-active-border: transparent;
+    --vp-button-brand-active-text: #1b1b1f;
+    --vp-button-brand-active-bg: #f0c53f;
+
+    /*
+     * The hero name is drawn with background-clip:text. A yellow gradient over
+     * a white page is 1.74:1 at best, below even the 3:1 that large text is
+     * allowed, so light mode gets a solid amber and the gradient is dark-only.
+     */
+    --vp-home-hero-name-color: #8a6100;
+    --vp-home-hero-name-background: transparent;
+
+    --vp-home-hero-image-background-image: linear-gradient(
+        -45deg,
+        rgba(255, 183, 39, 0.6) 30%,
+        rgba(255, 216, 89, 0.6)
+    );
+    --vp-home-hero-image-filter: blur(44px);
+}
+
+@media (min-width: 640px) {
+    :root {
+        --vp-home-hero-image-filter: blur(56px);
+    }
+}
+
+@media (min-width: 960px) {
+    :root {
+        --vp-home-hero-image-filter: blur(68px);
+    }
+}
+
+.dark {
+    --vp-c-brand-1: #ffd859; /* 12.44:1 on the dark background */
     --vp-c-brand-2: #ffb727;
     --vp-c-brand-3: #d8a72a;
+    --vp-c-brand-soft: rgba(255, 216, 89, 0.16);
 
-    --vp-font-family-mono: 'IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+    --vp-home-hero-name-color: transparent;
+    --vp-home-hero-name-background: linear-gradient(
+        120deg,
+        #ffb727 30%,
+        #ffd859
+    );
 }

@@ -9,13 +9,16 @@ import { defineConfig } from "vitepress";
 const ogUrl = "https://stopwatch2.vercel.app/";
 const ogTitle = "Python Stopwatch 2 ⏱";
 const ogSiteTitle = "Python Stopwatch 2";
-const ogDescription = "A simple library to measure code performance.";
+const ogDescription =
+    "A small, fully typed Python stopwatch and profiler. Time a block, time each iteration with laps, or time every call to a function — with mean, median and standard deviation included.";
 const ogImage = "https://stopwatch2.vercel.app/social.png";
 
 export default defineConfig({
     appearance: true,
     title: ogSiteTitle,
+    titleTemplate: `:title | ${ogSiteTitle}`,
     description: ogDescription,
+    lang: "en-US",
 
     head: [
         ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
@@ -36,11 +39,35 @@ export default defineConfig({
         ["meta", { property: "og:title", content: ogTitle }],
         ["meta", { property: "og:description", content: ogDescription }],
         ["meta", { property: "og:image", content: ogImage }],
-        ["meta", { property: "twitter:card", content: "summary_large_image" }],
-        ["meta", { property: "twitter:url", content: ogUrl }],
-        ["meta", { property: "twitter:title", content: "ogTitle" }],
-        ["meta", { property: "twitter:description", content: ogDescription }],
-        ["meta", { property: "twitter:image", content: "ogImage" }],
+        ["meta", { property: "og:image:width", content: "1280" }],
+        ["meta", { property: "og:image:height", content: "640" }],
+        ["meta", { property: "og:image:alt", content: ogTitle }],
+        ["meta", { name: "twitter:card", content: "summary_large_image" }],
+        ["meta", { name: "twitter:url", content: ogUrl }],
+        ["meta", { name: "twitter:title", content: ogTitle }],
+        ["meta", { name: "twitter:description", content: ogDescription }],
+        ["meta", { name: "twitter:image", content: ogImage }],
+        ["meta", { name: "twitter:image:alt", content: ogTitle }],
+        [
+            "script",
+            { type: "application/ld+json" },
+            JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "SoftwareSourceCode",
+                name: ogSiteTitle,
+                description: ogDescription,
+                codeRepository:
+                    "https://github.com/devRMA/python-stopwatch2",
+                programmingLanguage: "Python",
+                url: ogUrl,
+                license: "https://opensource.org/licenses/MIT",
+                author: {
+                    "@type": "Person",
+                    name: "Rafael Alves",
+                    url: "https://github.com/devRMA",
+                },
+            }),
+        ],
         // [
         //     "script",
         //     {
@@ -131,12 +158,16 @@ function sidebar() {
                     link: "/guide/getting-started",
                 },
                 {
-                    text: "Profiling a function",
-                    link: "/guide/profiling-function",
-                },
-                {
                     text: "With statement",
                     link: "/guide/with-statement",
+                },
+                {
+                    text: "Measuring laps",
+                    link: "/guide/measuring-laps",
+                },
+                {
+                    text: "Profiling a function",
+                    link: "/guide/profiling-function",
                 },
                 {
                     text: "Other libraries",
