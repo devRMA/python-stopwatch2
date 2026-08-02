@@ -30,8 +30,10 @@ class Lap:
 
     def stop(self) -> None:
         """
-        Stop the lap timer.
+        Stop the lap timer. Stopping an already stopped lap does nothing.
         """
+        if not self.running:
+            return
         self._fractions.append(time.perf_counter() - self._start)
         self._start = 0.0
         self.running = False

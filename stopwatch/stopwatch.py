@@ -18,7 +18,22 @@ class Stopwatch:
         name: str | None = None,
         print_report: bool = False,
         precision: int = 2,
+        autostart: bool = True,
     ) -> None:
+        """
+        Parameters
+        ----------
+        name : Optional[`str`]
+            The name shown in the reports.
+        print_report : `bool`
+            Print a report when leaving a `with` block. Default is False.
+        precision : `int`
+            The number of decimal places in the reports. Default is 2.
+        autostart : `bool`
+            Start measuring right away. Default is True. Pass False to
+            measure only the blocks wrapped in `lap()`, leaving the time
+            before the first one out.
+        """
         self.name = name
         self.precision = precision
         self.laps: list[Lap] = []
@@ -27,7 +42,8 @@ class Stopwatch:
         self._caller: Caller | None = (
             inspect_caller() if print_report else None
         )
-        self.start()
+        if autostart:
+            self.start()
 
     def __enter__(self) -> Stopwatch:
         return self.restart()
@@ -53,7 +69,7 @@ class Stopwatch:
     @property
     def running(self) -> bool:
         """`bool`: True if the stopwatch is running, False if stopped."""
-        return self._current_lap is not None and self._current_lap.running
+        return any(lap.running for lap in self.laps)
 
     @property
     def statistics(self) -> Statistics:
@@ -63,12 +79,32 @@ class Stopwatch:
     @contextmanager
     def lap(self) -> Iterator[None]:
         """
-        Context manager for add a new lap.
+        Context manager that records the block it wraps as its own lap.
+
+        Each call records a distinct lap, so nesting works and the lap is
+        always closed even if the block raises.
+
+        A stopwatch is already running once constructed, and the first lap
+        takes over that lap rather than opening a second one, so any time
+        between `Stopwatch()` and the first `lap()` belongs to it. Build it
+        with `autostart=False` to leave that time out.
         """
-        # calling start twice consecutively -> use stack to solve this problem
-        self.start()
-        yield
-        self.stop()
+        lap = self._take_running_lap() or self._open_lap()
+        try:
+            yield
+        finally:
+            lap.stop()
+
+    def _open_lap(self) -> Lap:
+        lap = Lap()
+        self.laps.append(lap)
+        lap.start()
+        return lap
+
+    def _take_running_lap(self) -> Lap | None:
+        lap = self._current_lap
+        self._current_lap = None
+        return lap if lap is not None and lap.running else None
 
     def start(self) -> Stopwatch:
         """
@@ -80,9 +116,7 @@ class Stopwatch:
             The started stopwatch instance.
         """
         if not self.running:
-            self.laps.append(Lap())
-            self._current_lap = self.laps[-1]
-            self._current_lap.start()
+            self._current_lap = self._open_lap()
         return self
 
     def stop(self) -> Stopwatch:

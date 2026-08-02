@@ -127,6 +127,59 @@ class StopwatchTest(TestCase):
             'min=0.00s, median=2.00s, max=4.00s, dev=1.41s',
         )
 
+    def test_stopwatch_without_autostart_measures_only_laps(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            sw = Stopwatch(autostart=False)
+            self.time_mock.increment(5)
+            self.assertFalse(sw.running)
+            self.assertEqual(sw.laps, [])
+            self.assertEqual(sw.elapsed, 0.0)
+            with sw.lap():
+                self.time_mock.increment(1)
+        self.assertEqual(len(sw.laps), 1)
+        self.assertEqual(sw.elapsed, 1.0)
+
+    def test_stopwatch_without_autostart_still_starts_as_context(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            with Stopwatch(autostart=False) as sw:
+                self.time_mock.increment(1)
+                self.assertTrue(sw.running)
+        self.assertEqual(sw.elapsed, 1.0)
+
+    def test_stopwatch_lap_closes_on_exception(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            sw = Stopwatch()
+            with self.assertRaises(ValueError):
+                with sw.lap():
+                    self.time_mock.increment(1)
+                    raise ValueError('boom')
+            self.time_mock.increment(10)
+        self.assertFalse(sw.running)
+        self.assertEqual(len(sw.laps), 1)
+        self.assertEqual(sw.elapsed, 1.0)
+
+    def test_stopwatch_nested_laps_keep_outer_time(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            sw = Stopwatch()
+            with sw.lap():
+                self.time_mock.increment(1)
+                with sw.lap():
+                    self.time_mock.increment(2)
+                self.time_mock.increment(4)
+        self.assertEqual(len(sw.laps), 2)
+        self.assertEqual(sw.laps[0].elapsed, 7.0)
+        self.assertEqual(sw.laps[1].elapsed, 2.0)
+        self.assertFalse(sw.running)
+
+    def test_stopwatch_instances_do_not_share_laps(self) -> None:
+        with patch('time.perf_counter', self.time_mock.perf_counter):
+            sw1 = Stopwatch()
+            sw2 = Stopwatch()
+            self.time_mock.increment(1)
+            sw1.stop()
+        self.assertIsNot(sw1.laps, sw2.laps)
+        self.assertFalse(hasattr(Stopwatch, 'laps'))
+
     def test_stopwatch_statistics(self) -> None:
         with patch('time.perf_counter', self.time_mock.perf_counter):
             with Stopwatch() as sw:
