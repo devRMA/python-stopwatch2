@@ -1,6 +1,8 @@
 # Profiling a function
 
-You can use this decorator to profile a function. It will print a report every time the function is called and, at the end of the execution, the final report will be printed.
+Use the [profile](/api/decorators#profile) decorator to measure every call to a
+function. By default it prints a running report on each call, so you watch the
+numbers settle as the function is exercised.
 
 ```python{5}
 from stopwatch import profile
@@ -22,5 +24,45 @@ print('end')
 # [__main__#My function] hits=4, mean=250.30ms, min=100.14ms, median=250.30ms, max=400.44ms, dev=111.92ms
 # [__main__#My function] hits=5, mean=300.35ms, min=100.14ms, median=300.35ms, max=500.55ms, dev=141.56ms
 # end
-# [__main__#My function] hits=5, mean=300.35ms, min=100.14ms, median=300.35ms, max=500.55ms, dev=141.56ms
 ```
+
+Reporting on every call gets noisy for a function called often. Pass
+`report_every` to report periodically, or `None` to report only once when the
+process exits:
+
+```python
+@profile(report_every=100)
+def hot_path() -> None:
+    ...
+
+@profile(report_every=None)
+def quiet() -> None:
+    ...
+```
+
+`async def` functions work too, and are measured across the `await` rather than
+just the creation of the coroutine:
+
+```python
+import asyncio
+from stopwatch import profile
+
+
+@profile(name='fetch')
+async def fetch() -> str:
+    await asyncio.sleep(0.2)
+    return 'ok'
+
+
+asyncio.run(fetch())
+
+# [__main__#fetch] hits=1, mean=200.47ms, min=200.47ms, median=200.47ms, max=200.47ms, dev=0.00μs
+```
+
+A call that raises is still recorded, so a function that starts failing does not
+quietly vanish from the report.
+
+::: tip
+Need to measure part of a function rather than the whole thing? Use
+[laps](/guide/measuring-laps) instead.
+:::

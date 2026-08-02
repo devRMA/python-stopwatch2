@@ -2,6 +2,14 @@
 
 This section will help you install the library and basic usage of the stopwatch class.
 
+::: info Requirements
+Python **3.10 or newer**. The only runtime dependency is
+[colorama](https://pypi.org/project/colorama/), for the colored reports.
+
+Using Python 3.7, 3.8 or 3.9? Those are end-of-life upstream and supported only
+up to `python-stopwatch2` 1.1.1.
+:::
+
 - **Step. 1:** Install the library.
 
   ::: code-group
@@ -64,3 +72,12 @@ This section will help you install the library and basic usage of the stopwatch 
   sw.stop()
   print(f'Time elapsed: {sw}')  # Time elapsed: 2.00s
   ```
+
+- **Where to go next**
+
+  - [With statement](/guide/with-statement) — let the stopwatch start and stop
+    itself around a block.
+  - [Measuring laps](/guide/measuring-laps) — time each iteration separately and
+    get statistics across them.
+  - [Profiling a function](/guide/profiling-function) — measure every call to a
+    function with a decorator.

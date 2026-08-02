@@ -7,21 +7,27 @@
 ```python
 def __init__(
     self,
-    name: Optional[str] = None,
+    name: str | None = None,
     print_report: bool = False,
-    precision: int = 2
+    precision: int = 2,
+    autostart: bool = True,
 ) -> None:
 ```
 
 **Parameters**
 
 - `name`: The name of the stopwatch, used for reporting.
-  - Type: Optional[[str](https://docs.python.org/3/library/stdtypes.html#str)]
-- `print_report`: This parameter is used to print elapsed time at the end of [with statement](https://www.geeksforgeeks.org/with-statement-in-python/).
+  - Type: [str](https://docs.python.org/3/library/stdtypes.html#str) | None
+  - Default: None
+- `print_report`: This parameter is used to print elapsed time at the end of [with statement](https://www.geeksforgeeks.org/with-statement-in-python/). The report is prefixed with `[module:function:line]`, pointing at where the stopwatch was created.
   - Type: [bool](https://docs.python.org/3/library/functions.html#bool)
   - Default: False
 - `precision`: The number of decimal places to use.
   - Type: [int](https://docs.python.org/3/library/functions.html#int)
+  - Default: 2
+- `autostart`: Whether to start measuring immediately. Pass `False` to measure only the blocks wrapped in [lap](#lap).
+  - Type: [bool](https://docs.python.org/3/library/functions.html#bool)
+  - Default: True
 
 ::: details Example
 
@@ -58,7 +64,32 @@ sw.precision = 0
 print(str(sw))  # 3s
 ```
 
+<br>
+
+```python
+sw = Stopwatch(autostart=False)
+sleep(0.5)              # setup work, not measured
+with sw.lap():
+    sleep(0.1)
+print(sw.laps[0].elapsed)  # 0.1
+
+# With the default autostart=True, the same code bills the 0.5s
+# to the first lap:
+sw = Stopwatch()
+sleep(0.5)
+with sw.lap():
+    sleep(0.1)
+print(sw.laps[0].elapsed)  # 0.6
+```
+
 :::
+
+## Supported operations
+
+```python
+str(sw)   # the elapsed time, formatted -> '2.00s'
+repr(sw)  # <Stopwatch name=None elapsed=2.0031827000002522>
+```
 
 ## Attributes
 
@@ -70,7 +101,7 @@ The name of the stopwatch. Can be set during initialization.
 
 **Type**
 
-- Optional[[str](https://docs.python.org/3/library/stdtypes.html#str)]
+- [str](https://docs.python.org/3/library/stdtypes.html#str) | None
 
 ::: details Example
 
@@ -108,7 +139,7 @@ The list of all stopwatch laps.
 
 **Type**
 
-- List[[Lap](/api/lap)]
+- list[[Lap](/api/lap)]
 
 ::: details Example
 
@@ -145,7 +176,8 @@ print(sw.elapsed)  # 1.0
 
 ### running
 
-True if the stopwatch is running, False if stopped.
+True while any lap is running, False when every lap is stopped. This includes
+the lap opened by a [lap](#lap) block, so it is True inside one.
 
 **Type**
 
@@ -158,6 +190,8 @@ sw = Stopwatch()
 print(sw.running)  # True
 sw.stop()
 print(sw.running)  # False
+
+print(Stopwatch(autostart=False).running)  # False
 ```
 
 :::
@@ -168,7 +202,7 @@ The statistics of the stopwatch.
 
 **Type**
 
-- Statistics
+- [Statistics](/api/statistics)
 
 ::: details Example
 
@@ -194,10 +228,12 @@ All methods of the `Stopwatch` class.
 def start(self) -> Stopwatch:
 ```
 
-Starts the stopwatch if not running.
+Starts the stopwatch if not running. Calling it on a stopwatch that is already
+running does nothing.
 
 ::: info
-This method is called automatically when the stopwatch is created.
+This method is called automatically when the stopwatch is created, unless you
+pass [autostart=False](#initialization).
 :::
 
 **Returns**
@@ -261,17 +297,65 @@ print(sw.running)  # False
 def lap(self) -> Iterator[None]:
 ```
 
-Context manager for create a new [lap](/api/lap).
+Context manager that records the block it wraps as its own [lap](/api/lap).
+
+The lap is always closed when the block ends, including when the block raises,
+so an exception cannot leave a lap running and skew every later reading.
+
+Nesting works: each `lap()` records a distinct lap, and the outer block keeps
+its own time.
+
+::: warning
+A stopwatch starts measuring as soon as it is created, and the first `lap()`
+takes over that lap instead of opening a second one — otherwise the time
+already on the clock would show up as an extra lap. That means any work between
+`Stopwatch()` and the first `lap()` is billed to the first lap. Use
+[autostart=False](#initialization) when you only want the `lap()` blocks
+measured.
+:::
 
 ::: details Example
 
 ```python
 with Stopwatch() as sw:
     for i in range(5):
-        with sw.lap(): // [!code focus]
+        with sw.lap(): # [!code focus]
             sleep(i / 10)
 print(f'{sw}')  # 1.00s
 print(len(sw.laps))  # 5
+```
+
+<br>
+
+Nested laps, each keeping its own time:
+
+```python
+sw = Stopwatch(autostart=False)
+with sw.lap():
+    sleep(0.1)
+    with sw.lap():
+        sleep(0.2)
+    sleep(0.1)
+print(len(sw.laps))         # 2
+print(sw.laps[0].elapsed)   # 0.4  (the outer block, including the inner one)
+print(sw.laps[1].elapsed)   # 0.2  (the inner block)
+```
+
+<br>
+
+The lap is closed even when the block raises:
+
+```python
+sw = Stopwatch(autostart=False)
+try:
+    with sw.lap():
+        sleep(0.1)
+        raise ValueError('boom')
+except ValueError:
+    pass
+sleep(0.3)
+print(sw.running)   # False
+print(sw.elapsed)   # 0.1  -- does not keep growing
 ```
 
 :::
@@ -357,7 +441,12 @@ with Stopwatch() as sw:
         with sw.lap():
             sleep(i / 10)
 print(sw.report())
-# [Stopwatch] total=1.0s, mean=0.2s, min=0.0s, median=0.2s, max=0.4s, dev=0.1s
+# [Stopwatch] total=1.00s, mean=0.20s, min=0.00s, median=0.20s, max=0.40s, dev=0.14s
 ```
+
+::: info
+The number of decimal places follows [precision](#precision). The mean, min,
+median, max and deviation are only included when there is more than one lap.
+:::
 
 :::
