@@ -1,3 +1,6 @@
+import asyncio
+import sys
+from collections.abc import Callable
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
@@ -109,3 +112,90 @@ class ProfileTest(TestCase):
                 decorated_func()
         self.assertEqual(func.call_count, 4)
         print_mock.assert_not_called()
+
+    def test_profile_rejects_invalid_report_every(self) -> None:
+        with self.assertRaises(ValueError):
+            profile(report_every=0)
+        with self.assertRaises(ValueError):
+            profile(report_every=-1)
+
+    @patch('builtins.print')
+    def test_profile_records_calls_that_raise(
+        self, print_mock: MagicMock
+    ) -> None:
+        registered: list[object] = []
+        with patch('atexit.register', registered.append):
+            with patch('time.perf_counter', self.time_mock.perf_counter):
+
+                @profile(name='boom')
+                def failing() -> None:
+                    self.time_mock.increment(0.5)
+                    raise RuntimeError('nope')
+
+                for _ in range(2):
+                    with self.assertRaises(RuntimeError):
+                        failing()
+        # The measurement used to be discarded when the call raised, so
+        # exactly the calls worth investigating went unrecorded.
+        self.assertEqual(print_mock.call_count, 2)
+        report = print_mock.call_args[0][0]
+        self.assertIn('hits=2', report)
+        self.assertIn('mean=500.00ms', report)
+
+    def test_profile_measures_async_functions(self) -> None:
+        totals: list[float] = []
+        # Reached through sys.modules because `stopwatch/__init__.py`
+        # binds the name `profile` to the function, shadowing the
+        # submodule, so 'stopwatch.profile._print_report' does not resolve.
+        profile_module = sys.modules['stopwatch.profile']
+        with (
+            patch('atexit.register', lambda *a, **k: None),
+            patch.object(
+                profile_module,
+                '_print_report',
+                lambda caller, name, stats: totals.append(stats.total),
+            ),
+        ):
+
+            @profile(name='coro')
+            async def work() -> str:
+                await asyncio.sleep(0.05)
+                return 'done'
+
+            self.assertEqual(asyncio.run(work()), 'done')
+
+        # Before the fix only the coroutine's creation was timed, which
+        # reported single-digit microseconds for this.
+        self.assertEqual(len(totals), 1)
+        self.assertGreaterEqual(totals[0], 0.05)
+
+    @patch('builtins.print')
+    def test_profile_does_not_report_twice_at_exit(
+        self, print_mock: MagicMock
+    ) -> None:
+        registered: list[Callable[[], None]] = []
+        with patch('atexit.register', registered.append):
+            with patch('time.perf_counter', self.time_mock.perf_counter):
+                func = MagicMock(__name__='dup')
+                decorated_func = profile()(func)
+                self.time_mock.increment(0.1)
+                decorated_func()
+        self.assertEqual(print_mock.call_count, 1)
+        registered[0]()
+        self.assertEqual(print_mock.call_count, 1)
+
+    @patch('builtins.print')
+    def test_profile_flushes_unreported_calls_at_exit(
+        self, print_mock: MagicMock
+    ) -> None:
+        registered: list[Callable[[], None]] = []
+        with patch('atexit.register', registered.append):
+            with patch('time.perf_counter', self.time_mock.perf_counter):
+                func = MagicMock(__name__='flush')
+                decorated_func = profile(report_every=2)(func)
+                for _ in range(3):
+                    self.time_mock.increment(0.1)
+                    decorated_func()
+        self.assertEqual(print_mock.call_count, 1)
+        registered[0]()
+        self.assertEqual(print_mock.call_count, 2)

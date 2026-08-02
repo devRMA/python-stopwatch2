@@ -46,6 +46,22 @@ class StatisticsTest(TestCase):
             self.stats.variance, statistics.pvariance(self.values)
         )
 
+    def test_stdev(self) -> None:
+        self.assertEqual(self.stats.stdev, statistics.pstdev(self.values))
+
+    def test_does_not_alias_the_given_list(self) -> None:
+        values = [1.0, 2.0]
+        stats = Statistics(values)
+        stats.add(3.0)
+        # `values or []` used to store the caller's list by reference, so
+        # add() mutated it and later edits to it changed the statistics.
+        self.assertEqual(values, [1.0, 2.0])
+        values.append(99.0)
+        self.assertEqual(len(stats), 3)
+
+    def test_total_is_a_float_when_empty(self) -> None:
+        self.assertIsInstance(Statistics().total, float)
+
     def test_to_dict(self) -> None:
         self.assertEqual(
             self.stats.to_dict(),

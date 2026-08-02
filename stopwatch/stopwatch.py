@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import math
 from collections.abc import Iterator
 from contextlib import contextmanager
 from typing import Any
@@ -176,7 +175,7 @@ class Stopwatch:
                     f'min={statistics.minimum:.{self.precision}f}s',
                     f'median={statistics.median:.{self.precision}f}s',
                     f'max={statistics.maximum:.{self.precision}f}s',
-                    f'dev={math.sqrt(statistics.variance):.{self.precision}f}s',
+                    f'dev={statistics.stdev:.{self.precision}f}s',
                 ]
             )
 
