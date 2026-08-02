@@ -5,10 +5,6 @@ class Statistics:
     _values: list[float]
 
     def __init__(self, values: list[float] | None = None) -> None:
-        # Copy: `values or []` aliased the caller's list, so add() mutated
-        # it and later edits to it silently changed the statistics -- but
-        # only for a non-empty list, since an empty one is falsy and got
-        # replaced. Same behaviour either way now.
         self._values = list(values) if values else []
 
     def add(self, value: float) -> None:
@@ -45,7 +41,6 @@ class Statistics:
     @property
     def total(self) -> float:
         """`float`: Return the total value in seconds."""
-        # sum([]) is int 0, and the annotation promises a float.
         return float(sum(self._values))
 
     @property

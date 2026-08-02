@@ -95,13 +95,11 @@ def profile(
     `ValueError`
         If `report_every` is smaller than 1.
 
-    ponytail: a generator function is measured only for the time it takes
-    to build the generator, not to consume it, because there is no way to
-    time the consumption without changing the function's semantics.
-    ponytail: every recorded call is kept, because the median needs all
-    the values, and the atexit registration holds them until the process
-    exits (~3MB per 100k calls). Cap it with a reservoir sample, or drop
-    the median, if profiling a hot function over a long run.
+    Notes
+    -----
+    A generator function is measured only for building the generator, not
+    for consuming it. Every recorded value is retained until the process
+    exits, since the median needs all of them.
     """
     if report_every is not None and report_every < 1:
         raise ValueError(
@@ -114,18 +112,19 @@ def profile(
         stat_name = func.__name__ if name is None else name
         statistics = Statistics()
 
-        def record(elapsed: float) -> None:
-            statistics.add(elapsed)
-            if (
+        def is_report_due() -> bool:
+            return (
                 report_every is not None
                 and len(statistics) % report_every == 0
-            ):
+            )
+
+        def record(elapsed: float) -> None:
+            statistics.add(elapsed)
+            if is_report_due():
                 _print_report(caller, stat_name, statistics)
 
         def report_at_exit() -> None:
-            # Skip when the inline report above already covered this call
-            # count, which otherwise printed the same line twice.
-            if report_every is None or len(statistics) % report_every != 0:
+            if not is_report_due():
                 _print_report(caller, stat_name, statistics)
 
         atexit.register(report_at_exit)
@@ -148,7 +147,6 @@ def profile(
             try:
                 return func(*args, **kwargs)
             finally:
-                # In a finally, so a call that raises is still recorded.
                 record(stopwatch.stop().elapsed)
 
         return wrapper

@@ -135,8 +135,6 @@ class ProfileTest(TestCase):
                 for _ in range(2):
                     with self.assertRaises(RuntimeError):
                         failing()
-        # The measurement used to be discarded when the call raised, so
-        # exactly the calls worth investigating went unrecorded.
         self.assertEqual(print_mock.call_count, 2)
         report = print_mock.call_args[0][0]
         self.assertIn('hits=2', report)
@@ -144,9 +142,6 @@ class ProfileTest(TestCase):
 
     def test_profile_measures_async_functions(self) -> None:
         totals: list[float] = []
-        # Reached through sys.modules because `stopwatch/__init__.py`
-        # binds the name `profile` to the function, shadowing the
-        # submodule, so 'stopwatch.profile._print_report' does not resolve.
         profile_module = sys.modules['stopwatch.profile']
         with (
             patch('atexit.register', lambda *a, **k: None),
@@ -164,8 +159,6 @@ class ProfileTest(TestCase):
 
             self.assertEqual(asyncio.run(work()), 'done')
 
-        # Before the fix only the coroutine's creation was timed, which
-        # reported single-digit microseconds for this.
         self.assertEqual(len(totals), 1)
         self.assertGreaterEqual(totals[0], 0.05)
 
