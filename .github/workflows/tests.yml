@@ -40,11 +40,12 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install Poetry
-        uses: snok/install-poetry@a783c322200f0519c7926aa6faa857c4e23e9263 # v1.4.2
-        with:
-          version: "2.4.1"
-          virtualenvs-create: true
-          virtualenvs-in-project: true
+        # pipx ships with every GitHub-hosted runner and puts poetry on
+        # PATH the same way on Linux and Windows, which snok/install-poetry
+        # does not -- it left `poetry` unresolvable on windows-latest.
+        run: |
+          pipx install poetry==2.4.1
+          poetry config virtualenvs.in-project true
 
       - name: Load cached venv
         id: cached-venv
