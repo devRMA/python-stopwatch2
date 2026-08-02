@@ -7,8 +7,8 @@ long-term support branches.
 
 | Version | Supported |
 | ------- | --------- |
-| 1.1.x   | Yes       |
-| < 1.1   | No        |
+| 2.0.x   | Yes       |
+| < 2.0   | No        |
 
 Supported Python versions follow the upstream Python release cycle: versions
 that have reached end-of-life upstream are not supported here either.
