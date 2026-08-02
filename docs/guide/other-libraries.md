@@ -1,3 +1,8 @@
+---
+title: Other libraries
+description: How python-stopwatch2 compares with stopwatch.py and the original python-stopwatch, and when to just use time.perf_counter.
+---
+
 # Other libraries
 
 There are other timer libraries for python, here are some differences.

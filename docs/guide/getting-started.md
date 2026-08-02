@@ -1,3 +1,8 @@
+---
+title: Getting Started
+description: Install python-stopwatch2 and take your first measurement in three lines. Requires Python 3.10 or newer.
+---
+
 # Getting Started
 
 This section will help you install the library and basic usage of the stopwatch class.

@@ -1,3 +1,8 @@
+---
+title: Measuring laps
+description: Time each iteration of a loop separately with laps, get mean, median and standard deviation across them, and nest laps to split a step out of a larger one.
+---
+
 # Measuring laps
 
 A lap is one measured interval. Instead of a single total, laps let you time

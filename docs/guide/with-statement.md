@@ -1,3 +1,8 @@
+---
+title: With statement
+description: Use a Stopwatch as a context manager so it starts and stops itself around a block, and have it print the report for you.
+---
+
 # With statement
 
 You can use the Stopwatch Class with the [with statement](https://www.geeksforgeeks.org/with-statement-in-python/).

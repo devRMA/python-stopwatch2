@@ -1,3 +1,8 @@
+---
+title: Profiling a function
+description: Measure every call to a function with the profile decorator, including async def, with periodic statistics reports.
+---
+
 # Profiling a function
 
 Use the [profile](/api/decorators#profile) decorator to measure every call to a
