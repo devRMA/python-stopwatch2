@@ -27,7 +27,7 @@ packages = [{ include = "stopwatch" }]
 mypy = ">=2.3.1"
 pytest = ">=9.1.1"
 pytest-cov = ">=7.1.0"
-ruff = ">=0.16.5"
+ruff = ">=0.16.9"
 types-colorama = ">=0.4.15.20260508"
 
 [build-system]
